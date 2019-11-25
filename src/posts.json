@@ -1,0 +1,43 @@
+[
+  {
+    "title": "Hilfe bei Baumschnitt",
+    "description": "Ich suche jemanden, der mir helfen kann meinen Apfelbaum zu beschneiden",
+    "categorie": "Garten",
+    "name": "Erika Appelhoff",
+    "telnumber": "04125/8456038",
+    "email": "e.appelhoff@gmail.com"
+  },
+
+  {
+    "title": "Begleitung zu Arztterminen",
+    "description": "Wer kann mich zu Arztterminen in Elmshorn oder Uetersen fahren? Jede Woche oder zweiwöchentlich.",
+    "categorie": "Fahrdienst",
+    "name": "Peter Wulff",
+    "telnumber": "04125/4952383",
+    "email": "peter46@gmx.de"
+  },
+  {
+    "title": "Babysitter gesucht",
+    "description": "Wir suchen jemanden, der gelegentlich auf unsere beiden Mädchen (2 und 3) aufpassen kann. Am besten bei uns zuhause und meist in den Abendstunden.",
+    "categorie": "Kind und Familie",
+    "name": "Andrea Schiller",
+    "telnumber": "0160/ 6435829",
+    "email": "andreasucht@aol.com"
+  },
+  {
+    "title": "Computer reparieren",
+    "description": "Wer kennt sich mit Computern aus und kann sich meinen anschauen?",
+    "categorie": "Technik",
+    "name": "Philipp Ahrens",
+    "telnumber": "0173/ 8569783",
+    "email": "familieahrens@gmx.com"
+  },
+  {
+    "title": "Gassigehen und Hund füttern",
+    "description": "Könnte jemand am Wochenende Emil füttern und 1-2 mal mit ihm Gassigehen?",
+    "categorie": "Haustiere",
+    "name": "Olli Runge",
+    "telnumber": "0160/ 5574987",
+    "email": "ollis83@gmail.com"
+  }
+]

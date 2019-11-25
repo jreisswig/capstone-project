@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import postData from './posts.json'
+import Post from './Post'
+import styled from 'styled-components/macro'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PostContainer>
+        {postData.map((post, index) => (
+          <Post
+            title={post.title}
+            description={post.description}
+            name={post.name}
+            telnumber={post.telnumber}
+            email={post.email}
+            key={index}
+          />
+        ))}
+      </PostContainer>
     </div>
-  );
+  )
 }
 
-export default App;
+const PostContainer = styled.div`
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+  overflow: scroll;
+`
