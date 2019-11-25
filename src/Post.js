@@ -23,10 +23,34 @@ export default function Post({ title, description, name, telnumber, email }) {
 const PostWrapper = styled.section`
   position: relative;
   background-color: #f3f7f6;
-  border-radius: 2px;
+  border-radius: 18px;
   padding: 3px 15px;
   margin-top: 7px;
   box-shadow: 0 5px 5px #f0efef;
+
+  &: hover {
+    animation-name: swing;
+    animation-duration: 1s;
+    @keyframes swing {
+      0% {
+        transform: rotate(0deg);
+      }
+      20% {
+        transform: rotate(3deg);
+      }
+
+      50% {
+        transform: rotate(-5deg);
+      }
+      50% {
+        transform: rotate(-2deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
 `
 const PostTitle = styled.p`
   font-weight: ${props => props.fontWeight};
@@ -62,6 +86,6 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  telNumber: PropTypes.number.isRequired,
+  telnumber: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired
 }
