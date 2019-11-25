@@ -17,6 +17,5 @@ addDecorator(storyFn => (
 
 const Wrapper = styled.div`
   max-width: 500px;
-  border: 1px solid hotpink;
   padding: 20px;
 `

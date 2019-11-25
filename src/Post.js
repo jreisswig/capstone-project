@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Pin from './Pin.js'
+import PropTypes from 'prop-types'
 
 export default function Post({ title, description, name, telnumber, email }) {
   return (
@@ -57,3 +58,10 @@ const Line = styled.hr`
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
 `
+Post.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  telNumber: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired
+}
