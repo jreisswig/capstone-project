@@ -9,6 +9,7 @@ export default function Pin() {
     </PinStyle>
   )
 }
+
 const PinStyle = styled.div`
   position: absolute;
   top: 9px;

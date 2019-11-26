@@ -1,22 +1,31 @@
 import React from 'react'
-import postData from './posts.json'
-import Post from './Post'
+import Nav from './Nav'
+import Grid from './Grid'
+import Form from './Form'
+import Bulletinboard from './Bulletinboard'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 export default function App() {
   return (
-    <div className="App">
-      <PostContainer>
-        {postData.map((post, index) => (
-          <Post {...post} key={index} />
-        ))}
-      </PostContainer>
-    </div>
+    <Appcontainer>
+      <Grid>
+        <div>Header</div>
+        <Router>
+          <Switch>
+            <Route
+              exact
+              path="/bulletinboard"
+              component={Bulletinboard}
+            ></Route>
+            <Route path="/newpost" component={Form}></Route>
+          </Switch>
+          <Nav />
+        </Router>
+      </Grid>
+    </Appcontainer>
   )
 }
-
-const PostContainer = styled.div`
-  display: grid;
-  gap: 20px;
-  padding: 20px;
+const Appcontainer = styled.div`
+  height: 100vh;
 `
