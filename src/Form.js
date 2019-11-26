@@ -73,6 +73,7 @@ const StyledInput = styled.input`
   width: 100%;
   padding: 10px;
   font-size: 1rem;
+  border-radius: 5px;
 `
 const FormContact = styled.div`
   display: flex;
@@ -82,6 +83,7 @@ const StyledSubmit = styled.input`
   background: #7aaca2;
   border: none;
   width: 50%;
+  border-radius: 5px;
 `
 const StyledTextArea = styled.textarea`
   background: #f3f7f6;
@@ -90,4 +92,5 @@ const StyledTextArea = styled.textarea`
   padding: 10px;
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
+  border-radius: 5px;
 `

@@ -1,7 +1,7 @@
 import React from 'react'
 import Nav from './Nav'
 import Grid from './Grid'
-import Form from './Form'
+import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
@@ -18,7 +18,7 @@ export default function App() {
               path="/bulletinboard"
               component={Bulletinboard}
             ></Route>
-            <Route path="/newpost" component={Form}></Route>
+            <Route path="/newpost" component={NewPost}></Route>
           </Switch>
           <Nav />
         </Router>
