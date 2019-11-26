@@ -8,9 +8,9 @@ box-sizing: border-box;
 :root {
 margin: 0px;
 font-family: 'Helvetica Neue', sans-serif;
-font-size: 15px;
+font-size: 0.8rem;
 color: #7d7b7b;
-heigth: 100vh;
+height: 100vh;
 
 }
 

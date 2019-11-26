@@ -3,17 +3,17 @@ import styled from 'styled-components/macro'
 import Pin from './Pin.js'
 import PropTypes from 'prop-types'
 
-export default function Post({ title, description, name, telnumber, email }) {
+export default function Post({ title, description, name, phonenumber, email }) {
   return (
     <PostWrapper>
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
-      <PostTitle fontWeight="bold">{title}</PostTitle>
+      <PostTitle>{title}</PostTitle>
       <PostDescription>{description}</PostDescription>
       <Line />
       <PostName>{name}</PostName>
       <ContactWrapper>
-        <PostTelNumber>{telnumber}</PostTelNumber>
+        <PostPhoneNumber>{phonenumber} </PostPhoneNumber>
         <p>•</p>
         <PostEmail>{email}</PostEmail>
       </ContactWrapper>
@@ -53,22 +53,20 @@ const PostWrapper = styled.section`
   }
 `
 const PostTitle = styled.p`
-  font-weight: ${props => props.fontWeight};
+  font-weight: bold;
   color: #424242;
 `
 const PostDescription = styled.p``
 const PostName = styled.p`
   color: #424242;
-  font-size: 0.9rem;
+
   margin-bottom: 0px;
 `
-const PostTelNumber = styled.p`
+const PostPhoneNumber = styled.p`
   padding-right: 7px;
-  font-size: 0.9rem;
 `
 const PostEmail = styled.p`
   padding-left: 7px;
-  font-size: 0.9rem;
 `
 const PostSearch = styled.p`
   font-weight: lighter;
@@ -86,6 +84,6 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  telnumber: PropTypes.number.isRequired,
+  phonenumber: PropTypes.number.isRequired,
   email: PropTypes.string.isRequired
 }
