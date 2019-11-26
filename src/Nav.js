@@ -8,7 +8,7 @@ export default function Nav() {
   return (
     <Navigation>
       <NavButton>
-        <Link to="/Bulletinboard">
+        <Link to="/bulletinboard">
           <img src={Homeicon} />
         </Link>
       </NavButton>
@@ -38,12 +38,13 @@ export default function Nav() {
 }
 
 const Navigation = styled.nav`
+  display: grid;
+  grid-auto-flow: column;
   background-color: white;
   border-top: 0.8px solid #979797;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
-  display: grid;
-  grid-auto-flow: column;
+  z-index: 1;
 `
 
 const NavButton = styled.button`

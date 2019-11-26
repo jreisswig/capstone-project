@@ -10,7 +10,7 @@ export default function App() {
   return (
     <Appcontainer>
       <Grid>
-        <div>Header</div>
+        <HeaderStyled></HeaderStyled>
         <Router>
           <Switch>
             <Route
@@ -28,4 +28,9 @@ export default function App() {
 }
 const Appcontainer = styled.div`
   height: 100vh;
+`
+const HeaderStyled = styled.header`
+  background: white;
+  box-shadow: 0 2px 2px #f0efef;
+  z-index: 1;
 `

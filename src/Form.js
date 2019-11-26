@@ -4,8 +4,6 @@ import styled from 'styled-components/macro'
 export default function Form() {
   return (
     <StyledForm method="post" action="" id="">
-      <legend>Felder mit * sind erforderlich</legend>
-
       <StyledLabel for="title"></StyledLabel>
       <StyledInput
         type="text"
@@ -13,6 +11,14 @@ export default function Form() {
         required
         placeholder="Titel für deinen Aushang *"
       ></StyledInput>
+      <p>Wähle eine Kategorie:</p>
+      <Flex>
+        <Circle />
+        <Circle />
+        <Circle />
+        <Circle />
+        <Circle />
+      </Flex>
 
       <StyledLabel for="description"></StyledLabel>
       <StyledTextArea
@@ -22,7 +28,7 @@ export default function Form() {
         rows="4"
         required
         maxlength="100"
-        placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst,
+        placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
             oder was du suchst. *"
       ></StyledTextArea>
 
@@ -34,31 +40,33 @@ export default function Form() {
         placeholder="Schreibe hier deinen Namen rein *"
       ></StyledInput>
 
-      <FormContact>
+      <Flex>
         <StyledLabel for="phonenumber"></StyledLabel>
-        <StyledInput
+        <StyledContactInput
           type="text"
           name="phonenumber"
-          placeholder="Telefon *"
-        ></StyledInput>
+          placeholder="Telefon"
+        ></StyledContactInput>
 
         <StyledLabel for="email"></StyledLabel>
-        <StyledInput
+        <StyledContactInput
           type="text"
           name="email"
-          placeholder="Email *"
-        ></StyledInput>
-      </FormContact>
+          placeholder="Email"
+        ></StyledContactInput>
+      </Flex>
+      <legend>Felder mit * sind erforderlich</legend>
       <label for="Senden"></label>
       <StyledSubmit
         id="Senden"
         type="submit"
         name="senden"
-        value="Senden"
+        value="Veröffentlichen"
       ></StyledSubmit>
     </StyledForm>
   )
 }
+
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;
@@ -70,13 +78,29 @@ const StyledLabel = styled.label`
 const StyledInput = styled.input`
   background: #f3f7f6;
   border: none;
-  width: 100%;
+
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
 `
-const FormContact = styled.div`
+const StyledContactInput = styled.input`
+  background: #f3f7f6;
+  border: none;
+  width: 45%;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+`
+
+const Flex = styled.div`
   display: flex;
+  justify-content: space-between;
+`
+const Circle = styled.div`
+  background: #f3f7f6;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 `
 
 const StyledSubmit = styled.input`
@@ -84,11 +108,14 @@ const StyledSubmit = styled.input`
   border: none;
   width: 50%;
   border-radius: 5px;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
 `
 const StyledTextArea = styled.textarea`
   background: #f3f7f6;
   border: none;
-  width: 100%;
+
   padding: 10px;
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
