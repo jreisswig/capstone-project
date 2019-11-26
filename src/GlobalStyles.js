@@ -13,6 +13,9 @@ color: #7d7b7b;
 
 
 }
+body{
+    margin: 0;
+}
 
 `
 export default GlobalStyles
