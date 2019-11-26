@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="28px" viewBox="0 0 27 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Homeicon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homeicon" transform="translate(1.000000, 1.000000)" stroke="#7AACA2">
+            <g id="Homebutton-Copy">
+                <path d="M23,12 L23,25.4303017 C23,25.7449374 22.7466358,26 22.4340953,26 L16.7408217,26 C16.4282811,26 16.1749169,25.7449374 16.1749169,25.4303017 L16.1749169,19.9808873 L16.1749169,19.9808873 C15.1727113,18.0155056 13.9602144,17.0328148 12.5374264,17.0328148 C11.1146383,17.0328148 9.84969893,18.0155056 8.74260826,19.9808873 L8.74260826,25.4303017 C8.74260826,25.7449374 8.48924408,26 8.17670352,26 L2.56590474,26 C2.25336418,26 2,25.7449374 2,25.4303017 L2,12 L2,12" id="Path" stroke-width="2"></path>
+                <path d="M0,14 L11.8119649,0.422616767 C11.9932121,0.21428034 12.3090321,0.192320176 12.5173685,0.373567367 C12.5316285,0.385973198 12.5451736,0.39917764 12.5579385,0.41311711 L25,14 L25,14" id="Path-6" stroke-width="2" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>
