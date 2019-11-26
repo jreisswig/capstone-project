@@ -10,7 +10,6 @@ export default function Form() {
       <StyledInput
         type="text"
         name="title"
-        value=""
         required
         placeholder="Titel für deinen Aushang *"
       ></StyledInput>
@@ -19,7 +18,6 @@ export default function Form() {
       <StyledTextArea
         type="textarea"
         name="description"
-        value=""
         cols="35"
         rows="4"
         required
@@ -32,7 +30,6 @@ export default function Form() {
       <StyledInput
         type="text"
         name="name"
-        value=""
         required
         placeholder="Schreibe hier deinen Namen rein *"
       ></StyledInput>
@@ -42,7 +39,6 @@ export default function Form() {
         <StyledInput
           type="text"
           name="phonenumber"
-          value=""
           placeholder="Telefon *"
         ></StyledInput>
 
@@ -50,7 +46,6 @@ export default function Form() {
         <StyledInput
           type="text"
           name="email"
-          value=""
           placeholder="Email *"
         ></StyledInput>
       </FormContact>
@@ -77,6 +72,7 @@ const StyledInput = styled.input`
   border: none;
   width: 100%;
   padding: 10px;
+  font-size: 1rem;
 `
 const FormContact = styled.div`
   display: flex;
@@ -91,7 +87,7 @@ const StyledTextArea = styled.textarea`
   background: #f3f7f6;
   border: none;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
 `
