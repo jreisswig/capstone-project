@@ -4,14 +4,15 @@ import styled from 'styled-components/macro'
 export default function Form() {
   return (
     <StyledForm method="post" action="" id="">
-      <StyledLabel for="title"></StyledLabel>
-      <StyledInput
+      <Label for="title"></Label>
+      <Input
         type="text"
         name="title"
+        id="title"
         required
         placeholder="Titel für deinen Aushang *"
-      ></StyledInput>
-      <p>Wähle eine Kategorie:</p>
+      ></Input>
+      <Headline4>Wähle eine Kategorie:</Headline4>
       <Flex>
         <Circle />
         <Circle />
@@ -20,45 +21,49 @@ export default function Form() {
         <Circle />
       </Flex>
 
-      <StyledLabel for="description"></StyledLabel>
-      <StyledTextArea
+      <Label for="description"></Label>
+      <TextArea
         type="textarea"
         name="description"
         cols="35"
         rows="4"
+        id="description"
         required
         maxlength="100"
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
             oder was du suchst. *"
-      ></StyledTextArea>
+      ></TextArea>
 
-      <StyledLabel for="name"></StyledLabel>
-      <StyledInput
+      <Label for="name"></Label>
+      <Input
         type="text"
         name="name"
+        id="name"
         required
         placeholder="Schreibe hier deinen Namen rein *"
-      ></StyledInput>
+      ></Input>
 
       <Flex>
-        <StyledLabel for="phonenumber"></StyledLabel>
-        <StyledContactInput
+        <Label for="phonenumber"></Label>
+        <ContactInput
           type="text"
           name="phonenumber"
+          id="phonenumber"
           placeholder="Telefon"
-        ></StyledContactInput>
+        ></ContactInput>
 
-        <StyledLabel for="email"></StyledLabel>
-        <StyledContactInput
+        <Label for="email"></Label>
+        <ContactInput
           type="text"
           name="email"
+          id="email"
           placeholder="Email"
-        ></StyledContactInput>
+        ></ContactInput>
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
-      <label for="Senden"></label>
+      <label for="submit"></label>
       <StyledSubmit
-        id="Senden"
+        id="submit"
         type="submit"
         name="senden"
         value="Veröffentlichen"
@@ -71,19 +76,21 @@ const StyledForm = styled.form`
   display: grid;
   gap: 10px;
 `
-const StyledLabel = styled.label`
+const Label = styled.label`
   display: none;
 `
-
-const StyledInput = styled.input`
+const Headline4 = styled.h4`
+  font-size: 1rem;
+  font-weight: unset;
+`
+const Input = styled.input`
   background: #f3f7f6;
   border: none;
-
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
 `
-const StyledContactInput = styled.input`
+const ContactInput = styled.input`
   background: #f3f7f6;
   border: none;
   width: 45%;
@@ -92,9 +99,12 @@ const StyledContactInput = styled.input`
   border-radius: 5px;
 `
 
-const Flex = styled.div`
+const Flex = styled.fieldset`
   display: flex;
   justify-content: space-between;
+  border: none;
+  padding: 0;
+  margin: 0;
 `
 const Circle = styled.div`
   background: #f3f7f6;
@@ -112,7 +122,7 @@ const StyledSubmit = styled.input`
   padding: 10px;
   font-size: 1rem;
 `
-const StyledTextArea = styled.textarea`
+const TextArea = styled.textarea`
   background: #f3f7f6;
   border: none;
 

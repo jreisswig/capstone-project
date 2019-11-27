@@ -1,8 +1,9 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyles = createGlobalStyle`
+export default createGlobalStyle`
 *{
 box-sizing: border-box;
+min-width:0;
 }
 
 :root {
@@ -18,4 +19,3 @@ body{
 }
 
 `
-export default GlobalStyles
