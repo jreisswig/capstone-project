@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="7px" viewBox="0 0 14 7" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>arrow-ios-up</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17.9995,15 C17.7735,15 17.5465,14.924 17.3595,14.768 L11.9885,10.292 L6.6265,14.607 C6.1975,14.954 5.5675,14.886 5.2205,14.455 C4.8745,14.025 4.9425,13.396 5.3735,13.049 L11.3735,8.221 C11.7435,7.922 12.2745,7.926 12.6405,8.232 L18.6405,13.232 C19.0645,13.585 19.1215,14.216 18.7685,14.64 C18.5705,14.877 18.2865,15 17.9995,15" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-11" transform="translate(-325.000000, -501.000000)">
+            <g id="arrow-ios-up" transform="translate(320.000000, 493.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="🎨-Icon-Сolor" fill="#40514E" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
