@@ -8,19 +8,19 @@ export default function Nav() {
   return (
     <Navigation>
       <NavButton>
-        <Link to="/bulletinboard">
+        <Link to="/">
           <img src={Homeicon} alt="" />
         </Link>
       </NavButton>
 
       <NavButton>
-        <Link to="/newpost">
+        <Link to="/bulletinboard">
           <img src={Posticon} alt="" />
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/pinnwand">
-          <img src={Homeicon} alt="" />
+        <Link to="/newpost">
+          <img src={Posticon} alt="" />
         </Link>
       </NavButton>
       <NavButton>

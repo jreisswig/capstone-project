@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Pin from './Pin.js'
-import ArrowShow from './images/ArrowShow.svg'
-import ArrowHide from './images/ArrowHide.svg'
+/* import ArrowShow from './images/ArrowShow.svg'
+import ArrowHide from './images/ArrowHide.svg' */
 import PropTypes from 'prop-types'
 
 export default function Post({ title, description, name, phonenumber, email }) {

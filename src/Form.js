@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import FamilyIcon from './images/FamilyIcon.svg'
+import Categories from './Categories'
 
 export default function Form({ handleAddPost }) {
   const [addPost, setAddPost] = useState({
@@ -41,13 +41,7 @@ export default function Form({ handleAddPost }) {
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-      <Flex>
-        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
-        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
-        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
-        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
-        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
-      </Flex>
+      <Categories />
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -163,12 +157,12 @@ const Flex = styled.fieldset`
   padding: 0;
   margin: 0;
 `
-const Circle = styled.div`
+/* const Circle = styled.div`
   background: #f3f7f6;
   height: 50px;
   width: 50px;
   border-radius: 50%;
-`
+` */
 
 const StyledSubmit = styled.input`
   background: #7aaca2;
