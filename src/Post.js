@@ -1,24 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Pin from './Pin.js'
+import ArrowShow from './images/ArrowShow.svg'
+import ArrowHide from './images/ArrowHide.svg'
 import PropTypes from 'prop-types'
 
 export default function Post({ title, description, name, phonenumber, email }) {
+  const [isHidden, setIsHidden] = useState(true)
+
   return (
     <PostWrapper>
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
       <PostTitle>{title}</PostTitle>
-      <PostDescription>{description}</PostDescription>
-      <Line />
-      <PostName>{name}</PostName>
-      <ContactWrapper>
-        <PostPhoneNumber>{phonenumber} </PostPhoneNumber>
-        <p>•</p>
-        <PostEmail>{email}</PostEmail>
-      </ContactWrapper>
+      <Icon onClick={toggleIsHidden}>
+        {isHidden ? (
+          <img src={ArrowShow} alt="IconShow" height="17px" width="17px" />
+        ) : (
+          <img src={ArrowHide} alt="IconHide" height="17px" width="17px" />
+        )}
+      </Icon>
+      {!isHidden && (
+        <>
+          <PostDescription>{description}</PostDescription>
+          <Line />
+          <PostName>{name}</PostName>
+          <ContactWrapper>
+            <PostPhoneNumber>{phonenumber} </PostPhoneNumber>
+            <p>•</p>
+            <PostEmail>{email}</PostEmail>
+          </ContactWrapper>
+        </>
+      )}
     </PostWrapper>
   )
+  function toggleIsHidden() {
+    setIsHidden(!isHidden)
+  }
 }
 const PostWrapper = styled.section`
   position: relative;
@@ -80,10 +98,17 @@ const Line = styled.hr`
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
 `
+
+const Icon = styled.div`
+  position: absolute;
+  top: 42px;
+  right: 17px;
+`
+
 Post.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  phonenumber: PropTypes.number.isRequired,
+  phonenumber: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired
 }

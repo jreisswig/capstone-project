@@ -1,12 +1,11 @@
 import React from 'react'
 import Post from './Post'
 import styled from 'styled-components/macro'
-import postData from './posts.json'
 
-export default function Bulletinboard() {
+export default function Bulletinboard({ posts }) {
   return (
     <PostContainer>
-      {postData.map((post, index) => (
+      {posts.map((post, index) => (
         <Post {...post} key={index} />
       ))}
     </PostContainer>
