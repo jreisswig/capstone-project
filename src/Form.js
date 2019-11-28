@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import FamilyIcon from './images/FamilyIcon.svg'
 
 export default function Form({ handleAddPost }) {
   const [addPost, setAddPost] = useState({
@@ -39,11 +40,11 @@ export default function Form({ handleAddPost }) {
 
       <Headline4>Wähle eine Kategorie:</Headline4>
       <Flex>
-        <Circle />
-        <Circle />
-        <Circle />
-        <Circle />
-        <Circle />
+        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
+        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
+        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
+        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
+        <img src={FamilyIcon} alt="Family" height="50px" width="50px" />
       </Flex>
       <Label htmlFor="description"></Label>
       <TextArea
@@ -75,7 +76,7 @@ export default function Form({ handleAddPost }) {
           })
         }
         required
-        placeholder="Schreibe hier deinen Namen rein *"
+        placeholder="Angezeigter Name *"
       ></Input>
       <Flex>
         <Label htmlFor="phonenumber"></Label>

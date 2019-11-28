@@ -13,17 +13,20 @@ export default function Post({ title, description, name, phonenumber, email }) {
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
       <PostTitle>{title}</PostTitle>
+
+      <PostDescription>{description}</PostDescription>
       <Icon onClick={toggleIsHidden}>
         {isHidden ? (
-          <img src={ArrowShow} alt="IconShow" height="17px" width="17px" />
+          <Button>Kontakt</Button>
         ) : (
-          <img src={ArrowHide} alt="IconHide" height="17px" width="17px" />
+          <Button>Kontakt</Button>
+          /* <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> */
+          /* <img src={ArrowHide} alt="IconHide" height="17px" width="17px" /> */
         )}
       </Icon>
+      <Line />
       {!isHidden && (
         <>
-          <PostDescription>{description}</PostDescription>
-          <Line />
           <PostName>{name}</PostName>
           <ContactWrapper>
             <PostPhoneNumber>{phonenumber} </PostPhoneNumber>
@@ -38,12 +41,20 @@ export default function Post({ title, description, name, phonenumber, email }) {
     setIsHidden(!isHidden)
   }
 }
+const Button = styled.button`
+  background: #99c4c7;
+  border: none;
+  border-radius: 3px;
+  width: 53px;
+  font-weight: lighter;
+  font-size: 0.8rem;
+`
+
 const PostWrapper = styled.section`
   position: relative;
   background-color: #f3f7f6;
   border-radius: 18px;
   padding: 3px 15px;
-  margin-top: 7px;
   box-shadow: 0 5px 5px #f0efef;
 
   &: hover {
@@ -54,14 +65,14 @@ const PostWrapper = styled.section`
         transform: rotate(0deg);
       }
       20% {
-        transform: rotate(3deg);
+        transform: rotate(1deg);
       }
 
       50% {
-        transform: rotate(-5deg);
+        transform: rotate(-2deg);
       }
       50% {
-        transform: rotate(-2deg);
+        transform: rotate(-1deg);
       }
 
       100% {
@@ -74,7 +85,14 @@ const PostTitle = styled.p`
   font-weight: bold;
   color: #424242;
 `
-const PostDescription = styled.p``
+const PostDescription = styled.p`
+  position: relative;
+`
+const Icon = styled.div`
+  position: absolute;
+  bottom: 19px;
+  right: 17px;
+`
 const PostName = styled.p`
   color: #424242;
 
@@ -97,12 +115,6 @@ const Line = styled.hr`
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
-`
-
-const Icon = styled.div`
-  position: absolute;
-  top: 42px;
-  right: 17px;
 `
 
 Post.propTypes = {
