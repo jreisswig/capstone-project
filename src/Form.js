@@ -10,6 +10,7 @@ export default function Form({ handleAddPost }) {
     phonenumber: '',
     email: ''
   })
+  const [submitted, setSubmitted] = useState(false)
 
   return (
     <StyledForm
@@ -21,6 +22,7 @@ export default function Form({ handleAddPost }) {
         handleAddPost(addPost)
         event.target[0].focus()
         event.target.reset()
+        showMessage()
       }}
     >
       <Label htmlFor="title"></Label>
@@ -115,8 +117,16 @@ export default function Form({ handleAddPost }) {
         name="senden"
         value="Veröffentlichen"
       ></StyledSubmit>
+      {submitted && (
+        <Paragraph>
+          Danke! Dein Gesuch erscheint nun auf der Pinnwand!
+        </Paragraph>
+      )}
     </StyledForm>
   )
+  function showMessage() {
+    setSubmitted(!submitted)
+  }
 }
 const StyledForm = styled.form`
   display: grid;
@@ -128,6 +138,7 @@ const Label = styled.label`
 const Headline4 = styled.h4`
   font-size: 1rem;
   font-weight: unset;
+  margin: 0;
 `
 const Input = styled.input`
   background: #f3f7f6;
@@ -176,4 +187,7 @@ const TextArea = styled.textarea`
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
   border-radius: 5px;
+`
+const Paragraph = styled.p`
+  margin: 0;
 `

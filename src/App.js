@@ -16,6 +16,7 @@ export default function App() {
     <Appcontainer>
       <Grid>
         <HeaderStyled></HeaderStyled>
+
         <Router>
           <Switch>
             <Route exact path="/bulletinboard">
@@ -25,6 +26,7 @@ export default function App() {
               <NewPost handleAddPost={handleAddPost}></NewPost>
             </Route>
           </Switch>
+
           <Nav />
         </Router>
       </Grid>
