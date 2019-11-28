@@ -1,17 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function Form() {
+export default function Form({ handleAddPost }) {
+  const [addPost, setAddPost] = useState({
+    title: '',
+    description: '',
+    name: '',
+    phonenumber: '',
+    email: ''
+  })
+
   return (
-    <StyledForm method="post" action="" id="">
-      <Label for="title"></Label>
+    <StyledForm
+      method="post"
+      action=""
+      id=""
+      onSubmit={event => {
+        event.preventDefault()
+        handleAddPost(addPost)
+        event.target[0].focus()
+        event.target.reset()
+      }}
+    >
+      <Label htmlFor="title"></Label>
       <Input
         type="text"
         name="title"
         id="title"
+        onInput={event =>
+          setAddPost({
+            ...addPost,
+            title: event.target.value
+          })
+        }
         required
         placeholder="Titel für deinen Aushang *"
       ></Input>
+
       <Headline4>Wähle eine Kategorie:</Headline4>
       <Flex>
         <Circle />
@@ -20,48 +45,69 @@ export default function Form() {
         <Circle />
         <Circle />
       </Flex>
-
-      <Label for="description"></Label>
+      <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
         name="description"
         cols="35"
         rows="4"
         id="description"
+        onInput={event =>
+          setAddPost({
+            ...addPost,
+            description: event.target.value
+          })
+        }
         required
         maxlength="100"
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
             oder was du suchst. *"
       ></TextArea>
-
-      <Label for="name"></Label>
+      <Label htmlFor="name"></Label>
       <Input
         type="text"
         name="name"
         id="name"
+        onInput={event =>
+          setAddPost({
+            ...addPost,
+            name: event.target.value
+          })
+        }
         required
         placeholder="Schreibe hier deinen Namen rein *"
       ></Input>
-
       <Flex>
-        <Label for="phonenumber"></Label>
+        <Label htmlFor="phonenumber"></Label>
         <ContactInput
           type="text"
           name="phonenumber"
           id="phonenumber"
-          placeholder="Telefon"
+          onInput={event =>
+            setAddPost({
+              ...addPost,
+              phonenumber: event.target.value
+            })
+          }
+          placeholder="Telefonnummer"
         ></ContactInput>
 
-        <Label for="email"></Label>
+        <Label fhtmlFor="email"></Label>
         <ContactInput
           type="text"
           name="email"
           id="email"
+          onInput={event =>
+            setAddPost({
+              ...addPost,
+              email: event.target.value
+            })
+          }
           placeholder="Email"
         ></ContactInput>
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
-      <label for="submit"></label>
+      <label htmlFor="submit"></label>
       <StyledSubmit
         id="submit"
         type="submit"
@@ -71,7 +117,6 @@ export default function Form() {
     </StyledForm>
   )
 }
-
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;

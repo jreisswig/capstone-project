@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Form from './Form'
 
-export default function NewPost() {
+export default function NewPost({ handleAddPost }) {
   return (
     <NewPostWrapper>
       <Title>Erstelle ein neues Gesuch</Title>
@@ -13,7 +13,7 @@ export default function NewPost() {
         sehen können.
       </p>
 
-      <Form />
+      <Form handleAddPost={handleAddPost} />
     </NewPostWrapper>
   )
 }

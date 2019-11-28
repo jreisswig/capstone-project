@@ -109,6 +109,6 @@ Post.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  phonenumber: PropTypes.number.isRequired,
+  phonenumber: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired
 }

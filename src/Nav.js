@@ -9,28 +9,28 @@ export default function Nav() {
     <Navigation>
       <NavButton>
         <Link to="/bulletinboard">
-          <img src={Homeicon} />
+          <img src={Homeicon} alt="" />
         </Link>
       </NavButton>
 
       <NavButton>
         <Link to="/newpost">
-          <img src={Posticon} />
+          <img src={Posticon} alt="" />
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/pinnwand">
-          <img src={Homeicon} />
+          <img src={Homeicon} alt="" />
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/profil">
-          <img src={Homeicon} />
+          <img src={Homeicon} alt="" />
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/mehr">
-          <img src={Homeicon} />
+          <img src={Homeicon} alt="" />
         </Link>
       </NavButton>
     </Navigation>
