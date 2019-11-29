@@ -9,6 +9,7 @@ export default function Home({ offers, posts }) {
       <Paragraph>
         Hallo User, <br /> schaue was in Seestermühe los ist.
       </Paragraph>
+
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories />
