@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Offer from './Offer'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
 
 export default function Home({ offers, posts }) {
+  const [searchPhrase, setSearchPhrase] = useState(null)
+  console.log(searchPhrase)
+
   return (
     <HomeContainer>
       <Paragraph>
         Hallo User, <br /> schaue was in Seestermühe los ist.
       </Paragraph>
 
-      <Searchbar />
+      <Searchbar handleChange={(event, input) => handleSubmit(event, input)} />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories />
@@ -19,7 +22,7 @@ export default function Home({ offers, posts }) {
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
         {offers
-          .filter(offer => offer.title)
+          .filter(offer => offer.title == searchPhrase)
           .map((offer, index) => (
             <Offer {...offer} key={index} />
           ))}
@@ -32,6 +35,19 @@ export default function Home({ offers, posts }) {
       </PostContainer> */}
     </HomeContainer>
   )
+  // function handleSearch(input) {
+  //   console.log({offers
+  //     .filter(offer => offer.title.includes({ input })
+  //     .map((offer, index) => (
+  //       <Offer {...offer} key={index} />
+  //     ))})
+  // }
+
+  function handleSubmit(event, input) {
+    event.preventDefault()
+    setSearchPhrase(input)
+    // console.log(input)
+  }
 }
 
 const HomeContainer = styled.div`

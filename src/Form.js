@@ -25,7 +25,7 @@ export default function Form({ handleAddPost }) {
         showMessage()
       }}
     >
-      <Label for="title"></Label>
+      <Label HtmlFor="title"></Label>
       <Input
         type="text"
         name="title"
@@ -42,7 +42,7 @@ export default function Form({ handleAddPost }) {
 
       <Headline4>Wähle eine Kategorie:</Headline4>
       <Categories />
-      <Label for="description"></Label>
+      <Label HtmlFor="description"></Label>
       <TextArea
         type="textarea"
         name="description"
@@ -60,7 +60,7 @@ export default function Form({ handleAddPost }) {
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
             oder was du suchst. *"
       ></TextArea>
-      <Label for="name"></Label>
+      <Label HtmlFor="name"></Label>
       <Input
         type="text"
         name="name"
@@ -75,7 +75,7 @@ export default function Form({ handleAddPost }) {
         placeholder="Angezeigter Name *"
       ></Input>
       <Flex>
-        <Label for="phonenumber"></Label>
+        <Label HtmlFor="phonenumber"></Label>
         <ContactInput
           type="text"
           name="phonenumber"
@@ -89,7 +89,7 @@ export default function Form({ handleAddPost }) {
           placeholder="Telefonnummer"
         ></ContactInput>
 
-        <Label for="email"></Label>
+        <Label HtmlFor="email"></Label>
         <ContactInput
           type="text"
           name="email"
@@ -104,7 +104,7 @@ export default function Form({ handleAddPost }) {
         ></ContactInput>
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
-      <label for="submit"></label>
+      <label HtmlFor="submit"></label>
       <StyledSubmit
         id="submit"
         type="submit"

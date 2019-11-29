@@ -1,25 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Searchgreen from './images/Searchgreen.svg'
 import styled from 'styled-components/macro'
 
-export default function Searchbar() {
+export default function Searchbar({ handleChange }) {
+  const [input, setInput] = useState('')
+
   return (
-    <Form>
+    <Form
+      onSubmit={event => handleChange(event, input)}
+      //   onSubmit={event => {
+      //     event.preventDefault()
+      //    handleChange(input)
+      //   }}
+    >
       <InputWrapper>
         <Searchicon>
           <img src={Searchgreen} alt="Searchicon" height="13px" width="13px" />
         </Searchicon>
-        <Label for="search"></Label>
+        <Label htmlFor="search"></Label>
         <Input
           type="search"
           name="search"
           id="search"
           placeholder="Suchen in Seestermühe"
+          onInput={event => setInput(event.target.value)} //von jan : onInput={event => handleChange(event.taget.value)}
         ></Input>
       </InputWrapper>
       <StyledSubmit
         id="search"
-        type="search"
+        type="submit"
         name="search"
         value="Suchen"
       ></StyledSubmit>
@@ -65,5 +74,6 @@ const StyledSubmit = styled.input`
   border-radius: 3px;
   color: white;
   padding: 9px;
+  padding-top: 6px;
   font-size: 1rem;
 `
