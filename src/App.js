@@ -3,14 +3,18 @@ import Nav from './Nav'
 import Grid from './Grid'
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
+import Home from './Home'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 //import postData from './posts.json'
+import offersData from './offers.json'
 
 export default function App() {
   let savedData = JSON.parse(localStorage.savedData || null) || {}
   const [posts, setPosts] = useState(savedData)
   saveData(posts)
+
+  const [offers] = useState(offersData)
 
   return (
     <Appcontainer>
@@ -19,7 +23,10 @@ export default function App() {
 
         <Router>
           <Switch>
-            <Route exact path="/bulletinboard">
+            <Route exact path="/">
+              <Home offers={offers} posts={posts}></Home>
+            </Route>
+            <Route path="/bulletinboard">
               <Bulletinboard posts={posts}></Bulletinboard>
             </Route>
             <Route path="/newpost">

@@ -7,7 +7,7 @@ min-width:0;
 }
 
 :root {
-margin: 0px;
+margin: 0;
 font-family: 'Helvetica Neue', sans-serif;
 font-size: 0.8rem;
 color: #7d7b7b;
