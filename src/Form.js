@@ -25,7 +25,7 @@ export default function Form({ handleAddPost }) {
         showMessage()
       }}
     >
-      <Label htmlFor="title"></Label>
+      <Label for="title"></Label>
       <Input
         type="text"
         name="title"
@@ -42,7 +42,7 @@ export default function Form({ handleAddPost }) {
 
       <Headline4>Wähle eine Kategorie:</Headline4>
       <Categories />
-      <Label htmlFor="description"></Label>
+      <Label for="description"></Label>
       <TextArea
         type="textarea"
         name="description"
@@ -60,7 +60,7 @@ export default function Form({ handleAddPost }) {
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
             oder was du suchst. *"
       ></TextArea>
-      <Label htmlFor="name"></Label>
+      <Label for="name"></Label>
       <Input
         type="text"
         name="name"
@@ -75,7 +75,7 @@ export default function Form({ handleAddPost }) {
         placeholder="Angezeigter Name *"
       ></Input>
       <Flex>
-        <Label htmlFor="phonenumber"></Label>
+        <Label for="phonenumber"></Label>
         <ContactInput
           type="text"
           name="phonenumber"
@@ -89,7 +89,7 @@ export default function Form({ handleAddPost }) {
           placeholder="Telefonnummer"
         ></ContactInput>
 
-        <Label fhtmlFor="email"></Label>
+        <Label for="email"></Label>
         <ContactInput
           type="text"
           name="email"
@@ -104,7 +104,7 @@ export default function Form({ handleAddPost }) {
         ></ContactInput>
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
-      <label htmlFor="submit"></label>
+      <label for="submit"></label>
       <StyledSubmit
         id="submit"
         type="submit"
@@ -140,6 +140,7 @@ const Input = styled.input`
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 const ContactInput = styled.input`
   background: #f3f7f6;
@@ -148,6 +149,7 @@ const ContactInput = styled.input`
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 
 const Flex = styled.fieldset`
@@ -176,11 +178,11 @@ const StyledSubmit = styled.input`
 const TextArea = styled.textarea`
   background: #f3f7f6;
   border: none;
-
   padding: 10px;
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 const Paragraph = styled.p`
   margin: 0;

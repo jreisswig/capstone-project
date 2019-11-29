@@ -1,6 +1,7 @@
 import React from 'react'
 import Offer from './Offer'
 import Categories from './Categories'
+import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
 
 export default function Home({ offers, posts }) {
@@ -9,6 +10,8 @@ export default function Home({ offers, posts }) {
       <Paragraph>
         Hallo User, <br /> schaue was in Seestermühe los ist.
       </Paragraph>
+
+      <Searchbar />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories />
