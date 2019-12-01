@@ -12,6 +12,6 @@ export default function Pin() {
 
 const PinStyle = styled.div`
   position: absolute;
-  top: 9px;
+  top: -3px;
   right: 50%;
 `

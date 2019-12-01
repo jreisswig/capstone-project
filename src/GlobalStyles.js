@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
-*{
+* {
 box-sizing: border-box;
 min-width:0;
 }
@@ -14,7 +14,7 @@ color: #7d7b7b;
 
 
 }
-body{
+body {
     margin: 0;
 }
 

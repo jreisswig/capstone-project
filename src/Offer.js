@@ -5,7 +5,7 @@ export default function Offer({ title }) {
   return <OfferTags>{title}</OfferTags>
 }
 const OfferTags = styled.div`
-  background: #e4f9f5;
+  background: #f3f7f6;
   border-radius: 3px;
   display: inline;
   padding: 3px;

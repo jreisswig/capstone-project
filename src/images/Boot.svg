@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="69px" height="68px" viewBox="0 0 69 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Boot, Rad und Auto Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.0475108628 0.00397626312 6.74465584 12.9105233 33.627678 12.1216024 35.3085443 9.48153883 38.8803205 9.48153883 40.6860776 8.33799077 41.9659512 3.18068307"></polygon>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Boot">
+            <g id="Boot,-Rad-und-Auto-Copy">
+                <circle id="Oval" fill="#E4F5F0" cx="34" cy="34" r="34"></circle>
+                <path d="M16,16 C16,14.4536504 17.5669436,13.1999891 19.500021,13.1999891 C19.7917008,13.1999891 20.0706988,13.2368615 20.3416515,13.2907519 C21.2548723,12.5017045 22.5497724,12 23.9999895,12 C26.7613338,12 29,13.7908201 29,16 L16,16 Z" id="Shape-Copy" fill="#FFFFFF"></path>
+                <path d="M3,47.0161384 C8.3340772,58.7972769 20.2007917,67 33.9945272,67 C52.7752451,67 68,51.8028723 68,33.0562345 C68,32.7019465 67.9840599,32.3516362 67.9733004,32 C46.9447677,32.0962624 37.4091549,46.8458892 3,46.8458892 L3,47.0161384 Z" id="Shape" fill="#AED3D5" transform="translate(35.500000, 49.500000) rotate(1.000000) translate(-35.500000, -49.500000) "></path>
+                <path d="M63,37 C48.1289924,37.0715265 26.8098679,57.2436842 6,58.8961796 C12.0613832,64.5290211 20.2320908,68 29.2442018,68 C47.1862134,68 61.8579064,54.3068216 63,37 Z" id="Shape" fill="#CAE3DD" transform="translate(34.500000, 52.500000) rotate(15.000000) translate(-34.500000, -52.500000) "></path>
+                <g id="Boot-Copy" transform="translate(18.000000, 31.000000)">
+                    <rect id="Rectangle" fill="#7AACA2" x="16.8384615" y="6" width="1" height="3"></rect>
+                    <rect id="Rectangle-Copy-55" fill="#7AACA2" x="9.83846154" y="7" width="1" height="2"></rect>
+                    <rect id="Rectangle-Copy-52" fill="#7AACA2" x="0.838461538" y="5" width="1" height="3"></rect>
+                    <polygon id="Rectangle-Copy-53" fill="#7AACA2" transform="translate(9.167229, 5.765306) scale(-1, 1) rotate(267.000000) translate(-9.167229, -5.765306) " points="9.05104635 -1.97505242 9.25510909 -1.97469187 9.28341199 13.5056647 9.07934926 13.5053041"></polygon>
+                    <polygon id="Rectangle-Copy-54" fill="#7AACA2" transform="translate(5.564440, 5.821880) rotate(-263.000000) translate(-5.564440, -5.821880) " points="5.48080827 1.48201511 5.68478744 1.48118065 5.6480715 10.1617451 5.44409233 10.1625796"></polygon>
+                    <g id="Path-14" transform="translate(0.000000, 7.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Mask" fill="#7AACA2" xlink:href="#path-1"></use>
+                        <polygon fill="#40514E" mask="url(#mask-2)" points="0.244693961 0.743813661 2.6160012 5.1710684 40.8825976 7.07668438 41.6725731 3.90595268"></polygon>
+                    </g>
+                    <path d="M39,10 L39,1.86056271 L29,1 C29.7427346,3.56290712 30.1732413,5.3473384 30.2915202,6.35329385 C30.4097991,7.35924931 30.4097991,8.41399368 30.2915202,9.51752698 L39,10 Z" id="Path-12" fill="#E8F2C7"></path>
+                    <polygon id="Path-13" fill="#B1BB93" points="29.5809701 1 25 1.52484818 26.4656757 7.53035993 26.4656757 9.58436729 31 10 31 6.65668211"></polygon>
+                    <polygon id="Rectangle" fill="#7AACA2" transform="translate(27.976029, 4.501141) rotate(-10.000000) translate(-27.976029, -4.501141) " points="25.8757912 1.93542183 29.721813 2.22549414 30.0762663 7.06685931 26.2865375 6.66946086"></polygon>
+                    <polygon id="Path-15" fill="#7AACA2" points="39 2 39 1.04968584 28.3518141 0 24 0.678293041 24 1.59822694 24.9973906 1.59822694 29.3005801 1.04925719"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

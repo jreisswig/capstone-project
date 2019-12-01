@@ -9,13 +9,13 @@ export default function Post({ title, description, name, phonenumber, email }) {
   const [isHidden, setIsHidden] = useState(true)
 
   return (
-    <PostWrapper>
+    <PostWrapper onClick={toggleIsHidden}>
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
-      <Icon onClick={toggleIsHidden}>
+      <Icon>
         {isHidden ? (
           <Button>Kontakt</Button>
         ) : (
@@ -29,9 +29,9 @@ export default function Post({ title, description, name, phonenumber, email }) {
         <>
           <PostName>{name}</PostName>
           <ContactWrapper>
-            <PostPhoneNumber>{phonenumber} </PostPhoneNumber>
+            <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
             <p>•</p>
-            <PostEmail>{email}</PostEmail>
+            <PostMail href="mailto:{email}">{email}</PostMail>
           </ContactWrapper>
         </>
       )}
@@ -84,31 +84,45 @@ const PostWrapper = styled.section`
 const PostTitle = styled.p`
   font-weight: bold;
   color: #424242;
+  margin-top: 7px;
+  margin-bottom: 4px;
 `
 const PostDescription = styled.p`
   position: relative;
 `
 const Icon = styled.div`
   position: absolute;
-  bottom: 19px;
+  top: 13px;
   right: 17px;
 `
 const PostName = styled.p`
   color: #424242;
-
+  margin-top: 3px;
   margin-bottom: 0px;
 `
-const PostPhoneNumber = styled.p`
+const PostPhone = styled.a`
   padding-right: 7px;
+  text-decoration: none;
+  color: #7d7b7b;
 `
-const PostEmail = styled.p`
+
+const PostMail = styled.a`
   padding-left: 7px;
+  text-decoration: none;
+  color: #7d7b7b;
 `
 const PostSearch = styled.p`
   font-weight: lighter;
+  margin-top: 6px;
+  margin-bottom: 6px;
 `
 const ContactWrapper = styled.section`
   display: flex;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  p {
+    margin: 0;
+  }
 `
 const Line = styled.hr`
   border: 0;

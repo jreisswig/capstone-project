@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Offer from './Offer'
+import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
@@ -10,10 +11,14 @@ export default function Home({ offers, posts }) {
 
   return (
     <HomeContainer>
-      <Paragraph>
-        Hallo User, <br /> schaue was in Seestermühe los ist.
-      </Paragraph>
-
+      <Welcome>
+        <Image>
+          <img src={Wappen} alt="Wappen" height="50px" width="50px" />
+        </Image>
+        <Paragraph>
+          Hallo User, <br /> schaue was in Seestermühe los ist.
+        </Paragraph>
+      </Welcome>
       <Searchbar handleChange={(event, input) => handleSubmit(event, input)} />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
@@ -21,11 +26,9 @@ export default function Home({ offers, posts }) {
       <Line />
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
-        {offers
-          .filter(offer => offer.title == searchPhrase)
-          .map((offer, index) => (
-            <Offer {...offer} key={index} />
-          ))}
+        {offers.map((offer, index) => (
+          <Offer {...offer} key={index} />
+        ))}
       </TagContainer>
       <Line />
       {/*   <PostContainer>
@@ -35,6 +38,9 @@ export default function Home({ offers, posts }) {
       </PostContainer> */}
     </HomeContainer>
   )
+  //.includes('{searchPrase}')
+  //.filter(offer => offer.title.includes({ searchPhrase }))
+  //.filter(offer => offer.title === searchPhrase)
   // function handleSearch(input) {
   //   console.log({offers
   //     .filter(offer => offer.title.includes({ input })
@@ -54,12 +60,21 @@ const HomeContainer = styled.div`
   padding: 20px;
   overflow: scroll;
 `
+const Welcome = styled.section`
+  display: flex;
+`
+
+const Image = styled.div`
+  margin-right: 15px;
+`
+
 const TagContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
 `
 const Headline3 = styled.h3`
   font-weight: unset;
+  font-size: 1rem;
 `
 
 const Paragraph = styled.p``

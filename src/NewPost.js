@@ -17,7 +17,7 @@ export default function NewPost({ handleAddPost }) {
     </NewPostWrapper>
   )
 }
-const Title = styled.h2`
+const Title = styled.h3`
   font-weight: unset;
 `
 const NewPostWrapper = styled.section`
