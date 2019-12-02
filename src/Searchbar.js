@@ -4,14 +4,7 @@ import styled from 'styled-components/macro'
 
 export default function Searchbar({ onInput, onSubmit }) {
   return (
-    <Form
-      onSubmit={onSubmit}
-      //onSubmit={event => handleChange(event, input)}
-      //   onSubmit={event => {
-      //     event.preventDefault()
-      //    handleChange(input)
-      //   }}
-    >
+    <Form onSubmit={onSubmit}>
       <InputWrapper>
         <Searchicon>
           <img src={Searchgreen} alt="Searchicon" height="13px" width="13px" />
@@ -23,8 +16,6 @@ export default function Searchbar({ onInput, onSubmit }) {
           id="search"
           placeholder="Suchen in Seestermühe"
           onInput={onInput}
-          /*von Jan:  onInput={event => handleChange(event.taget.value)} */
-          ursprünglich // onInput={event => setInput(event.target.value)}
         ></Input>
       </InputWrapper>
       <StyledSubmit
