@@ -1,11 +1,11 @@
 import React from 'react'
 import { withKnobs, text, number } from '@storybook/addon-knobs'
 
-import Form from './Form'
+import Header from './Header'
 
 export default {
-  title: 'Form',
+  title: 'Header',
   decorators: [withKnobs]
 }
 
-export const standard = () => <Form />
+export const standard = () => <Header />

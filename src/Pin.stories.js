@@ -1,11 +1,11 @@
 import React from 'react'
 import { withKnobs, text, number } from '@storybook/addon-knobs'
 
-import Form from './Form'
+import Pin from './Pin'
 
 export default {
-  title: 'Form',
+  title: 'Pin',
   decorators: [withKnobs]
 }
 
-export const standard = () => <Form />
+export const standard = () => <Pin />

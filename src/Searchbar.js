@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Searchgreen from './images/Searchgreen.svg'
 import styled from 'styled-components/macro'
 
-export default function Searchbar({ handleChange }) {
-  const [input, setInput] = useState('')
-
+export default function Searchbar({ onInput, onSubmit }) {
   return (
     <Form
-      onSubmit={event => handleChange(event, input)}
+      onSubmit={onSubmit}
+      //onSubmit={event => handleChange(event, input)}
       //   onSubmit={event => {
       //     event.preventDefault()
       //    handleChange(input)
@@ -23,7 +22,9 @@ export default function Searchbar({ handleChange }) {
           name="search"
           id="search"
           placeholder="Suchen in Seestermühe"
-          onInput={event => setInput(event.target.value)} //von jan : onInput={event => handleChange(event.taget.value)}
+          onInput={onInput}
+          /*von Jan:  onInput={event => handleChange(event.taget.value)} */
+          ursprünglich // onInput={event => setInput(event.target.value)}
         ></Input>
       </InputWrapper>
       <StyledSubmit

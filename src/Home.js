@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Offer from './Offer'
 import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
+import { updateExpression } from '@babel/types'
 
 export default function Home({ offers, posts }) {
-  const [searchPhrase, setSearchPhrase] = useState(null)
-  console.log(searchPhrase)
+  //const [searchPhrase, setSearchPhrase] = useState('')
+  const [input, setInput] = useState('')
+  console.log(offers)
+  /*  const [fuzzySearch, setFuzzySearch] = useState(offers)
+
+  useEffect(() => {
+    let offersLower = offers.ConvertAll(offersLower, x => x.ToLower())
+    setFuzzySearch(offersLower)
+  }) */
 
   return (
     <HomeContainer>
@@ -19,41 +27,28 @@ export default function Home({ offers, posts }) {
           Hallo User, <br /> schaue was in Seestermühe los ist.
         </Paragraph>
       </Welcome>
-      <Searchbar handleChange={(event, input) => handleSubmit(event, input)} />
+      <Searchbar
+        onInput={event => setInput(event.target.value.toLowerCase())}
+        onSubmit={event => setInput(event.target.value.toLowerCase())}
+      />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories />
       <Line />
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
-        {offers.map((offer, index) => (
-          <Offer {...offer} key={index} />
-        ))}
+        {input !== ''
+          ? offers
+              .filter(
+                item =>
+                  item.title.includes(input) || item.description.includes(input)
+              )
+              .map((offer, index) => <Offer {...offer} key={index} />)
+          : offers.map((offer, index) => <Offer {...offer} key={index} />)}
       </TagContainer>
       <Line />
-      {/*   <PostContainer>
-        {posts.map((post, index) => (
-          <Post {...post} key={index} />
-        ))}
-      </PostContainer> */}
     </HomeContainer>
   )
-  //.includes('{searchPrase}')
-  //.filter(offer => offer.title.includes({ searchPhrase }))
-  //.filter(offer => offer.title === searchPhrase)
-  // function handleSearch(input) {
-  //   console.log({offers
-  //     .filter(offer => offer.title.includes({ input })
-  //     .map((offer, index) => (
-  //       <Offer {...offer} key={index} />
-  //     ))})
-  // }
-
-  function handleSubmit(event, input) {
-    event.preventDefault()
-    setSearchPhrase(input)
-    // console.log(input)
-  }
 }
 
 const HomeContainer = styled.div`
