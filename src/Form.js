@@ -41,7 +41,7 @@ export default function Form({ handleAddPost }) {
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-      <Categories />
+
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -89,7 +89,7 @@ export default function Form({ handleAddPost }) {
           placeholder="Telefonnummer"
         ></ContactInput>
 
-        <Label fhtmlFor="email"></Label>
+        <Label htmlFor="email"></Label>
         <ContactInput
           type="text"
           name="email"
@@ -140,6 +140,7 @@ const Input = styled.input`
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 const ContactInput = styled.input`
   background: #f3f7f6;
@@ -148,6 +149,7 @@ const ContactInput = styled.input`
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 
 const Flex = styled.fieldset`
@@ -176,11 +178,11 @@ const StyledSubmit = styled.input`
 const TextArea = styled.textarea`
   background: #f3f7f6;
   border: none;
-
   padding: 10px;
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 1rem;
   border-radius: 5px;
+  color: #7d7b7b;
 `
 const Paragraph = styled.p`
   margin: 0;

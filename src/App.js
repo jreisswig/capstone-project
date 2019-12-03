@@ -4,6 +4,8 @@ import Grid from './Grid'
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import Home from './Home'
+import Header from './Header'
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 //import postData from './posts.json'
@@ -19,7 +21,7 @@ export default function App() {
   return (
     <Appcontainer>
       <Grid>
-        <HeaderStyled></HeaderStyled>
+        <Header/>
 
         <Router>
           <Switch>
@@ -52,9 +54,4 @@ export default function App() {
 }
 const Appcontainer = styled.div`
   height: 100vh;
-`
-const HeaderStyled = styled.header`
-  background: white;
-  box-shadow: 0 2px 2px #f0efef;
-  z-index: 1;
 `

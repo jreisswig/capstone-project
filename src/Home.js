@@ -1,47 +1,95 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Offer from './Offer'
+import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
+import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
 
-export default function Home({ offers, posts }) {
+export default function Home({ offers }) {
+  const [input, setInput] = useState('')
+  const [selectedCategories, setSelectedCategories] = useState({
+    'Haus und Garten': false,
+    'Auto, Rad und Boot': false,
+    'Familie und Tier': false,
+    'Freizeit und Hobby': false,
+    Elektro: false,
+    Werkzeuge: false
+  })
   return (
     <HomeContainer>
-      <Paragraph>
-        Hallo User, <br /> schaue was in Seestermühe los ist.
-      </Paragraph>
-
+      <Welcome>
+        <Image>
+          <img src={Wappen} alt="Wappen" height="50px" width="50px" />
+        </Image>
+        <Paragraph>
+          Hallo User, <br /> schaue was in Seestermühe los ist.
+        </Paragraph>
+      </Welcome>
+      <Searchbar
+        onInput={event => setInput(event.target.value)}
+        onSubmit={event => setInput(event.target.value.toLowerCase())}
+      />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
-      <Categories />
+      <Categories
+        selectedCategories={selectedCategories}
+        toggleCategory={toggleCategory}
+      />
       <Line />
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
         {offers
-          .filter(offer => offer.title)
+          .filter(item => {
+            const title = item.title.toLowerCase()
+            const description = item.description.toLowerCase()
+            const query = input.toLowerCase()
+            const areAllCategoriesUnselected = Object.keys(
+              selectedCategories
+            ).every(key => selectedCategories[key] === false)
+            const isInCategory = selectedCategories[item.category]
+            return (
+              areAllCategoriesUnselected ||
+              (isInCategory &&
+                (query === '' ||
+                  title.includes(query) ||
+                  description.includes(query)))
+            )
+          })
           .map((offer, index) => (
             <Offer {...offer} key={index} />
           ))}
       </TagContainer>
       <Line />
-      {/*   <PostContainer>
-        {posts.map((post, index) => (
-          <Post {...post} key={index} />
-        ))}
-      </PostContainer> */}
     </HomeContainer>
   )
+
+  function toggleCategory(category) {
+    setSelectedCategories({
+      ...selectedCategories,
+      [category]: !selectedCategories[category]
+    })
+  }
 }
 
 const HomeContainer = styled.div`
   padding: 20px;
   overflow: scroll;
 `
+const Welcome = styled.section`
+  display: flex;
+`
+
+const Image = styled.div`
+  margin-right: 15px;
+`
+
 const TagContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
 `
 const Headline3 = styled.h3`
   font-weight: unset;
+  font-size: 1rem;
 `
 
 const Paragraph = styled.p``

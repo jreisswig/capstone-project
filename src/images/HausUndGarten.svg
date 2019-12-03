@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="69px" viewBox="0 0 68 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Haus und Garten Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="11.394109%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#C0AD9C" offset="0%"></stop>
+            <stop stop-color="#4C4036" offset="100%"></stop>
+        </linearGradient>
+        <path d="M9.1,2.13333333 L15,10 L15,10 L0,10 L5.9,2.13333333 C6.5627417,1.24967773 7.8163444,1.07059163 8.7,1.73333333 C8.85161133,1.84704183 8.9862915,1.981722 9.1,2.13333333 Z" id="path-2"></path>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="69.9086782%" id="linearGradient-4">
+            <stop stop-color="#9F9284" offset="0%"></stop>
+            <stop stop-color="#66594D" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Haus-und-Garten">
+            <g id="Haus-und-Garten-Copy">
+                <circle id="Oval" fill="#E4F5F0" cx="34" cy="34" r="34"></circle>
+                <path d="M3,49.0161384 C8.3340772,60.7972769 20.2007917,69 33.9945272,69 C52.7752451,69 68,53.8028723 68,35.0562345 C68,34.7019465 67.9840599,34.3516362 67.9733004,34 C46.9447677,34.0962624 37.4091549,48.8458892 3,48.8458892 L3,49.0161384 Z" id="Shape" fill="#AED3D5"></path>
+                <polygon id="Triangle-Copy-16" fill="#CAE3DD" points="51 12 61 42 41 42"></polygon>
+                <polygon id="Triangle-Copy-17" fill="#AED3D5" points="58.5 18 67 43 50 43"></polygon>
+                <path d="M62.8404548,38.6099633 C47.9694472,38.6814898 26.6503227,58.8536475 5.84045483,60.5061429 C11.901838,66.1389844 20.0725456,69.6099633 29.0846567,69.6099633 C47.0266682,69.6099633 61.6983612,55.9167849 62.8404548,38.6099633 Z" id="Shape" fill="#CAE3DD" transform="translate(34.340455, 54.109963) rotate(15.000000) translate(-34.340455, -54.109963) "></path>
+                <g id="Group-12" transform="translate(9.000000, 14.000000)">
+                    <polygon id="Rectangle-Copy-27" fill="#FFF1E1" points="4.00793651 26.5989669 8.54199735 21 20 21 20 34 4 34"></polygon>
+                    <polygon id="Rectangle-Copy-28" fill="#FFF1E1" transform="translate(41.000000, 27.500000) scale(-1, 1) translate(-41.000000, -27.500000) " points="33.0079365 26.5989669 37.5419974 21 49 21 49 34 33 34"></polygon>
+                    <path d="M29.1724138,2.28103448 L47,21 L47,21 L7,21 L24.8275862,2.28103448 C25.9702443,1.08124347 27.8691745,1.0349281 29.0689655,2.17758621 C29.1042841,2.21122292 29.1387771,2.24571593 29.1724138,2.28103448 Z" id="Triangle-Copy-14" fill="url(#linearGradient-1)"></path>
+                    <path d="M10,21 L4.86855045,25.8944726 C4.12456392,26.6041009 3.13589628,27 2.10774832,27 L1.85474822,27 C1.52645856,27 1.2603272,26.7338686 1.2603272,26.405579 C1.2603272,26.2136181 1.35302879,26.0334729 1.50922956,25.9218919 L8.39932217,21 L8.39932217,21 L10,21 Z" id="Path-5-Copy" fill="#4C4036"></path>
+                    <rect id="Rectangle-Copy-29" fill="#40514E" x="20" y="21" width="13" height="13"></rect>
+                    <rect id="Rectangle-Copy-30" fill="#D8D8D8" x="24" y="28" width="5" height="6"></rect>
+                    <rect id="Rectangle-Copy-31" fill="#40514E" x="8" y="24" width="4" height="10"></rect>
+                    <rect id="Rectangle-Copy-32" fill="#40514E" x="42" y="24" width="4" height="10"></rect>
+                    <g id="Rectangle-+-Rectangle-Copy-13-+-Rectangle-Copy-5-+-Rectangle-Copy-6-+-Rectangle-Copy-7-+-Rectangle-Copy-10-+-Rectangle-Copy-8-+-Rectangle-Copy-11-+-Rectangle-Copy-9-+-Rectangle-Copy-12-Mask-Copy" transform="translate(19.000000, 1.000000)">
+                        <mask id="mask-3" fill="white">
+                            <use xlink:href="#path-2"></use>
+                        </mask>
+                        <use id="Mask" fill="#40514E" xlink:href="#path-2"></use>
+                        <g mask="url(#mask-3)">
+                            <g transform="translate(0.937500, 1.000000)">
+                                <path d="M13.125,8 L13.125,8 L13.125,8 L0,8 C2.97311493,4.37563133 8.32143211,3.84768586 11.9458008,6.82080078 C12.3766208,7.17420782 12.771593,7.56918 13.125,8 Z" id="Mask" fill="#2C4033"></path>
+                                <rect id="Rectangle" fill="#FFFFFF" x="1.78977273" y="2.46153846" width="1" height="6.24175824"></rect>
+                                <rect id="Rectangle-Copy-13" fill="#FFFFFF" x="0.497159091" y="2.46153846" width="1" height="6.24175824"></rect>
+                                <rect id="Rectangle-Copy-5" fill="#FFFFFF" x="4.27556818" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-6" fill="#FFFFFF" x="9.34659091" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-7" fill="#FFFFFF" x="6.86079545" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-10" fill="#FFFFFF" x="11.9318182" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-8" fill="#FFFFFF" x="3.08238636" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-11" fill="#FFFFFF" x="8.15340909" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-9" fill="#FFFFFF" x="5.56818182" y="0.351648352" width="1" height="8.43956044"></rect>
+                                <rect id="Rectangle-Copy-12" fill="#FFFFFF" x="10.6392045" y="0.351648352" width="1" height="8.43956044"></rect>
+                            </g>
+                        </g>
+                    </g>
+                    <path d="M44,21 L45.0470842,21 L50.9680297,26.109464 C51.1799464,26.2923369 51.203491,26.6123771 51.0206181,26.8242938 C50.9243416,26.9358608 50.7842738,27 50.636909,27 C49.7704557,27 48.9459421,26.6269769 48.3739168,25.9761862 L44,21 L44,21 Z" id="Path-6-Copy" fill="#4C4036"></path>
+                    <rect id="Rectangle-Copy-33" fill="#40514E" x="17" y="22" width="2" height="4"></rect>
+                    <rect id="Rectangle-Copy-34" fill="#40514E" x="34" y="22" width="2" height="4"></rect>
+                    <polygon id="Path-Copy-5" fill="url(#linearGradient-4)" points="19.8624642 10 18 12 36 12 33.7505253 10"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

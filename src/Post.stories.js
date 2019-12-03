@@ -13,7 +13,7 @@ export const standard = () => (
     title={text('Title', 'This is the title')}
     description={text('description', 'This is the description')}
     name={text('name', 'This is the name')}
-    phonenumber={string('phonenumber', '0160/ 98723883')}
+    phonenumber={text('phonenumber', '0160/ 98723883')}
     email={text('email', 'This is the email')}
   />
 )
