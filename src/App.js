@@ -21,7 +21,7 @@ export default function App() {
   return (
     <Appcontainer>
       <Grid>
-        <Header></Header>
+        <Header/>
 
         <Router>
           <Switch>

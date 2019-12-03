@@ -41,7 +41,7 @@ export default function Form({ handleAddPost }) {
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-      <Categories />
+
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"

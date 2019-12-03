@@ -12,6 +12,16 @@ describe('Home', () => {
       .first()
       .click()
   })
+
+  describe('Card', () => {
+    it('has a bookmark', () => {
+      cy.get('[class^=Card__]')
+        .first()
+        .find('[class^=Bookmark]')
+        .click()
+    })
+  })
+
 })
 
 /* describe('Home', () => {

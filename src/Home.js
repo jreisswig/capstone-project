@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Offer from './Offer'
 import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import styled from 'styled-components/macro'
-import { updateExpression } from '@babel/types'
 
 export default function Home({ offers }) {
   const [input, setInput] = useState('')
-  const [selectedCategories, setSelectedCategories] = useState(['Haus und Garten'])
-  const [isHomeAndGarden, setIsHomeAndGarden] = useState(false)
-  const [isCarAndBike, setIsCarAndBike] = useState(false)
-  const [isFamilyAndAnimal, setIsFamilyAndAnimal] = useState(false)
-  const [isHobby, setIsHobby] = useState(false)
-
+  const [selectedCategories, setSelectedCategories] = useState({
+    'Haus und Garten': false,
+    'Auto, Rad und Boot': false,
+    'Familie und Tier': false,
+    'Freizeit und Hobby': false,
+    Elektro: false,
+    Werkzeuge: false
+  })
   return (
     <HomeContainer>
       <Welcome>
@@ -31,175 +32,42 @@ export default function Home({ offers }) {
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories
-        handleHomeAndGarden={toggleHomeAndGarden}
-        handleCarAndBike={toggleCarAndBike}
-        handleFamilyAndAnimal={toggleFamilyAndAnimal}
-        handleHobby={toggleHobby}
+        selectedCategories={selectedCategories}
+        toggleCategory={toggleCategory}
       />
       <Line />
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
-          {offers
-            .filter(
-              item =>
-                {
-                  const title = item.title.toLowerCase()
-                  const description = item.description.toLowerCase()
-                  const query = input.toLowerCase()
-
-                  return selectedCategories.includes(item.category)) && (query === '' || title.includes(query) || description.includes(query))
-                }
+        {offers
+          .filter(item => {
+            const title = item.title.toLowerCase()
+            const description = item.description.toLowerCase()
+            const query = input.toLowerCase()
+            const areAllCategoriesUnselected = Object.keys(
+              selectedCategories
+            ).every(key => selectedCategories[key] === false)
+            const isInCategory = selectedCategories[item.category]
+            return (
+              areAllCategoriesUnselected ||
+              (isInCategory &&
+                (query === '' ||
+                  title.includes(query) ||
+                  description.includes(query)))
             )
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      {input === '' && isHomeAndGarden && (
-       
-      )}
-      {input === '' && isCarAndBike && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Auto, Rad und Boot')
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )} 
-      {input === '' && isFamilyAndAnimal && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Familie und Tier')
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )} 
-      {input === '' && isHobby && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Freizeit und Hobby')
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-      
-      {input !== '' && isHomeAndGarden && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Haus und Garten')
-            .filter(
-              item =>
-                item.title.toLowerCase().includes(input.toLowerCase()) ||
-                item.description.toLowerCase().includes(input.toLowerCase())
-            )
-
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-      {input !== '' && isCarAndBike && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Auto, Rad und Boot')
-            .filter(
-              item =>
-                item.title.toLowerCase().includes(input.toLowerCase()) ||
-                item.description.toLowerCase().includes(input.toLowerCase())
-            )
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-      {input !== '' && isFamilyAndAnimal && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Familie und Tier')
-            .filter(
-              item =>
-                item.title.toLowerCase().includes(input.toLowerCase()) ||
-                item.description.toLowerCase().includes(input.toLowerCase())
-            )
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-      {input !== '' && isHobby && (
-        <TagContainer>
-          {offers
-            .filter(item => item.category === 'Freizeit und Hobby')
-            .filter(
-              item =>
-                item.title.toLowerCase().includes(input.toLowerCase()) ||
-                item.description.toLowerCase().includes(input.toLowerCase())
-            )
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-
-      {input !== '' && !isCarAndBike && !isHomeAndGarden && !isFamilyAndAnimal && !isHobby &&(
-        <TagContainer>
-          {offers
-            .filter(
-              item =>
-                item.title.toLowerCase().includes(input.toLowerCase()) ||
-                item.description.toLowerCase().includes(input.toLowerCase())
-            )
-
-            .map((offer, index) => (
-              <Offer {...offer} key={index} />
-            ))}
-        </TagContainer>
-      )}
-      
-      {input === '' && !isCarAndBike && !isHomeAndGarden && !isFamilyAndAnimal && !isHobby &&(
-        <TagContainer>
-          {offers.map((offer, index) => (
+          })
+          .map((offer, index) => (
             <Offer {...offer} key={index} />
           ))}
-        </TagContainer>
-      )}
- 
+      </TagContainer>
       <Line />
     </HomeContainer>
   )
-  function toggleHomeAndGarden() {
-    setIsHomeAndGarden(!isHomeAndGarden)
-  }
-  function toggleCarAndBike() {
-    setIsCarAndBike(!isCarAndBike)
-  }
-  function toggleFamilyAndAnimal(){
-    setIsFamilyAndAnimal(!isFamilyAndAnimal)
-  }
 
-
-function toggleHobby () {
-  setIsHobby(!isHobby)
-}
-
-
-
-  function CategoryFilter(isClicked) {
-    if (isClicked) {
-      return offers
-        .filter(item => item.category === 'Haus und Garten')
-        .map((offer, index) => <Offer {...offer} key={index} />)
-    } else if (input !== '') {
-      return offers
-        .filter(
-          item => item.title.includes(input) || item.description.includes(input)
-        )
-        .map((offer, index) => <Offer {...offer} key={index} />)
-    } else {
-      return offers.map((offer, index) => <Offer {...offer} key={index} />)
-    }
+  function toggleCategory(category) {
+    setSelectedCategories({
+      ...selectedCategories,
+      [category]: !selectedCategories[category]
+    })
   }
 }
 
