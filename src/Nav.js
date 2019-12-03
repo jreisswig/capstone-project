@@ -11,23 +11,23 @@ export default function Nav() {
     <Navigation>
       <NavButton>
         <Link to="/">
-          <img src={Homeicon} alt="" />
+          <img src={Homeicon} alt="home" />
         </Link>
       </NavButton>
 
       <NavButton>
         <Link to="/bulletinboard">
-          <img src={Posticon} alt="" />
+          <img src={Posticon} alt="bulletinboard" />
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/newpost">
-          <img src={NewPostIcon} alt="" />
+          <img src={NewPostIcon} alt="newpost" />
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/profil">
-          <img src={ProfilIcon} alt="" />
+          <img src={ProfilIcon} alt="profil" />
         </Link>
       </NavButton>
       <NavButton>
