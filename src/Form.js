@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Categories from './Categories'
 
 export default function Form({ handleAddPost }) {
   const [addPost, setAddPost] = useState({

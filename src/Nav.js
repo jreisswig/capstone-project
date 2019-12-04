@@ -26,7 +26,7 @@ export default function Nav() {
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/profil">
+        <Link to="/offerdetail">
           <img src={ProfilIcon} alt="profil" />
         </Link>
       </NavButton>

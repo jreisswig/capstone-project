@@ -25,10 +25,7 @@ export default function Home({ offers }) {
           Hallo User, <br /> schaue was in Seestermühe los ist.
         </Paragraph>
       </Welcome>
-      <Searchbar
-        onInput={event => setInput(event.target.value)}
-        onSubmit={event => setInput(event.target.value.toLowerCase())}
-      />
+      <Searchbar onInput={event => setInput(event.target.value)} />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories
@@ -47,14 +44,15 @@ export default function Home({ offers }) {
               selectedCategories
             ).every(key => selectedCategories[key] === false)
             const isInCategory = selectedCategories[item.category]
+            console.log(query)
             return (
-              areAllCategoriesUnselected ||
-              (isInCategory &&
-                (query === '' ||
-                  title.includes(query) ||
-                  description.includes(query)))
+              (areAllCategoriesUnselected || isInCategory) &&
+              (query === '' ||
+                title.includes(query) ||
+                description.includes(query))
             )
           })
+
           .map((offer, index) => (
             <Offer {...offer} key={index} />
           ))}

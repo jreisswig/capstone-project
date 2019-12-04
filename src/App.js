@@ -4,6 +4,7 @@ import Grid from './Grid'
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import Home from './Home'
+import OfferDetailList from './OfferDetailList'
 import Header from './Header'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -21,7 +22,7 @@ export default function App() {
   return (
     <Appcontainer>
       <Grid>
-        <Header/>
+        <Header />
 
         <Router>
           <Switch>
@@ -33,6 +34,9 @@ export default function App() {
             </Route>
             <Route path="/newpost">
               <NewPost handleAddPost={handleAddPost}></NewPost>
+            </Route>
+            <Route path="/offerdetail">
+              <OfferDetailList offers={offers}></OfferDetailList>
             </Route>
           </Switch>
 
