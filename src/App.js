@@ -38,6 +38,10 @@ export default function App() {
             <Route path="/offerdetail">
               <OfferDetailList offers={offers}></OfferDetailList>
             </Route>
+
+            <Route path="/profil">
+              <h2>Profilseite</h2>
+            </Route>
           </Switch>
 
           <Nav />
