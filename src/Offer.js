@@ -5,7 +5,7 @@ import styled from 'styled-components/macro'
 export default function Offer({ title, showDetail }) {
   return (
     <OfferTags onClick={showDetail}>
-      <Link to="/offerdetail">{title}</Link>
+      <Link to="/angebotdetail">{title}</Link>
     </OfferTags>
   )
 }

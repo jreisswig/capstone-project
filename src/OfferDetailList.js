@@ -1,16 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
-import ArrowBack from './images/arrow_back_ios.svg'
-import { Link } from 'react-router-dom'
 
 export default function OfferDetailList({ offers, title }) {
   return (
     <OfferDetailContainer>
-      <Link to="/">
-        <img src={ArrowBack} alt="ArrowBack" height="15px" width="15px"></img>
-      </Link>
-
       <OfferSearch>ICH BIETE</OfferSearch>
       <OfferTitle>{title}</OfferTitle>
       {offers.map((offer, index) => (

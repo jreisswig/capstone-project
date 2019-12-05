@@ -16,17 +16,17 @@ export default function Nav() {
       </NavButton>
 
       <NavButton>
-        <Link to="/bulletinboard">
+        <Link to="/pinnwand">
           <img src={Posticon} alt="bulletinboard" />
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/newpost">
+        <Link to="/inserieren">
           <img src={NewPostIcon} alt="newpost" />
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/offerdetail">
+        <Link to="/profil">
           <img src={ProfilIcon} alt="profil" />
         </Link>
       </NavButton>

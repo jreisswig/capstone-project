@@ -5,7 +5,6 @@ import styled from 'styled-components/macro'
 export default function Bulletinboard({ posts }) {
   return (
     <PostContainer>
-      <Headline2>Pinnwand</Headline2>
       <Paragraph>Hier siehst du die Gesuche deiner Nachbarn.</Paragraph>
       {posts.map((post, index) => (
         <Post {...post} key={index} />

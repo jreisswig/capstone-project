@@ -22,20 +22,19 @@ export default function App() {
   return (
     <Appcontainer>
       <Grid>
-        <Header />
-
         <Router>
+          <Header />
           <Switch>
             <Route exact path="/">
               <Home offers={offers} posts={posts}></Home>
             </Route>
-            <Route path="/bulletinboard">
+            <Route path="/pinnwand">
               <Bulletinboard posts={posts}></Bulletinboard>
             </Route>
-            <Route path="/newpost">
+            <Route path="/inserieren">
               <NewPost handleAddPost={handleAddPost}></NewPost>
             </Route>
-            <Route path="/offerdetail">
+            <Route path="/Angebotdetail">
               <OfferDetailList offers={offers}></OfferDetailList>
             </Route>
 
