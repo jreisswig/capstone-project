@@ -16,7 +16,7 @@ export default function Home({ offers, handleOfferClick }) {
     Elektro: false,
     Werkzeuge: false
   })
-  console.log(offers[1])
+
   return (
     <HomeContainer>
       <Welcome>
@@ -46,7 +46,6 @@ export default function Home({ offers, handleOfferClick }) {
               selectedCategories
             ).every(key => selectedCategories[key] === false)
             const isInCategory = selectedCategories[item.category]
-            console.log(query)
             return (
               (areAllCategoriesUnselected || isInCategory) &&
               (query === '' ||

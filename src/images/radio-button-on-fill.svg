@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>radio-button-on-fill</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M12,6.9999 C9.243,6.9999 7,9.2429 7,11.9999 C7,14.7569 9.243,16.9999 12,16.9999 C14.757,16.9999 17,14.7569 17,11.9999 C17,9.2429 14.757,6.9999 12,6.9999 M12,19.9999 C7.589,19.9999 4,16.4109 4,11.9999 C4,7.5889 7.589,3.9999 12,3.9999 C16.411,3.9999 20,7.5889 20,11.9999 C20,16.4109 16.411,19.9999 12,19.9999 M12,1.9999 C6.486,1.9999 2,6.4859 2,11.9999 C2,17.5139 6.486,21.9999 12,21.9999 C17.514,21.9999 22,17.5139 22,11.9999 C22,6.4859 17.514,1.9999 12,1.9999" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2317.000000, -2202.000000)">
+            <g id="radio-button-on-fill" transform="translate(2315.000000, 2200.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="🎨-Icon-Сolor" fill="#7AACA2" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

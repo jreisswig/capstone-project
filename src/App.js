@@ -17,7 +17,7 @@ export default function App() {
   const [posts, setPosts] = useState(savedData)
   saveData(posts)
 
-  const [offers] = useState(offersData)
+  const [offers, setOffers] = useState(offersData)
   const [selectedOffer, setSelectedOffer] = useState(offers[0])
 
   return (
@@ -37,7 +37,10 @@ export default function App() {
               <Bulletinboard posts={posts}></Bulletinboard>
             </Route>
             <Route path="/inserieren">
-              <NewPost handleAddPost={handleAddPost}></NewPost>
+              <NewPost
+                handleAddPost={handleAddPost}
+                handleAddOffer={handleAddOffer}
+              ></NewPost>
             </Route>
             <Route path="/angebotdetail">
               <OfferDetailList
@@ -68,6 +71,10 @@ export default function App() {
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
+  }
+
+  function handleAddOffer(addOffer) {
+    setOffers([addOffer, ...offers])
   }
 
   function handleOfferClick(index) {

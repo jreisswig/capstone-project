@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import CategorieForm from './CategorieForm'
+import RadioOff from './images/radio-button-off.svg'
+import RadioOn from './images/radio-button-on-fill.svg'
 
-export default function Form({ handleAddPost }) {
+export default function Form({ handleAddPost, handleAddOffer }) {
   const [addPost, setAddPost] = useState({
     title: '',
     description: '',
@@ -9,38 +12,67 @@ export default function Form({ handleAddPost }) {
     phonenumber: '',
     email: ''
   })
+  const [addOffer, setAddOffer] = useState({
+    title: '',
+    description: '',
+    name: '',
+    phonenumber: '',
+    email: ''
+  })
   const [submitted, setSubmitted] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('')
+  console.log(selectedOption)
 
   return (
     <StyledForm
       method="post"
       action=""
       id=""
-      onSubmit={event => {
-        event.preventDefault()
-        handleAddPost(addPost)
-        event.target[0].focus()
-        event.target.reset()
-        showMessage()
-      }}
+      onSubmit={selectedOption === 'post' ? handlePost : handleOffer}
     >
+      <Type>
+        <RadioInput
+          type="radio"
+          name="type"
+          value="offer"
+          id="offer"
+          defaultChecked
+          onClick={() => handleClick('offer')}
+        />
+        <label htmlFor="offer">
+          <span></span>Biete
+        </label>
+        <RadioInput
+          type="radio"
+          onClick={() => handleClick('post')}
+          name="type"
+          value="post"
+          id="post"
+        />
+        <label htmlFor="post">
+          <span>Suche</span>
+        </label>
+      </Type>
+
       <Label htmlFor="title"></Label>
       <Input
         type="text"
         name="title"
         id="title"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            title: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                title: event.target.value
+              })
+            : setAddOffer({ ...addOffer, title: event.target.value })
         }
         required
         placeholder="Titel für deinen Aushang *"
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-
+      <CategorieForm />
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -49,10 +81,12 @@ export default function Form({ handleAddPost }) {
         rows="4"
         id="description"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            description: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                description: event.target.value
+              })
+            : setAddOffer({ ...addOffer, description: event.target.value })
         }
         required
         maxlength="100"
@@ -65,10 +99,12 @@ export default function Form({ handleAddPost }) {
         name="name"
         id="name"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            name: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                name: event.target.value
+              })
+            : setAddOffer({ ...addOffer, name: event.target.value })
         }
         required
         placeholder="Angezeigter Name *"
@@ -80,10 +116,12 @@ export default function Form({ handleAddPost }) {
           name="phonenumber"
           id="phonenumber"
           onInput={event =>
-            setAddPost({
-              ...addPost,
-              phonenumber: event.target.value
-            })
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  phonenumber: event.target.value
+                })
+              : setAddOffer({ ...addOffer, phonenumber: event.target.value })
           }
           placeholder="Telefonnummer"
         ></ContactInput>
@@ -94,10 +132,12 @@ export default function Form({ handleAddPost }) {
           name="email"
           id="email"
           onInput={event =>
-            setAddPost({
-              ...addPost,
-              email: event.target.value
-            })
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  email: event.target.value
+                })
+              : setAddOffer({ ...addOffer, email: event.target.value })
           }
           placeholder="Email"
         ></ContactInput>
@@ -112,19 +152,69 @@ export default function Form({ handleAddPost }) {
       ></StyledSubmit>
       {submitted && (
         <Paragraph>
-          Danke! Dein Gesuch erscheint nun auf der Pinnwand!
+          Danke! Dein Gesuch/ Angebot erscheint nun auf der Pinnwand/ unter den
+          Angeboten!
         </Paragraph>
       )}
     </StyledForm>
   )
+
+  function handlePost(event) {
+    event.preventDefault()
+    handleAddPost(addPost)
+    event.target[0].focus()
+    event.target.reset()
+    showMessage()
+  }
+
+  function handleOffer(event) {
+    event.preventDefault()
+    handleAddOffer(addOffer)
+    event.target[0].focus()
+    event.target.reset()
+    console.log('this is a offer')
+    showMessage()
+  }
+
   function showMessage() {
     setSubmitted(!submitted)
   }
+  function handleClick(input) {
+    setSelectedOption(input)
+  }
 }
+
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;
 `
+const Type = styled.div`
+  display: flex;
+`
+const RadioInput = styled.input`
+  display: none;
+  margin-right: 20px;
+
+  + label span {
+    background: url(${RadioOff});
+  }
+  span {
+    margin-right: 25px;
+  }
+  &: checked + label span {
+    background: url(${RadioOn});
+  }
+`
+/* const LabelType = styled.label`
+  margin-right: 20px;
+  background: url(${RadioOff});
+  background-repeat: none;
+
+  &: checked  .span {
+    background-image: url(${RadioOn}) alt= 'radioon';
+  }
+` */
+
 const Label = styled.label`
   display: none;
 `
@@ -186,3 +276,11 @@ const TextArea = styled.textarea`
 const Paragraph = styled.p`
   margin: 0;
 `
+
+/* {event => {
+  event.preventDefault()
+  handleAddPost(addPost)
+  event.target[0].focus()
+  event.target.reset()
+  showMessage()
+} */
