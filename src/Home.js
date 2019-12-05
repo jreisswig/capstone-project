@@ -6,7 +6,7 @@ import Searchbar from './Searchbar'
 
 import styled from 'styled-components/macro'
 
-export default function Home({ offers }) {
+export default function Home({ offers, handleOfferClick }) {
   const [input, setInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus und Garten': false,
@@ -59,16 +59,13 @@ export default function Home({ offers }) {
             <Offer
               {...offer}
               key={index}
-              showDetail={() => showDetail(index)}
+              handleOfferClick={() => handleOfferClick(index)}
             />
           ))}
       </TagContainer>
       <Line />
     </HomeContainer>
   )
-  function showDetail(index) {
-    console.log(offers[index])
-  }
 
   function toggleCategory(category) {
     setSelectedCategories({

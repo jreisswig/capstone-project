@@ -19,9 +19,7 @@ const PostContainer = styled.div`
   padding: 20px;
   overflow: scroll;
 `
-const Headline2 = styled.h2`
-  margin: 0;
-`
+
 const Paragraph = styled.p`
   margin: 0;
 `

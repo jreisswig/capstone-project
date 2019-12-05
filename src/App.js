@@ -18,6 +18,7 @@ export default function App() {
   saveData(posts)
 
   const [offers] = useState(offersData)
+  const [selectedOffer, setSelectedOffer] = useState(offers[0])
 
   return (
     <Appcontainer>
@@ -26,7 +27,11 @@ export default function App() {
           <Header />
           <Switch>
             <Route exact path="/">
-              <Home offers={offers} posts={posts}></Home>
+              <Home
+                offers={offers}
+                posts={posts}
+                handleOfferClick={index => handleOfferClick(index)}
+              ></Home>
             </Route>
             <Route path="/pinnwand">
               <Bulletinboard posts={posts}></Bulletinboard>
@@ -34,8 +39,14 @@ export default function App() {
             <Route path="/inserieren">
               <NewPost handleAddPost={handleAddPost}></NewPost>
             </Route>
-            <Route path="/Angebotdetail">
-              <OfferDetailList offers={offers}></OfferDetailList>
+            <Route path="/angebotdetail">
+              <OfferDetailList
+                title={selectedOffer.title}
+                description={selectedOffer.description}
+                name={selectedOffer.name}
+                phonenumber={selectedOffer.phonenumber}
+                email={selectedOffer.email}
+              ></OfferDetailList>
             </Route>
 
             <Route path="/profil">
@@ -57,6 +68,10 @@ export default function App() {
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
+  }
+
+  function handleOfferClick(index) {
+    setSelectedOffer(offers[index])
   }
 }
 const Appcontainer = styled.div`

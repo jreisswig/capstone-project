@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-export default function Offer({ title, showDetail }) {
+export default function Offer({ title, handleOfferClick }) {
   return (
-    <OfferTags onClick={showDetail}>
-      <Link to="/angebotdetail">{title}</Link>
+    <OfferTags>
+      <Link to="/angebotdetail" onClick={handleOfferClick}>
+        {title}
+      </Link>
     </OfferTags>
   )
 }
