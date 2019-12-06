@@ -2,18 +2,29 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Form from './Form'
 
-export default function NewPost({ handleAddPost, handleAddOffer }) {
+export default function NewPost({
+  handleAddPost,
+  handleAddOffer,
+  addCategory
+}) {
   return (
     <NewPostWrapper>
-      <Title>Erstelle ein neues Gesuch</Title>
+      <Title>Erstelle ein neues Gesuch oder Angebot</Title>
       <Paragraph>
-        Du suchst Hilfe?
+        <b>
+          Du suchst Hilfe? <br />
+          Du möchtest deine Hilfe anbieten?
+        </b>
         <br />
-        Erstelle ein neues Gesuch für die Pinnwand, damit deine Nachbarn es
-        sehen können.
+        Erstelle ein neues Gesuch für die Pinnwand oder erstelle Angebote, damit
+        deine Nachbarn es sehen können.
       </Paragraph>
 
-      <Form handleAddPost={handleAddPost} handleAddOffer={handleAddOffer} />
+      <Form
+        handleAddPost={handleAddPost}
+        handleAddOffer={handleAddOffer}
+        addCategory={addCategory}
+      />
     </NewPostWrapper>
   )
 }

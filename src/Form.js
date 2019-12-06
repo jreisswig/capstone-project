@@ -10,18 +10,19 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     description: '',
     name: '',
     phonenumber: '',
-    email: ''
+    email: '',
+    category: ''
   })
   const [addOffer, setAddOffer] = useState({
     title: '',
     description: '',
     name: '',
     phonenumber: '',
-    email: ''
+    email: '',
+    category: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
-  console.log(selectedOption)
 
   return (
     <StyledForm
@@ -40,7 +41,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
           onClick={() => handleClick('offer')}
         />
         <label htmlFor="offer">
-          <span></span>Biete
+          <span>Biete</span>
         </label>
         <RadioInput
           type="radio"
@@ -72,7 +73,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-      <CategorieForm />
+      <CategorieForm addCategory={addCategory} />
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -91,7 +92,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
         required
         maxlength="100"
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
-            oder was du suchst. *"
+            oder wobei du deinen Nachbarn helfen kannst. *"
       ></TextArea>
       <Label htmlFor="name"></Label>
       <Input
@@ -112,7 +113,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
       <Flex>
         <Label htmlFor="phonenumber"></Label>
         <ContactInput
-          type="text"
+          type="tel"
           name="phonenumber"
           id="phonenumber"
           onInput={event =>
@@ -128,7 +129,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
 
         <Label htmlFor="email"></Label>
         <ContactInput
-          type="text"
+          type="email"
           name="email"
           id="email"
           onInput={event =>
@@ -158,6 +159,12 @@ export default function Form({ handleAddPost, handleAddOffer }) {
       )}
     </StyledForm>
   )
+
+  function addCategory(name) {
+    selectedOption === 'post'
+      ? setAddPost({ ...addPost, category: name })
+      : setAddOffer({ ...addOffer, category: name })
+  }
 
   function handlePost(event) {
     event.preventDefault()
@@ -190,21 +197,30 @@ const StyledForm = styled.form`
 `
 const Type = styled.div`
   display: flex;
+
+  input:not(:checked) + label {
+    background: url(${RadioOff});
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
+
+  input:checked + label {
+    background: url(${RadioOn});
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
 `
 const RadioInput = styled.input`
   display: none;
-  margin-right: 20px;
 
+  + label {
+    margin-right: 33px;
+  }
   + label span {
-    background: url(${RadioOff});
-  }
-  span {
-    margin-right: 25px;
-  }
-  &: checked + label span {
-    background: url(${RadioOn});
+    margin-left: 29px;
   }
 `
+/* background: url(${RadioOff}); */
 /* const LabelType = styled.label`
   margin-right: 20px;
   background: url(${RadioOff});

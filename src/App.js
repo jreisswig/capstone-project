@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Nav from './Nav'
 import Grid from './Grid'
 import NewPost from './NewPost'
@@ -10,15 +10,28 @@ import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 //import postData from './posts.json'
-import offersData from './offers.json'
+//import offersData from './offers.json'
 
 export default function App() {
-  let savedData = JSON.parse(localStorage.savedData || null) || {}
-  const [posts, setPosts] = useState(savedData)
-  saveData(posts)
+  let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
+  const [posts, setPosts] = useState(savedPosts)
 
-  const [offers, setOffers] = useState(offersData)
+  let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
+  const [offers, setOffers] = useState(savedOffers)
+
   const [selectedOffer, setSelectedOffer] = useState(offers[0])
+
+  useEffect(() => {
+    let savedPosts = posts
+    savedPosts.time = new Date().getTime()
+    localStorage.savedPosts = JSON.stringify(savedPosts)
+  }, [posts])
+
+  useEffect(() => {
+    let savedOffers = offers
+    savedOffers.time = new Date().getTime()
+    localStorage.savedOffers = JSON.stringify(savedOffers)
+  }, [offers])
 
   return (
     <Appcontainer>
@@ -63,10 +76,15 @@ export default function App() {
     </Appcontainer>
   )
 
-  function saveData(posts) {
-    savedData = posts
-    savedData.time = new Date().getTime()
-    localStorage.savedData = JSON.stringify(savedData)
+  function savePostData(posts) {
+    savedPosts = posts
+    savedPosts.time = new Date().getTime()
+    localStorage.savedPosts = JSON.stringify(savedPosts)
+  }
+  function saveOfferData() {
+    let savedOffers = offers
+    savedOffers.time = new Date().getTime()
+    localStorage.savedOffers = JSON.stringify(savedOffers)
   }
 
   function handleAddPost(addPost) {
