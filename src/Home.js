@@ -3,9 +3,10 @@ import Offer from './Offer'
 import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
+
 import styled from 'styled-components/macro'
 
-export default function Home({ offers }) {
+export default function Home({ offers, handleOfferClick }) {
   const [input, setInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus und Garten': false,
@@ -15,6 +16,7 @@ export default function Home({ offers }) {
     Elektro: false,
     Werkzeuge: false
   })
+
   return (
     <HomeContainer>
       <Welcome>
@@ -25,10 +27,7 @@ export default function Home({ offers }) {
           Hallo User, <br /> schaue was in Seestermühe los ist.
         </Paragraph>
       </Welcome>
-      <Searchbar
-        onInput={event => setInput(event.target.value)}
-        onSubmit={event => setInput(event.target.value.toLowerCase())}
-      />
+      <Searchbar onInput={event => setInput(event.target.value)} />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories
@@ -48,15 +47,19 @@ export default function Home({ offers }) {
             ).every(key => selectedCategories[key] === false)
             const isInCategory = selectedCategories[item.category]
             return (
-              areAllCategoriesUnselected ||
-              (isInCategory &&
-                (query === '' ||
-                  title.includes(query) ||
-                  description.includes(query)))
+              (areAllCategoriesUnselected || isInCategory) &&
+              (query === '' ||
+                title.includes(query) ||
+                description.includes(query))
             )
           })
+
           .map((offer, index) => (
-            <Offer {...offer} key={index} />
+            <Offer
+              {...offer}
+              key={index}
+              handleOfferClick={() => handleOfferClick(index)}
+            />
           ))}
       </TagContainer>
       <Line />
@@ -98,4 +101,6 @@ const Line = styled.hr`
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
+
+ 
 `

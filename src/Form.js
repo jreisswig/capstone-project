@@ -1,47 +1,79 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Categories from './Categories'
+import CategorieForm from './CategorieForm'
+import RadioOff from './images/radio-button-off.svg'
+import RadioOn from './images/radio-button-on-fill.svg'
 
-export default function Form({ handleAddPost }) {
+export default function Form({ handleAddPost, handleAddOffer }) {
   const [addPost, setAddPost] = useState({
     title: '',
     description: '',
     name: '',
     phonenumber: '',
-    email: ''
+    email: '',
+    category: ''
+  })
+  const [addOffer, setAddOffer] = useState({
+    title: '',
+    description: '',
+    name: '',
+    phonenumber: '',
+    email: '',
+    category: ''
   })
   const [submitted, setSubmitted] = useState(false)
+  const [selectedOption, setSelectedOption] = useState('')
 
   return (
     <StyledForm
       method="post"
       action=""
       id=""
-      onSubmit={event => {
-        event.preventDefault()
-        handleAddPost(addPost)
-        event.target[0].focus()
-        event.target.reset()
-        showMessage()
-      }}
+      onSubmit={selectedOption === 'post' ? handlePost : handleOffer}
     >
+      <Type>
+        <RadioInput
+          type="radio"
+          name="type"
+          value="offer"
+          id="offer"
+          defaultChecked
+          onClick={() => handleClick('offer')}
+        />
+        <label htmlFor="offer">
+          <span>Biete</span>
+        </label>
+        <RadioInput
+          type="radio"
+          onClick={() => handleClick('post')}
+          name="type"
+          value="post"
+          id="post"
+        />
+        <label htmlFor="post">
+          <span>Suche</span>
+        </label>
+      </Type>
+
       <Label htmlFor="title"></Label>
       <Input
         type="text"
         name="title"
         id="title"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            title: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                title: event.target.value
+              })
+            : setAddOffer({ ...addOffer, title: event.target.value })
         }
         required
         placeholder="Titel für deinen Aushang *"
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-
+      <CategorieForm addCategory={addCategory} />
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -50,15 +82,17 @@ export default function Form({ handleAddPost }) {
         rows="4"
         id="description"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            description: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                description: event.target.value
+              })
+            : setAddOffer({ ...addOffer, description: event.target.value })
         }
         required
         maxlength="100"
         placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
-            oder was du suchst. *"
+            oder wobei du deinen Nachbarn helfen kannst. *"
       ></TextArea>
       <Label htmlFor="name"></Label>
       <Input
@@ -66,10 +100,12 @@ export default function Form({ handleAddPost }) {
         name="name"
         id="name"
         onInput={event =>
-          setAddPost({
-            ...addPost,
-            name: event.target.value
-          })
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                name: event.target.value
+              })
+            : setAddOffer({ ...addOffer, name: event.target.value })
         }
         required
         placeholder="Angezeigter Name *"
@@ -77,28 +113,32 @@ export default function Form({ handleAddPost }) {
       <Flex>
         <Label htmlFor="phonenumber"></Label>
         <ContactInput
-          type="text"
+          type="tel"
           name="phonenumber"
           id="phonenumber"
           onInput={event =>
-            setAddPost({
-              ...addPost,
-              phonenumber: event.target.value
-            })
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  phonenumber: event.target.value
+                })
+              : setAddOffer({ ...addOffer, phonenumber: event.target.value })
           }
           placeholder="Telefonnummer"
         ></ContactInput>
 
         <Label htmlFor="email"></Label>
         <ContactInput
-          type="text"
+          type="email"
           name="email"
           id="email"
           onInput={event =>
-            setAddPost({
-              ...addPost,
-              email: event.target.value
-            })
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  email: event.target.value
+                })
+              : setAddOffer({ ...addOffer, email: event.target.value })
           }
           placeholder="Email"
         ></ContactInput>
@@ -113,18 +153,72 @@ export default function Form({ handleAddPost }) {
       ></StyledSubmit>
       {submitted && (
         <Paragraph>
-          Danke! Dein Gesuch erscheint nun auf der Pinnwand!
+          Danke! Dein Gesuch/ Angebot erscheint nun auf der Pinnwand/ unter den
+          Angeboten!
         </Paragraph>
       )}
     </StyledForm>
   )
+
+  function addCategory(name) {
+    selectedOption === 'post'
+      ? setAddPost({ ...addPost, category: name })
+      : setAddOffer({ ...addOffer, category: name })
+  }
+
+  function handlePost(event) {
+    event.preventDefault()
+    handleAddPost(addPost)
+    event.target[0].focus()
+    event.target.reset()
+    showMessage()
+  }
+
+  function handleOffer(event) {
+    event.preventDefault()
+    handleAddOffer(addOffer)
+    event.target[0].focus()
+    event.target.reset()
+    console.log('this is a offer')
+    showMessage()
+  }
+
   function showMessage() {
     setSubmitted(!submitted)
   }
+  function handleClick(input) {
+    setSelectedOption(input)
+  }
 }
+
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;
+`
+const Type = styled.div`
+  display: flex;
+
+  input:not(:checked) + label {
+    background: url(${RadioOff});
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
+
+  input:checked + label {
+    background: url(${RadioOn});
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+  }
+`
+const RadioInput = styled.input`
+  display: none;
+
+  + label {
+    margin-right: 33px;
+  }
+  + label span {
+    margin-left: 29px;
+  }
 `
 const Label = styled.label`
   display: none;
@@ -137,7 +231,7 @@ const Headline4 = styled.h4`
 const Input = styled.input`
   background: #f3f7f6;
   border: none;
-  padding: 10px;
+  padding: 9px;
   font-size: 1rem;
   border-radius: 5px;
   color: #7d7b7b;
@@ -146,7 +240,7 @@ const ContactInput = styled.input`
   background: #f3f7f6;
   border: none;
   width: 45%;
-  padding: 10px;
+  padding: 9px;
   font-size: 1rem;
   border-radius: 5px;
   color: #7d7b7b;
@@ -187,3 +281,11 @@ const TextArea = styled.textarea`
 const Paragraph = styled.p`
   margin: 0;
 `
+
+/* {event => {
+  event.preventDefault()
+  handleAddPost(addPost)
+  event.target[0].focus()
+  event.target.reset()
+  showMessage()
+} */
