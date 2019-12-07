@@ -4,7 +4,7 @@ import Grid from './Grid'
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import Home from './Home'
-import OfferDetailList from './OfferDetailList'
+import OfferDetailPage from './OfferDetailPage'
 import Header from './Header'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -56,13 +56,13 @@ export default function App() {
               ></NewPost>
             </Route>
             <Route path="/angebotdetail">
-              <OfferDetailList
+              <OfferDetailPage
                 title={selectedOffer.title}
                 description={selectedOffer.description}
                 name={selectedOffer.name}
                 phonenumber={selectedOffer.phonenumber}
                 email={selectedOffer.email}
-              ></OfferDetailList>
+              ></OfferDetailPage>
             </Route>
 
             <Route path="/profil">
@@ -75,17 +75,6 @@ export default function App() {
       </Grid>
     </Appcontainer>
   )
-
-  function savePostData(posts) {
-    savedPosts = posts
-    savedPosts.time = new Date().getTime()
-    localStorage.savedPosts = JSON.stringify(savedPosts)
-  }
-  function saveOfferData() {
-    let savedOffers = offers
-    savedOffers.time = new Date().getTime()
-    localStorage.savedOffers = JSON.stringify(savedOffers)
-  }
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])

@@ -30,9 +30,12 @@ export default function NewPost({
 }
 const Title = styled.h3`
   font-weight: unset;
+  margin-bottom: 6px;
 `
 const NewPostWrapper = styled.section`
   width: 100vw;
   padding: 0px 20px 17px 20px;
 `
-const Paragraph = styled.p``
+const Paragraph = styled.p`
+  margin-top: 5px;
+`

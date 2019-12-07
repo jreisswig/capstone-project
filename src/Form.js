@@ -220,17 +220,6 @@ const RadioInput = styled.input`
     margin-left: 29px;
   }
 `
-/* background: url(${RadioOff}); */
-/* const LabelType = styled.label`
-  margin-right: 20px;
-  background: url(${RadioOff});
-  background-repeat: none;
-
-  &: checked  .span {
-    background-image: url(${RadioOn}) alt= 'radioon';
-  }
-` */
-
 const Label = styled.label`
   display: none;
 `
@@ -242,7 +231,7 @@ const Headline4 = styled.h4`
 const Input = styled.input`
   background: #f3f7f6;
   border: none;
-  padding: 10px;
+  padding: 9px;
   font-size: 1rem;
   border-radius: 5px;
   color: #7d7b7b;
@@ -251,7 +240,7 @@ const ContactInput = styled.input`
   background: #f3f7f6;
   border: none;
   width: 45%;
-  padding: 10px;
+  padding: 9px;
   font-size: 1rem;
   border-radius: 5px;
   color: #7d7b7b;

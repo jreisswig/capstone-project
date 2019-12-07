@@ -4,7 +4,7 @@ import Boot from './images/Boot.svg'
 import HausUndGarten from './images/HausUndGarten.svg'
 export default function CategorieForm({ addCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('')
-  console.log(selectedCategory)
+
   return (
     <Flex>
       <Categorie>

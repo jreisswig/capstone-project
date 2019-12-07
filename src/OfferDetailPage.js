@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
 
-export default function OfferDetailList({
+export default function OfferDetailPage({
   title,
   description,
   name,
