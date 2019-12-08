@@ -1,11 +1,18 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import Bookmark from './Bookmark'
 
-export default function OfferDetail({ description, name, phonenumber, email }) {
+export default function OfferDetail({
+  description,
+  name,
+  phonenumber,
+  email,
+  isBookmarked
+}) {
   return (
     <OfferWrapper>
       <OfferSearch>ICH BIETE</OfferSearch>
-
+      <Bookmark isBookmarked={isBookmarked} />
       <OfferDescription>{description}</OfferDescription>
 
       <OfferName>{name}</OfferName>
@@ -18,16 +25,16 @@ export default function OfferDetail({ description, name, phonenumber, email }) {
     </OfferWrapper>
   )
 }
-const OfferWrapper = styled.div``
+const OfferWrapper = styled.div`
+  position: relative;
+`
 
 const OfferDescription = styled.p`
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding: 20px 0;
 `
 const OfferSearch = styled.p`
   font-weight: lighter;
-  margin-top: 6px;
-  margin-bottom: 6px;
+  margin: 6 px 0;
 `
 const OfferName = styled.p`
   color: #424242;

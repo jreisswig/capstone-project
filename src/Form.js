@@ -11,7 +11,8 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     name: '',
     phonenumber: '',
     email: '',
-    category: ''
+    category: '',
+    isBookmarked: 'false'
   })
   const [addOffer, setAddOffer] = useState({
     title: '',
@@ -19,7 +20,8 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     name: '',
     phonenumber: '',
     email: '',
-    category: ''
+    category: '',
+    isBookmarked: 'false'
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
@@ -253,12 +255,6 @@ const Flex = styled.fieldset`
   padding: 0;
   margin: 0;
 `
-/* const Circle = styled.div`
-  background: #f3f7f6;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-` */
 
 const StyledSubmit = styled.input`
   background: #7aaca2;
@@ -281,11 +277,3 @@ const TextArea = styled.textarea`
 const Paragraph = styled.p`
   margin: 0;
 `
-
-/* {event => {
-  event.preventDefault()
-  handleAddPost(addPost)
-  event.target[0].focus()
-  event.target.reset()
-  showMessage()
-} */

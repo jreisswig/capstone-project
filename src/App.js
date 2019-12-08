@@ -18,7 +18,6 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-
   const [selectedOffer, setSelectedOffer] = useState(offers[0])
 
   useEffect(() => {
@@ -44,6 +43,7 @@ export default function App() {
                 offers={offers}
                 posts={posts}
                 handleOfferClick={index => handleOfferClick(index)}
+                toggleBookmarked={index => toggleBookmarked(index)}
               ></Home>
             </Route>
             <Route path="/pinnwand">
@@ -62,6 +62,8 @@ export default function App() {
                 name={selectedOffer.name}
                 phonenumber={selectedOffer.phonenumber}
                 email={selectedOffer.email}
+                category={selectedOffer.category}
+                isBookmarked={selectedOffer.isBookmarked}
               ></OfferDetailPage>
             </Route>
 
@@ -87,7 +89,18 @@ export default function App() {
   function handleOfferClick(index) {
     setSelectedOffer(offers[index])
   }
+
+  function toggleBookmarked(index) {
+    console.log(index)
+    const offer = offers[index]
+    setOffers([
+      ...offers.slice(0, index),
+      { ...offer, isBookmarked: !offer.isBookmarked },
+      ...offers.slice(index + 1)
+    ])
+  }
 }
+
 const Appcontainer = styled.div`
   height: 100vh;
 `

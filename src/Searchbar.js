@@ -32,6 +32,10 @@ const Form = styled.form`
   justify-content: center;
   background-color: #f3f7f6;
   height: 40px;
+  position: sticky;
+  top: -17px;
+
+  z-index: 2;
 `
 const Label = styled.label`
   display: none;
@@ -43,8 +47,7 @@ const InputWrapper = styled.div`
   border-radius: 5px;
   width: 80%;
   margin: 6px;
-  padding: 5px;
-  padding-left: 8px;
+  padding: 5px 5px 5px 8px;
 `
 const Searchicon = styled.div`
   width: 10%;
@@ -65,7 +68,7 @@ const StyledSubmit = styled.input`
   font-size: 1rem;
   border-radius: 3px;
   color: white;
-  padding: 9px;
-  padding-top: 6px;
+  padding: 6px 9px 9px 9px;
+
   font-size: 1rem;
 `

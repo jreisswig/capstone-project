@@ -1,26 +1,59 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Boot from './images/Boot.svg'
 
 export default function OfferDetailPage({
   title,
   description,
   name,
   phonenumber,
-  email
+  email,
+  category,
+  isBookmarked
 }) {
+  const [isCategory, setIsCategory] = useState('')
+
   return (
     <OfferDetailContainer>
       <CategorieHeader>
-        <Icon>
-          <img
-            src={HausUndGarten}
-            alt="Haus und Garten"
-            height="130px"
-            width="130px"
-          />
-        </Icon>
+        <CategoryImage>
+          {isCategory === '' && changeCategoryImage(category)}
+          {isCategory === 'Haus und Garten' && (
+            <img
+              src={HausUndGarten}
+              alt="Haus und Garten"
+              height="130px"
+              width="130px"
+            />
+          )}
+          {isCategory === 'Auto, Rad und Boot' && (
+            <img
+              src={Boot}
+              alt="Auto, Rad und Boot"
+              height="130px"
+              width="130px"
+            />
+          )}
+          {isCategory === 'Familie, Kind und Tier' && (
+            <img
+              src=""
+              alt="Familie, Kind und Tier"
+              height="130px"
+              width="130px"
+            />
+          )}
+          {isCategory === 'Freizeit und Hobby' && (
+            <img src="" alt="Freizeit und Hobby" height="130px" width="130px" />
+          )}
+          {isCategory === 'Elektro' && (
+            <img src="" alt="Elektro" height="130px" width="130px" />
+          )}
+          {isCategory === 'Werkzeuge' && (
+            <img src="" alt="Werkzeuge" height="130px" width="130px" />
+          )}
+        </CategoryImage>
       </CategorieHeader>
       <OfferContent>
         <OfferTitle>
@@ -31,10 +64,14 @@ export default function OfferDetailPage({
           name={name}
           phonenumber={phonenumber}
           email={email}
+          isBookmarked={isBookmarked}
         />
       </OfferContent>
     </OfferDetailContainer>
   )
+  function changeCategoryImage(categoryname) {
+    setIsCategory(categoryname)
+  }
 }
 
 const OfferDetailContainer = styled.section`
@@ -53,7 +90,7 @@ const CategorieHeader = styled.div`
     rgba(196, 231, 220, 1) 100%
   );
 `
-const Icon = styled.div`
+const CategoryImage = styled.div`
   position: absolute;
   left: 32%;
   bottom: -17px;
@@ -67,8 +104,7 @@ const OfferContent = styled.div`
 `
 
 const OfferTitle = styled.div`
-  margin-bottom: 35px;
-  margin-top: 7px;
+  margin: 7px 35px;
 `
 const Title = styled.h2`
   font-weight: bold;

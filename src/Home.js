@@ -6,8 +6,8 @@ import Searchbar from './Searchbar'
 
 import styled from 'styled-components/macro'
 
-export default function Home({ offers, handleOfferClick }) {
-  const [input, setInput] = useState('')
+export default function Home({ offers, handleOfferClick, toggleBookmarked }) {
+  const [userInput, setUserInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus und Garten': false,
     'Auto, Rad und Boot': false,
@@ -27,7 +27,10 @@ export default function Home({ offers, handleOfferClick }) {
           Hallo User, <br /> schaue was in Seestermühe los ist.
         </Paragraph>
       </Welcome>
-      <Searchbar onInput={event => setInput(event.target.value)} />
+      <Searchbar
+        onInput={event => setUserInput(event.target.value)}
+        style={{ border: 'red', position: 'sticky', top: '50' }}
+      />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
       <Categories
@@ -41,11 +44,12 @@ export default function Home({ offers, handleOfferClick }) {
           .filter(item => {
             const title = item.title.toLowerCase()
             const description = item.description.toLowerCase()
-            const query = input.toLowerCase()
+            const query = userInput.toLowerCase()
             const areAllCategoriesUnselected = Object.keys(
               selectedCategories
             ).every(key => selectedCategories[key] === false)
             const isInCategory = selectedCategories[item.category]
+
             return (
               (areAllCategoriesUnselected || isInCategory) &&
               (query === '' ||
@@ -53,12 +57,13 @@ export default function Home({ offers, handleOfferClick }) {
                 description.includes(query))
             )
           })
-
           .map((offer, index) => (
             <Offer
               {...offer}
               key={index}
+              isBookmarked={offer.isBookmarked}
               handleOfferClick={() => handleOfferClick(index)}
+              toggleBookmarked={() => toggleBookmarked(index)}
             />
           ))}
       </TagContainer>
@@ -99,7 +104,7 @@ const Paragraph = styled.p``
 const Line = styled.hr`
   border: 0;
   height: 1px;
-  background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
+  background-image: linear-gradient(90deg, rgba(123,172,160,0.5) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5) 100%);
   );
 
  

@@ -48,7 +48,7 @@ export default function Header() {
     <HeaderStyled>
       <Left>{icon}</Left>
       <HeaderTitle>{pagetitle}</HeaderTitle>
-      <Right></Right>
+      <Right />
     </HeaderStyled>
   )
 }
