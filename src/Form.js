@@ -4,14 +4,21 @@ import CategorieForm from './CategorieForm'
 import RadioOff from './images/radio-button-off.svg'
 import RadioOn from './images/radio-button-on-fill.svg'
 
-export default function Form({ handleAddPost, handleAddOffer }) {
+export default function Form({
+  handleAddPost,
+  handleAddOffer,
+  newPostDate,
+  newOfferDate
+}) {
   const [addPost, setAddPost] = useState({
     title: '',
     description: '',
     name: '',
     phonenumber: '',
     email: '',
-    category: ''
+    category: '',
+    date: '',
+    isBookmarked: 'false'
   })
   const [addOffer, setAddOffer] = useState({
     title: '',
@@ -19,10 +26,23 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     name: '',
     phonenumber: '',
     email: '',
-    category: ''
+    category: '',
+    date: '',
+    isBookmarked: 'false'
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
+
+  function getDate() {
+    const actualDate = new Date()
+    const day = actualDate.getDate()
+    const month = actualDate.getMonth() + 1
+    const year = actualDate.getFullYear()
+    const hour = actualDate.getHours()
+    const minute = actualDate.getMinutes()
+    const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
+    return date
+  }
 
   return (
     <StyledForm
@@ -64,16 +84,21 @@ export default function Form({ handleAddPost, handleAddOffer }) {
           selectedOption === 'post'
             ? setAddPost({
                 ...addPost,
-                title: event.target.value
+                title: event.target.value,
+                date: getDate()
               })
-            : setAddOffer({ ...addOffer, title: event.target.value })
+            : setAddOffer({
+                ...addOffer,
+                title: event.target.value,
+                date: getDate()
+              })
         }
         required
         placeholder="Titel für deinen Aushang *"
       ></Input>
 
       <Headline4>Wähle eine Kategorie:</Headline4>
-      <CategorieForm addCategory={addCategory} />
+      <CategorieForm addCategory={addCategoryAndDate} />
       <Label htmlFor="description"></Label>
       <TextArea
         type="textarea"
@@ -87,7 +112,10 @@ export default function Form({ handleAddPost, handleAddOffer }) {
                 ...addPost,
                 description: event.target.value
               })
-            : setAddOffer({ ...addOffer, description: event.target.value })
+            : setAddOffer({
+                ...addOffer,
+                description: event.target.value
+              })
         }
         required
         maxlength="100"
@@ -160,7 +188,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     </StyledForm>
   )
 
-  function addCategory(name) {
+  function addCategoryAndDate(name) {
     selectedOption === 'post'
       ? setAddPost({ ...addPost, category: name })
       : setAddOffer({ ...addOffer, category: name })
@@ -179,7 +207,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     handleAddOffer(addOffer)
     event.target[0].focus()
     event.target.reset()
-    console.log('this is a offer')
+
     showMessage()
   }
 
@@ -253,12 +281,6 @@ const Flex = styled.fieldset`
   padding: 0;
   margin: 0;
 `
-/* const Circle = styled.div`
-  background: #f3f7f6;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-` */
 
 const StyledSubmit = styled.input`
   background: #7aaca2;
@@ -281,11 +303,3 @@ const TextArea = styled.textarea`
 const Paragraph = styled.p`
   margin: 0;
 `
-
-/* {event => {
-  event.preventDefault()
-  handleAddPost(addPost)
-  event.target[0].focus()
-  event.target.reset()
-  showMessage()
-} */

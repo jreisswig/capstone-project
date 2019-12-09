@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>star-fill</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17.5616,21.0007 C17.4036,21.0007 17.2446,20.9637 17.0986,20.8877 L11.9996,18.2237 L6.9016,20.8877 C6.5636,21.0627 6.1556,21.0327 5.8496,20.8087 C5.5416,20.5847 5.3886,20.2057 5.4536,19.8307 L6.4246,14.2027 L2.3046,10.2177 C2.0306,9.9527 1.9316,9.5547 2.0486,9.1907 C2.1656,8.8287 2.4786,8.5637 2.8566,8.5097 L8.5566,7.6817 L11.1046,2.5557 C11.4426,1.8757 12.5576,1.8757 12.8956,2.5557 L15.4436,7.6817 L21.1436,8.5097 C21.5216,8.5637 21.8346,8.8287 21.9516,9.1907 C22.0686,9.5547 21.9696,9.9527 21.6956,10.2177 L17.5756,14.2027 L18.5466,19.8307 C18.6116,20.2057 18.4576,20.5847 18.1506,20.8087 C17.9766,20.9367 17.7696,21.0007 17.5616,21.0007" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-2152.000000, -1795.000000)">
+            <g id="star-fill" transform="translate(2150.000000, 1793.500000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="🎨-Icon-Сolor" fill="#7AACA2" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

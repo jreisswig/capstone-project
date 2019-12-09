@@ -5,7 +5,9 @@ import Form from './Form'
 export default function NewPost({
   handleAddPost,
   handleAddOffer,
-  addCategory
+  addCategory,
+  newPostDate,
+  newOfferDate
 }) {
   return (
     <NewPostWrapper>
@@ -21,6 +23,8 @@ export default function NewPost({
       </Paragraph>
 
       <Form
+        newPostDate={newPostDate}
+        newOfferDate={newOfferDate}
         handleAddPost={handleAddPost}
         handleAddOffer={handleAddOffer}
         addCategory={addCategory}

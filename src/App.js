@@ -18,21 +18,21 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-
   const [selectedOffer, setSelectedOffer] = useState(offers[0])
 
   useEffect(() => {
     let savedPosts = posts
     savedPosts.time = new Date().getTime()
+
     localStorage.savedPosts = JSON.stringify(savedPosts)
   }, [posts])
 
   useEffect(() => {
     let savedOffers = offers
     savedOffers.time = new Date().getTime()
+    //savedOffers.date = new Date().toLocaleString()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
-
   return (
     <Appcontainer>
       <Grid>
@@ -44,6 +44,7 @@ export default function App() {
                 offers={offers}
                 posts={posts}
                 handleOfferClick={index => handleOfferClick(index)}
+                toggleBookmarked={index => toggleBookmarked(index)}
               ></Home>
             </Route>
             <Route path="/pinnwand">
@@ -62,6 +63,9 @@ export default function App() {
                 name={selectedOffer.name}
                 phonenumber={selectedOffer.phonenumber}
                 email={selectedOffer.email}
+                category={selectedOffer.category}
+                date={selectedOffer.date}
+                isBookmarked={selectedOffer.isBookmarked}
               ></OfferDetailPage>
             </Route>
 
@@ -87,7 +91,17 @@ export default function App() {
   function handleOfferClick(index) {
     setSelectedOffer(offers[index])
   }
+
+  function toggleBookmarked(index) {
+    const offer = offers[index]
+    setOffers([
+      ...offers.slice(0, index),
+      { ...offer, isBookmarked: !offer.isBookmarked },
+      ...offers.slice(index + 1)
+    ])
+  }
 }
+
 const Appcontainer = styled.div`
   height: 100vh;
 `
