@@ -17,6 +17,7 @@ export default function Offer({
         toggleBookmarked={toggleBookmarked}
         isBookmarked={isBookmarked}
       ></Bookmark>
+
       <Link to="/angebotdetail" onClick={handleOfferClick}>
         <Title> {title}</Title>
         <Content>{description}</Content>
@@ -42,9 +43,10 @@ const OfferTags = styled.div`
   }
 `
 const Title = styled.h4`
-margin: 4px 0;
-}`
+  margin: 4px 0;
+`
 const Content = styled.div``
+
 const Line = styled.hr`
   
 border: 0;

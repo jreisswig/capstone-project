@@ -23,15 +23,16 @@ export default function App() {
   useEffect(() => {
     let savedPosts = posts
     savedPosts.time = new Date().getTime()
+
     localStorage.savedPosts = JSON.stringify(savedPosts)
   }, [posts])
 
   useEffect(() => {
     let savedOffers = offers
     savedOffers.time = new Date().getTime()
+    //savedOffers.date = new Date().toLocaleString()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
-
   return (
     <Appcontainer>
       <Grid>
@@ -63,6 +64,7 @@ export default function App() {
                 phonenumber={selectedOffer.phonenumber}
                 email={selectedOffer.email}
                 category={selectedOffer.category}
+                date={selectedOffer.date}
                 isBookmarked={selectedOffer.isBookmarked}
               ></OfferDetailPage>
             </Route>
@@ -91,7 +93,6 @@ export default function App() {
   }
 
   function toggleBookmarked(index) {
-    console.log(index)
     const offer = offers[index]
     setOffers([
       ...offers.slice(0, index),

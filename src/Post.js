@@ -1,29 +1,30 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Pin from './Pin.js'
+import Date from './Date'
 /* import ArrowShow from './images/ArrowShow.svg'
 import ArrowHide from './images/ArrowHide.svg' */
 import PropTypes from 'prop-types'
 
-export default function Post({ title, description, name, phonenumber, email }) {
+export default function Post({
+  title,
+  description,
+  name,
+  phonenumber,
+  email,
+  date
+}) {
   const [isHidden, setIsHidden] = useState(true)
 
   return (
     <PostWrapper onClick={toggleIsHidden}>
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
+      <Date date={date} />
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
-      <Icon>
-        {isHidden ? (
-          <Button>Kontakt</Button>
-        ) : (
-          <Button>Kontakt</Button>
-          /* <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> */
-          /* <img src={ArrowHide} alt="IconHide" height="17px" width="17px" /> */
-        )}
-      </Icon>
+
       <Line />
       {!isHidden && (
         <>
@@ -138,3 +139,13 @@ Post.propTypes = {
   phonenumber: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired
 }
+
+/*  <Icon>
+        {isHidden ? (
+          <Button>Kontakt</Button>
+        ) : (
+          <Button>Kontakt</Button>
+           <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> 
+           <img src={ArrowHide} alt="IconHide" height="17px" width="17px" /> 
+          )}
+        </Icon> */

@@ -11,6 +11,7 @@ export default function OfferDetailPage({
   phonenumber,
   email,
   category,
+  date,
   isBookmarked
 }) {
   const [isCategory, setIsCategory] = useState('')
@@ -56,6 +57,7 @@ export default function OfferDetailPage({
         </CategoryImage>
       </CategorieHeader>
       <OfferContent>
+        <Date datetime={date}>{date}</Date>
         <OfferTitle>
           <Title>{title}</Title>
         </OfferTitle>
@@ -94,13 +96,20 @@ const CategoryImage = styled.div`
   position: absolute;
   left: 32%;
   bottom: -17px;
+  z-index: 2;
 `
 const OfferContent = styled.div`
+  position: relative;
   padding: 20px;
   background-color: #f3f7f6;
 
   padding: 3px 15px;
   box-shadow: 0 5px 5px #f0efef;
+`
+const Date = styled.time`
+  position: absolute;
+  top: 13px;
+  right: 11px;
 `
 
 const OfferTitle = styled.div`
