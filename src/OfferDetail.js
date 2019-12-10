@@ -8,12 +8,16 @@ export default function OfferDetail({
   name,
   phonenumber,
   email,
-  isBookmarked
+  isBookmarked,
+  toggleBookmarked
 }) {
   return (
     <OfferWrapper>
       <OfferSearch>ICH BIETE</OfferSearch>
-      <Bookmark isBookmarked={isBookmarked} />
+      <Bookmark
+        isBookmarked={isBookmarked}
+        toggleBookmarked={toggleBookmarked}
+      />
       <OfferDescription>{description}</OfferDescription>
 
       <OfferName>{name}</OfferName>
