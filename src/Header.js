@@ -9,35 +9,38 @@ export default function Header() {
 
   const { pathname } = useLocation()
 
-  switch (pathname) {
-    case '/':
-      pagetitle = 'HalloDorf'
+  function checkPath(currentpath) {
+    return pathname.includes(currentpath)
+  }
 
-      break
-    case '/pinnwand':
+  switch (true) {
+    case checkPath('/pinnwand'):
       pagetitle = 'Pinnwand'
 
       break
-    case '/inserieren':
+    case checkPath('/inserieren'):
       pagetitle = 'Inserieren'
 
       break
-    case '/profil':
+    case checkPath('/profil'):
       pagetitle = 'Profil'
 
       break
-    case `/angebotdetail/:id`:
+    case checkPath('/angebotdetail'):
       pagetitle = 'Angebot'
       icon = (
         <Link to="/">
           <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
         </Link>
       )
-
       break
 
-    case '/settings':
+    case checkPath('/settings'):
       pagetitle = 'settings'
+
+      break
+    case checkPath('/'):
+      pagetitle = 'HalloDorf'
 
       break
     default:
