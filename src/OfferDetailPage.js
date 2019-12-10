@@ -3,24 +3,19 @@ import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
 import Boot from './images/Boot.svg'
-
-export default function OfferDetailPage({
-  title,
-  description,
-  name,
-  phonenumber,
-  email,
-  category,
-  date,
-  isBookmarked
-}) {
+import { useLocation } from 'react-router-dom'
+export default function OfferDetailPage({ offers, date }) {
   const [isCategory, setIsCategory] = useState('')
-
+  const { pathname } = useLocation()
+  const id = pathname.substring(15)
+  const index = offers.findIndex(el => el.id === id)
+  console.log(index)
+  const offer = offers[index] /* || loading[0] */
   return (
     <OfferDetailContainer>
       <CategorieHeader>
         <CategoryImage>
-          {isCategory === '' && changeCategoryImage(category)}
+          {isCategory === '' && changeCategoryImage(offer.category)}
           {isCategory === 'Haus und Garten' && (
             <img
               src={HausUndGarten}
@@ -57,16 +52,17 @@ export default function OfferDetailPage({
         </CategoryImage>
       </CategorieHeader>
       <OfferContent>
-        <Date datetime={date}>{date}</Date>
+        <Date datetime={date}>{offer.date}</Date>
         <OfferTitle>
-          <Title>{title}</Title>
+          <Title>{offer.title}</Title>
         </OfferTitle>
         <OfferDetail
-          description={description}
-          name={name}
-          phonenumber={phonenumber}
-          email={email}
-          isBookmarked={isBookmarked}
+          description={offer.description}
+          name={offer.name}
+          phonenumber={offer.phonenumber}
+          email={offer.email}
+          isBookmarked={offer.isBookmarked}
+          id={offer.id}
         />
       </OfferContent>
     </OfferDetailContainer>

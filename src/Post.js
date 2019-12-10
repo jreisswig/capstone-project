@@ -24,7 +24,15 @@ export default function Post({
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
-
+      <Icon>
+        {isHidden ? (
+          <Button>Kontakt</Button>
+        ) : (
+          <Button>Kontakt</Button>
+          /* <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> 
+           <img src={ArrowHide} alt="IconHide" height="17px" width="17px" />  */
+        )}
+      </Icon>
       <Line />
       {!isHidden && (
         <>
@@ -93,7 +101,7 @@ const PostDescription = styled.p`
 `
 const Icon = styled.div`
   position: absolute;
-  top: 13px;
+  bottom: 13px;
   right: 17px;
 `
 const PostName = styled.p`
@@ -139,13 +147,3 @@ Post.propTypes = {
   phonenumber: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired
 }
-
-/*  <Icon>
-        {isHidden ? (
-          <Button>Kontakt</Button>
-        ) : (
-          <Button>Kontakt</Button>
-           <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> 
-           <img src={ArrowHide} alt="IconHide" height="17px" width="17px" /> 
-          )}
-        </Icon> */

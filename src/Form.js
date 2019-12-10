@@ -18,6 +18,7 @@ export default function Form({
     email: '',
     category: '',
     date: '',
+    id: '',
     isBookmarked: 'false'
   })
   const [addOffer, setAddOffer] = useState({
@@ -28,6 +29,7 @@ export default function Form({
     email: '',
     category: '',
     date: '',
+    id: '',
     isBookmarked: 'false'
   })
   const [submitted, setSubmitted] = useState(false)
@@ -85,12 +87,18 @@ export default function Form({
             ? setAddPost({
                 ...addPost,
                 title: event.target.value,
-                date: getDate()
+                date: getDate(),
+                id: Math.random()
+                  .toString(36)
+                  .substr(2, 9)
               })
             : setAddOffer({
                 ...addOffer,
                 title: event.target.value,
-                date: getDate()
+                date: getDate(),
+                id: Math.random()
+                  .toString(36)
+                  .substr(2, 9)
               })
         }
         required

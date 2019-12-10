@@ -18,7 +18,6 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-  const [selectedOffer, setSelectedOffer] = useState(offers[0])
 
   useEffect(() => {
     let savedPosts = posts
@@ -30,7 +29,6 @@ export default function App() {
   useEffect(() => {
     let savedOffers = offers
     savedOffers.time = new Date().getTime()
-    //savedOffers.date = new Date().toLocaleString()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
   return (
@@ -43,8 +41,7 @@ export default function App() {
               <Home
                 offers={offers}
                 posts={posts}
-                handleOfferClick={index => handleOfferClick(index)}
-                toggleBookmarked={index => toggleBookmarked(index)}
+                toggleBookmarked={id => toggleBookmarked(id)}
               ></Home>
             </Route>
             <Route path="/pinnwand">
@@ -56,17 +53,8 @@ export default function App() {
                 handleAddOffer={handleAddOffer}
               ></NewPost>
             </Route>
-            <Route path="/angebotdetail">
-              <OfferDetailPage
-                title={selectedOffer.title}
-                description={selectedOffer.description}
-                name={selectedOffer.name}
-                phonenumber={selectedOffer.phonenumber}
-                email={selectedOffer.email}
-                category={selectedOffer.category}
-                date={selectedOffer.date}
-                isBookmarked={selectedOffer.isBookmarked}
-              ></OfferDetailPage>
+            <Route exact path={`/angebotdetail/:id`}>
+              <OfferDetailPage offers={offers}></OfferDetailPage>
             </Route>
 
             <Route path="/profil">
@@ -88,11 +76,13 @@ export default function App() {
     setOffers([addOffer, ...offers])
   }
 
-  function handleOfferClick(index) {
+  /*  function handleOfferClick(id) {
     setSelectedOffer(offers[index])
-  }
+  } */
 
-  function toggleBookmarked(index) {
+  function toggleBookmarked(id) {
+    const index = offers.findIndex(el => el.id === id)
+    console.log(index)
     const offer = offers[index]
     setOffers([
       ...offers.slice(0, index),
