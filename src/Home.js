@@ -17,6 +17,8 @@ export default function Home({ offers, toggleBookmarked }) {
     Werkzeuge: false
   })
 
+  const filteredOffers = filterOffers(offers)
+
   return (
     <HomeContainer>
       <Welcome>
@@ -40,31 +42,16 @@ export default function Home({ offers, toggleBookmarked }) {
       <Line />
       <Headline3>Angebote von Seestermühern</Headline3>
       <TagContainer>
-        {offers
-          .filter(item => {
-            const title = item.title.toLowerCase()
-            const description = item.description.toLowerCase()
-            const query = userInput.toLowerCase()
-            const areAllCategoriesUnselected = Object.keys(
-              selectedCategories
-            ).every(key => selectedCategories[key] === false)
-            const isInCategory = selectedCategories[item.category]
-
-            return (
-              (areAllCategoriesUnselected || isInCategory) &&
-              (query === '' ||
-                title.includes(query) ||
-                description.includes(query))
-            )
-          })
-          .map((offer, index) => (
-            <Offer
-              {...offer}
-              key={index}
-              isBookmarked={offer.isBookmarked}
-              toggleBookmarked={() => toggleBookmarked(offer.id)}
-            />
-          ))}
+        {filteredOffers.length
+          ? filteredOffers.map((offer, index) => (
+              <Offer
+                {...offer}
+                key={index}
+                isBookmarked={offer.isBookmarked}
+                toggleBookmarked={() => toggleBookmarked(offer.id)}
+              />
+            ))
+          : 'nichts'}
       </TagContainer>
       <Line />
     </HomeContainer>
@@ -76,8 +63,24 @@ export default function Home({ offers, toggleBookmarked }) {
       [category]: !selectedCategories[category]
     })
   }
-}
 
+  function filterOffers(offers) {
+    return offers.filter(item => {
+      const title = item.title.toLowerCase()
+      const description = item.description.toLowerCase()
+      const query = userInput.toLowerCase()
+      const areAllCategoriesUnselected = Object.keys(selectedCategories).every(
+        key => selectedCategories[key] === false
+      )
+      const isInCategory = selectedCategories[item.category]
+
+      return (
+        (areAllCategoriesUnselected || isInCategory) &&
+        (query === '' || title.includes(query) || description.includes(query))
+      )
+    })
+  }
+}
 const HomeContainer = styled.div`
   padding: 20px;
   overflow: scroll;
