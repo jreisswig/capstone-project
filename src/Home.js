@@ -6,7 +6,7 @@ import Searchbar from './Searchbar'
 
 import styled from 'styled-components/macro'
 
-export default function Home({ offers, handleOfferClick, toggleBookmarked }) {
+export default function Home({ offers, toggleBookmarked }) {
   const [userInput, setUserInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus und Garten': false,
@@ -29,7 +29,7 @@ export default function Home({ offers, handleOfferClick, toggleBookmarked }) {
       </Welcome>
       <Searchbar
         onInput={event => setUserInput(event.target.value)}
-        style={{ border: 'red', position: 'sticky', top: '50' }}
+        style={{ position: 'sticky', top: '50' }}
       />
       <Line />
       <Headline3>Filter nach Kategorien</Headline3>
@@ -62,8 +62,7 @@ export default function Home({ offers, handleOfferClick, toggleBookmarked }) {
               {...offer}
               key={index}
               isBookmarked={offer.isBookmarked}
-              handleOfferClick={() => handleOfferClick(index)}
-              toggleBookmarked={() => toggleBookmarked(index)}
+              toggleBookmarked={() => toggleBookmarked(offer.id)}
             />
           ))}
       </TagContainer>

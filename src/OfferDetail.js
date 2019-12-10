@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Bookmark from './Bookmark'
 
 export default function OfferDetail({
+  offer,
   description,
   name,
   phonenumber,

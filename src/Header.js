@@ -26,7 +26,7 @@ export default function Header() {
       pagetitle = 'Profil'
 
       break
-    case '/angebotdetail':
+    case `/angebotdetail/:id`:
       pagetitle = 'Angebot'
       icon = (
         <Link to="/">

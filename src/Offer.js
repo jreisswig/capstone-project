@@ -6,10 +6,10 @@ import Bookmark from './Bookmark'
 
 export default function Offer({
   title,
-  handleOfferClick,
   description,
   toggleBookmarked,
-  isBookmarked
+  isBookmarked,
+  id
 }) {
   return (
     <OfferTags>
@@ -18,7 +18,7 @@ export default function Offer({
         isBookmarked={isBookmarked}
       ></Bookmark>
 
-      <Link to="/angebotdetail" onClick={handleOfferClick}>
+      <Link to={`/angebotdetail/${id}`} key={id}>
         <Title> {title}</Title>
         <Content>{description}</Content>
       </Link>
