@@ -4,13 +4,15 @@ import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
 import Boot from './images/Boot.svg'
 import { useLocation } from 'react-router-dom'
-export default function OfferDetailPage({ offers, date }) {
+
+export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
   const [isCategory, setIsCategory] = useState('')
   const { pathname } = useLocation()
+
   const id = pathname.substring(15)
   const index = offers.findIndex(el => el.id === id)
-  console.log(index)
-  const offer = offers[index] /* || loading[0] */
+  const offer = offers[index]
+
   return (
     <OfferDetailContainer>
       <CategorieHeader>
@@ -63,6 +65,7 @@ export default function OfferDetailPage({ offers, date }) {
           email={offer.email}
           isBookmarked={offer.isBookmarked}
           id={offer.id}
+          toggleBookmarked={() => toggleBookmarked(offer.id)}
         />
       </OfferContent>
     </OfferDetailContainer>

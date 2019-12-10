@@ -54,7 +54,10 @@ export default function App() {
               ></NewPost>
             </Route>
             <Route exact path={`/angebotdetail/:id`}>
-              <OfferDetailPage offers={offers}></OfferDetailPage>
+              <OfferDetailPage
+                offers={offers}
+                toggleBookmarked={id => toggleBookmarked(id)}
+              ></OfferDetailPage>
             </Route>
 
             <Route path="/profil">
@@ -76,13 +79,8 @@ export default function App() {
     setOffers([addOffer, ...offers])
   }
 
-  /*  function handleOfferClick(id) {
-    setSelectedOffer(offers[index])
-  } */
-
   function toggleBookmarked(id) {
     const index = offers.findIndex(el => el.id === id)
-    console.log(index)
     const offer = offers[index]
     setOffers([
       ...offers.slice(0, index),
