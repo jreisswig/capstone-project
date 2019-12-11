@@ -3,6 +3,8 @@ import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
 import Boot from './images/Boot.svg'
+import Family from './images/FamilyBig.svg'
+
 import { useLocation } from 'react-router-dom'
 
 export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
@@ -18,7 +20,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
       <CategorieHeader>
         <CategoryImage>
           {isCategory === '' && changeCategoryImage(offer.category)}
-          {isCategory === 'Haus und Garten' && (
+          {isCategory === 'Haus & Garten' && (
             <img
               src={HausUndGarten}
               alt="Haus und Garten"
@@ -26,7 +28,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
               width="130px"
             />
           )}
-          {isCategory === 'Auto, Rad und Boot' && (
+          {isCategory === 'Auto, Rad & Boot' && (
             <img
               src={Boot}
               alt="Auto, Rad und Boot"
@@ -34,22 +36,32 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
               width="130px"
             />
           )}
-          {isCategory === 'Familie, Kind und Tier' && (
+          {isCategory === 'Familie & Tier' && (
             <img
-              src=""
+              src={Family}
               alt="Familie, Kind und Tier"
               height="130px"
               width="130px"
             />
           )}
-          {isCategory === 'Freizeit und Hobby' && (
-            <img src="" alt="Freizeit und Hobby" height="130px" width="130px" />
+          {isCategory === 'Freizeit & Hobby' && (
+            <img
+              src={Boot}
+              alt="Freizeit und Hobby"
+              height="130px"
+              width="130px"
+            />
           )}
           {isCategory === 'Elektro' && (
-            <img src="" alt="Elektro" height="130px" width="130px" />
+            <img
+              src={HausUndGarten}
+              alt="Elektro"
+              height="130px"
+              width="130px"
+            />
           )}
           {isCategory === 'Werkzeuge' && (
-            <img src="" alt="Werkzeuge" height="130px" width="130px" />
+            <img src={Family} alt="Werkzeuge" height="130px" width="130px" />
           )}
         </CategoryImage>
       </CategorieHeader>

@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Boot from './images/Boot.svg'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Family from './images/Family_Icon.svg'
+
 export default function Categories({ selectedCategories, toggleCategory }) {
   return (
     <Flex>
@@ -9,13 +11,13 @@ export default function Categories({ selectedCategories, toggleCategory }) {
         <img
           style={{
             borderRadius: '50%',
-            border: selectedCategories['Haus und Garten'] && '2px solid #7aaca2'
+            border: selectedCategories['Haus & Garten'] && '2px solid #7aaca2'
           }}
           src={HausUndGarten}
           alt="Haus und Garten"
           height="40px"
           width="40px"
-          onClick={() => toggleCategory('Haus und Garten')}
+          onClick={() => toggleCategory('Haus & Garten')}
         />
         <Headline5>Haus & Garten</Headline5>
       </Categorie>
@@ -24,13 +26,13 @@ export default function Categories({ selectedCategories, toggleCategory }) {
           style={{
             borderRadius: '50%',
             border:
-              selectedCategories['Auto, Rad und Boot'] && '2px solid #7aaca2'
+              selectedCategories['Auto, Rad & Boot'] && '2px solid #7aaca2'
           }}
           src={Boot}
           alt="Boot"
           height="40px"
           width="40px"
-          onClick={() => toggleCategory('Auto, Rad und Boot')}
+          onClick={() => toggleCategory('Auto, Rad & Boot')}
         />
         <Headline5>Auto, Rad & Boot</Headline5>
       </Categorie>
@@ -38,14 +40,13 @@ export default function Categories({ selectedCategories, toggleCategory }) {
         <img
           style={{
             borderRadius: '50%',
-            border:
-              selectedCategories['Familie und Tier'] && '2px solid #7aaca2'
+            border: selectedCategories['Familie & Tier'] && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Family}
           alt=""
           height="40px"
           width="40px"
-          onClick={() => toggleCategory('Familie und Tier')}
+          onClick={() => toggleCategory('Familie & Tier')}
         />
         <Headline5>Familie & Tier</Headline5>
       </Categorie>
@@ -54,13 +55,13 @@ export default function Categories({ selectedCategories, toggleCategory }) {
           style={{
             borderRadius: '50%',
             border:
-              selectedCategories['Freizeit und Hobby'] && '2px solid #7aaca2'
+              selectedCategories['Freizeit & Hobby'] && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Boot}
           alt="Family"
           height="40px"
           width="40px"
-          onClick={() => toggleCategory('Freizeit und Hobby')}
+          onClick={() => toggleCategory('Freizeit & Hobby')}
         />
         <Headline5>Freizeit & Hobby</Headline5>
       </Categorie>
@@ -84,7 +85,7 @@ export default function Categories({ selectedCategories, toggleCategory }) {
             borderRadius: '50%',
             border: selectedCategories['Werkzeuge'] && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Family}
           alt="Family"
           height="40px"
           width="40px"
