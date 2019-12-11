@@ -98,6 +98,7 @@ const PostTitle = styled.p`
 `
 const PostDescription = styled.p`
   position: relative;
+  width: 77%;
 `
 const Icon = styled.div`
   position: absolute;

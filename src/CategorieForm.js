@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import Boot from './images/Boot.svg'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Family from './images/FamilyBig.svg'
+
 export default function CategorieForm({ addCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('')
 
@@ -11,14 +13,13 @@ export default function CategorieForm({ addCategory }) {
         <img
           style={{
             borderRadius: '50%',
-            border:
-              selectedCategory === 'Haus und Garten' && '2px solid #7aaca2'
+            border: selectedCategory === 'Haus & Garten' && '2px solid #7aaca2'
           }}
           src={HausUndGarten}
           alt="Haus und Garten"
           height="40px"
           width="40px"
-          onClick={() => handleClick('Haus und Garten')}
+          onClick={() => handleClick('Haus & Garten')}
         />
         <Headline5>Haus & Garten</Headline5>
       </Categorie>
@@ -43,7 +44,7 @@ export default function CategorieForm({ addCategory }) {
             borderRadius: '50%',
             border: selectedCategory === 'Familie & Tier' && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Family}
           alt=""
           height="40px"
           width="40px"
@@ -58,7 +59,7 @@ export default function CategorieForm({ addCategory }) {
             border:
               selectedCategory === 'Freizeit & Hobby' && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Boot}
           alt="Family"
           height="40px"
           width="40px"
@@ -86,7 +87,7 @@ export default function CategorieForm({ addCategory }) {
             borderRadius: '50%',
             border: selectedCategory === 'Werkzeuge' && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Family}
           alt="Family"
           height="40px"
           width="40px"

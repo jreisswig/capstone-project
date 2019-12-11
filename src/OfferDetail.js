@@ -36,6 +36,7 @@ const OfferWrapper = styled.div`
 
 const OfferDescription = styled.p`
   padding: 20px 0;
+  width: 77%;
 `
 const OfferSearch = styled.p`
   font-weight: lighter;
