@@ -6,13 +6,46 @@ import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Header from './Header'
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 //import postData from './posts.json'
 //import offersData from './offers.json'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
+  authDomain: 'hallodorf-37e4f.firebaseapp.com',
+  databaseURL: 'https://hallodorf-37e4f.firebaseio.com',
+  projectId: 'hallodorf-37e4f',
+  storageBucket: 'hallodorf-37e4f.appspot.com',
+  messagingSenderId: '212112447808',
+  appId: '1:212112447808:web:56a817d1040990578fc2a5',
+  measurementId: 'G-4Y2JQMDZJY'
+}
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
+var db = firebase.firestore()
 
 export default function App() {
+  var docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
+
+  docRef
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        console.log('Document data:', doc.data())
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such document!')
+      }
+    })
+    .catch(function(error) {
+      console.log('Error getting document:', error)
+    })
+
+  /////////
+
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
   const [posts, setPosts] = useState(savedPosts)
 
@@ -73,10 +106,26 @@ export default function App() {
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
+    db.collection('Posts')
+      .add(addPost)
+      .then(function(docRef) {
+        console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function(error) {
+        console.error('Error adding document: ', error)
+      })
   }
 
   function handleAddOffer(addOffer) {
     setOffers([addOffer, ...offers])
+    db.collection('Offers')
+      .add(addOffer)
+      .then(function(docRef) {
+        console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function(error) {
+        console.error('Error adding document: ', error)
+      })
   }
 
   function toggleBookmarked(id) {
