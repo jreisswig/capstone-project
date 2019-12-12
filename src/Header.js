@@ -6,6 +6,7 @@ import styled from 'styled-components/macro'
 export default function Header() {
   let pagetitle
   let icon
+  
 
   const { pathname } = useLocation()
 
@@ -41,6 +42,8 @@ export default function Header() {
       break
     case checkPath('/'):
       pagetitle = 'HalloDorf'
+      
+    
 
       break
     default:
@@ -63,6 +66,16 @@ const HeaderStyled = styled.header`
   box-shadow: 0 2px 2px #f0efef;
   height: 48px;
   z-index: 1;
+
+& html:not([data-scroll='0']) {
+	
+
+	
+	header {
+		display:none;
+	}
+
+
 `
 const Left = styled.div`
   margin-left: 26px;

@@ -101,8 +101,13 @@ const Flex = styled.section`
   display: flex;
   justify-content: space-between;
   border: none;
-  padding: 0;
+  padding: 5px 0;
   margin: 0;
+  position: sticky; 
+  top:23px;
+  background: white;
+  z-index: 2;
+  
 `
 const Categorie = styled.div`
   width: 16%;
