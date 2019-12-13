@@ -1,5 +1,7 @@
 # Welcome to HalloDorf
 
+![HalloDorf]('./images/hallodorf.png 'HalloDorf')
+
 ## About this app
 
 HalloDorf is an app for a village to connect the neighborhood to share goods and services between locals. They can post offers and searches on the notice board and see the latest news.
