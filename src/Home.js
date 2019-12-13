@@ -41,6 +41,9 @@ export default function Home({ offers, toggleBookmarked }) {
         selectedCategories={selectedCategories}
         toggleCategory={toggleCategory}
       />
+
+      <Line />
+      <Headline3>Angebote von Seestermühern</Headline3>
       <Filter>
         <FilterButton
           onClick={() => sortOffers()}
@@ -58,8 +61,6 @@ export default function Home({ offers, toggleBookmarked }) {
           <img src={Sort} alt="FilterABC" height="8px" width="8px" />
         </FilterButton>
       </Filter>
-      <Line />
-      <Headline3>Angebote von Seestermühern</Headline3>
       <OfferContainer>{renderOffers(filteredOffers)}</OfferContainer>
       <Line />
     </HomeContainer>
@@ -133,6 +134,7 @@ const OfferContainer = styled.section`
 const Headline3 = styled.h3`
   font-weight: unset;
   font-size: 1rem;
+  margin-bottom: 1px;
 `
 
 const Paragraph = styled.p``

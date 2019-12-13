@@ -19,7 +19,7 @@ export default function Form({
     category: '',
     date: '',
     id: '',
-    isBookmarked: 'false'
+    isBookmarked: false
   })
   const [addOffer, setAddOffer] = useState({
     title: '',
@@ -30,7 +30,7 @@ export default function Form({
     category: '',
     date: '',
     id: '',
-    isBookmarked: 'false'
+    isBookmarked: false
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
@@ -181,18 +181,17 @@ export default function Form({
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
       <label htmlFor="submit"></label>
-      <StyledSubmit
-        id="submit"
-        type="submit"
-        name="senden"
-        value="Veröffentlichen"
-      ></StyledSubmit>
-      {submitted && (
-        <Paragraph>
-          Danke! Dein Gesuch/ Angebot erscheint nun auf der Pinnwand/ unter den
-          Angeboten!
-        </Paragraph>
-      )}
+      <FlexBox>
+        <StyledSubmit
+          id="submit"
+          type="submit"
+          name="senden"
+          value="Veröffentlichen"
+        ></StyledSubmit>
+        {submitted && (
+          <Paragraph>Danke! Es erscheint nun auf HalloDorf.</Paragraph>
+        )}
+      </FlexBox>
     </StyledForm>
   )
 
@@ -309,5 +308,9 @@ const TextArea = styled.textarea`
   color: #7d7b7b;
 `
 const Paragraph = styled.p`
-  margin: 0;
+  margin: 0 0 0 16px;
+  width: 50%;
+`
+const FlexBox = styled.div`
+  display: flex;
 `
