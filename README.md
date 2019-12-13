@@ -1,6 +1,6 @@
 # Welcome to HalloDorf
 
-![HalloDorf](./src/images/HalloDorf.png 'HalloDorf')
+![HalloDorf](./src/images/HalloDorf.png height: 40% width: 40% 'HalloDorf')
 
 ## About this app
 
