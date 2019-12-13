@@ -1,15 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NewProfilForm from './NewProfilForm'
+import ProfileDetails from './ProfileDetails'
 import styled from 'styled-components/macro'
 
 export default function Profile({ handleAddUser }) {
+  const [hasProfil, setHasProfil] = useState(false)
   return (
     <ProfileContainer>
-      <NewProfilForm handleAddUser={handleAddUser} />
+      {!hasProfil ? (
+        <ProfileDetails />
+      ) : (
+        <NewProfilForm
+          handleAddUser={handleAddUser}
+          handleState={() => setHasProfil(true)}
+        />
+      )}
     </ProfileContainer>
   )
 }
 
-const ProfileContainer = styled.div`
-  padding: 20px;
-`
+const ProfileContainer = styled.div``

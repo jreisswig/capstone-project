@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function NewProfilForm({ handleAddUser }) {
+export default function NewProfilForm({ handleAddUser, handleState }) {
   const [addUser, setAddUser] = useState({
     name: '',
     phonenumber: '',
@@ -83,6 +83,7 @@ export default function NewProfilForm({ handleAddUser }) {
     event.target[0].focus()
     event.target.reset()
     handleAddUser(addUser)
+    handleState()
   }
 }
 
