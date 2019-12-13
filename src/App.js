@@ -6,6 +6,7 @@ import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Header from './Header'
+import Profile from './Profile'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
 //import postData from './posts.json'
@@ -28,7 +29,22 @@ firebase.initializeApp(firebaseConfig)
 var db = firebase.firestore()
 
 export default function App() {
-  var docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
+  const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
+  /* const dataUser = db.collection('users').doc('XeNx1MAedu3wQN0B3dRn ')
+
+  dataUser
+    .get()
+    .then(function(doc) {
+      if (doc.exists) {
+        console.log('Document data:', doc.data())
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such document!')
+      }
+    })
+    .catch(function(error) {
+      console.log('Error getting document:', error)
+    }) */
 
   docRef
     .get()
@@ -92,6 +108,9 @@ export default function App() {
                 toggleBookmarked={id => toggleBookmarked(id)}
               ></OfferDetailPage>
             </Route>
+            <Route path={`/profil`}>
+              <Profile handleAddUser={handleAddUser} />
+            </Route>
 
             <Route path="/profil">
               <h2>Profilseite</h2>
@@ -122,6 +141,17 @@ export default function App() {
       .add(addOffer)
       .then(function(docRef) {
         console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function(error) {
+        console.error('Error adding document: ', error)
+      })
+  }
+
+  function handleAddUser(addUser) {
+    db.collection('users')
+      .add(addUser)
+      .then(function(dataUser) {
+        console.log('Document written with ID: ', dataUser.id)
       })
       .catch(function(error) {
         console.error('Error adding document: ', error)

@@ -30,11 +30,11 @@ export default function Nav() {
           <img src={ProfilIcon} alt="profil" />
         </Link>
       </NavButton>
-      <NavButton>
+      {/* <NavButton>
         <Link to="/mehr">
           <img src={Homeicon} alt="" />
         </Link>
-      </NavButton>
+      </NavButton> */}
     </Navigation>
   )
 }

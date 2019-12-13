@@ -21,3 +21,7 @@ HalloDorf is an app for a village to connect the neighborhood to share goods and
 ### Johanna Reisswig
 
 Github: [@jreisswig](https://github.com/jreisswig)
+
+## License
+
+Copyright © 2019, Johanna Reisswig.
