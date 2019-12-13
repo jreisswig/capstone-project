@@ -1,6 +1,6 @@
 # Welcome to HalloDorf
 
-![HalloDorf]('./images/hallodorf.png 'HalloDorf')
+![HalloDorf]('./images/HalloDorf.png 'HalloDorf')
 
 ## About this app
 
