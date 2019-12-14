@@ -81,6 +81,7 @@ export default function Home({ offers, toggleBookmarked }) {
     return offers.filter(item => {
       const title = item.title.toLowerCase()
       const description = item.description.toLowerCase()
+      const name = item.name.toLowerCase()
       const query = userInput.toLowerCase()
       const areAllCategoriesUnselected = Object.keys(selectedCategories).every(
         key => selectedCategories[key] === false
@@ -88,8 +89,11 @@ export default function Home({ offers, toggleBookmarked }) {
       const isInCategory = selectedCategories[item.category]
 
       return (
-        (areAllCategoriesUnselected || isInCategory) &&
-        (query === '' || title.includes(query) || description.includes(query))
+        ((areAllCategoriesUnselected || isInCategory) &&
+          (query === '' ||
+            title.includes(query) ||
+            description.includes(query))) ||
+        name.includes(query)
       )
     })
   }

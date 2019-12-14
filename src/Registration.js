@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React /* , { useState } */ from 'react'
 import styled from 'styled-components/macro'
+import 'firebase/app'
+import 'firebase/auth'
 
-export default function NewProfilForm({ handleAddUser, handleState }) {
-  const [addUser, setAddUser] = useState({
+export default function Registration({ handleAddUser, handleSignUp }) {
+  /* const [addUser, setAddUser] = useState({
     name: '',
     phonenumber: '',
     email: '',
-    id: ''
+    password: ''
   })
+ */
   return (
     <NewProfileContainer>
       <Headline2>Lege ein neues Profil an</Headline2>
@@ -16,16 +19,13 @@ export default function NewProfilForm({ handleAddUser, handleState }) {
         <Input
           type="text"
           name="name"
-          id="name"
-          onInput={event =>
+          id="username"
+          /* onInput={event =>
             setAddUser({
               ...addUser,
-              name: event.target.value,
-              id: Math.random()
-                .toString(36)
-                .substr(2, 9)
+              name: event.target.value
             })
-          }
+          } */
           required
           placeholder="Angezeigter Name *"
         ></Input>
@@ -34,41 +34,49 @@ export default function NewProfilForm({ handleAddUser, handleState }) {
           <ContactInput
             type="tel"
             name="phonenumber"
-            id="phonenumber"
+            id="userphonenumber"
             placeholder="Telefonnummer"
-            onInput={event =>
+            /*  onInput={event =>
               setAddUser({
                 ...addUser,
-                phonenumber: event.target.value,
-                id: Math.random()
-                  .toString(36)
-                  .substr(2, 9)
+                phonenumber: event.target.value
               })
-            }
+            } */
           ></ContactInput>
 
           <Label htmlFor="email"></Label>
           <ContactInput
             type="email"
             name="email"
-            id="email"
+            id="useremail"
             placeholder="Email"
-            onInput={event =>
+            /*  onInput={event =>
               setAddUser({
                 ...addUser,
-                email: event.target.value,
-                id: Math.random()
-                  .toString(36)
-                  .substr(2, 9)
+                email: event.target.value
               })
-            }
+            } */
           ></ContactInput>
         </Flex>
+        <Label htmlFor="password"></Label>
+        <ContactInput
+          type="password"
+          name="ppassword"
+          id="userpassword"
+          placeholder="Passwort"
+          /* onInput={event =>
+            setAddUser({
+              ...addUser,
+              password: event.target.value
+            })
+          } */
+        ></ContactInput>
         <legend>Felder mit * sind erforderlich</legend>
+
         <label htmlFor="submit"></label>
         <FlexBox>
           <StyledSubmit
-            id="submit"
+            id="quickstart-sign-in"
             type="submit"
             name="senden"
             value="Neues Profil anlegen"
@@ -80,11 +88,15 @@ export default function NewProfilForm({ handleAddUser, handleState }) {
 
   function handleSubmit(event) {
     event.preventDefault()
+    handleSignUp()
+  }
+  /* function handleSubmit(event) {
+    event.preventDefault()
     event.target[0].focus()
     event.target.reset()
     handleAddUser(addUser)
     handleState()
-  }
+  } */
 }
 
 const NewProfileContainer = styled.div`

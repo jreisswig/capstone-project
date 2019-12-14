@@ -13,6 +13,7 @@ import styled from 'styled-components/macro'
 //import offersData from './offers.json'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
@@ -26,7 +27,7 @@ const firebaseConfig = {
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
-var db = firebase.firestore()
+const db = firebase.firestore()
 
 export default function App() {
   const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
@@ -109,7 +110,11 @@ export default function App() {
               ></OfferDetailPage>
             </Route>
             <Route path={`/profil`}>
-              <Profile handleAddUser={handleAddUser} />
+              <Profile
+                handleAddUser={handleAddUser}
+                handleSignUp={handleSignUp}
+                toggleSignIn={toggleSignIn}
+              />
             </Route>
 
             <Route path="/profil">
@@ -122,6 +127,69 @@ export default function App() {
       </Grid>
     </Appcontainer>
   )
+  ///////////Firebase
+
+  function toggleSignIn() {
+    const email = document.getElementById('loginuseremail').value
+    const password = document.getElementById('loginuserpassword').value
+    if (email.length < 4) {
+      alert('Bitte gebe eine Email Adresse ein.')
+      return
+    }
+    if (password.length < 4) {
+      alert('Bitte gebe ein Passwort ein.')
+      return
+    }
+
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        var errorCode = error.code
+        var errorMessage = error.message
+        // [START_EXCLUDE]
+        if (errorCode === 'auth/wrong-password') {
+          alert('Falsches Passwort.')
+        } else {
+          alert(errorMessage)
+        }
+        console.log(error)
+        document.getElementById('quickstart-sign-in').disabled = false
+        // [END_EXCLUDE]
+      })
+
+    document.getElementById('quickstart-sign-in').disabled = true
+  }
+
+  function handleSignUp() {
+    const email = document.getElementById('useremail').value
+    const password = document.getElementById('userpassword').value
+    if (email.length < 4) {
+      alert('Bitte gebe eine EmailAdresse an.')
+      return
+    }
+    if (password.length < 4) {
+      alert('Bitte gebe ein Passwort ein.')
+      return
+    }
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code
+        var errorMessage = error.message
+        // [START_EXCLUDE]
+        if (errorCode === 'auth/weak-password') {
+          alert('Wähle ein stärkeres Passwort')
+        } else {
+          alert(errorMessage)
+        }
+        console.log(error)
+        // [END_EXCLUDE]
+      })
+  }
+  //////////////////////// firebase end
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
