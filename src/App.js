@@ -7,62 +7,16 @@ import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Header from './Header'
 import Profile from './Profile'
+import Registration from './Registration'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
-//import postData from './posts.json'
-//import offersData from './offers.json'
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
 import 'firebase/auth'
+import * as firebase from 'firebase/app'
+import { signUp, writeUserData, update } from './services/firebase'
+import {db} from './services/constants'
 
-const firebaseConfig = {
-  apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
-  authDomain: 'hallodorf-37e4f.firebaseapp.com',
-  databaseURL: 'https://hallodorf-37e4f.firebaseio.com',
-  projectId: 'hallodorf-37e4f',
-  storageBucket: 'hallodorf-37e4f.appspot.com',
-  messagingSenderId: '212112447808',
-  appId: '1:212112447808:web:56a817d1040990578fc2a5',
-  measurementId: 'G-4Y2JQMDZJY'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-const db = firebase.firestore()
 
 export default function App() {
-  const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
-  /* const dataUser = db.collection('users').doc('XeNx1MAedu3wQN0B3dRn ')
-
-  dataUser
-    .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        console.log('Document data:', doc.data())
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
-      }
-    })
-    .catch(function(error) {
-      console.log('Error getting document:', error)
-    }) */
-
-  docRef
-    .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        console.log('Document data:', doc.data())
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
-      }
-    })
-    .catch(function(error) {
-      console.log('Error getting document:', error)
-    })
-
-  /////////
-
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
   const [posts, setPosts] = useState(savedPosts)
 
@@ -101,6 +55,7 @@ export default function App() {
               <NewPost
                 handleAddPost={handleAddPost}
                 handleAddOffer={handleAddOffer}
+                
               ></NewPost>
             </Route>
             <Route exact path={`/angebotdetail/:id`}>
@@ -109,16 +64,15 @@ export default function App() {
                 toggleBookmarked={id => toggleBookmarked(id)}
               ></OfferDetailPage>
             </Route>
-            <Route path={`/profil`}>
+            <Route path="/profil">
               <Profile
                 handleAddUser={handleAddUser}
                 handleSignUp={handleSignUp}
-                toggleSignIn={toggleSignIn}
               />
             </Route>
 
-            <Route path="/profil">
-              <h2>Profilseite</h2>
+            <Route path="/registrieren">
+              <Registration handleSignUp={handleSignUp} />
             </Route>
           </Switch>
 
@@ -127,43 +81,13 @@ export default function App() {
       </Grid>
     </Appcontainer>
   )
-  ///////////Firebase
 
-  function toggleSignIn() {
-    const email = document.getElementById('loginuseremail').value
-    const password = document.getElementById('loginuserpassword').value
-    if (email.length < 4) {
-      alert('Bitte gebe eine Email Adresse ein.')
-      return
-    }
-    if (password.length < 4) {
-      alert('Bitte gebe ein Passwort ein.')
-      return
-    }
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        var errorCode = error.code
-        var errorMessage = error.message
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/wrong-password') {
-          alert('Falsches Passwort.')
-        } else {
-          alert(errorMessage)
-        }
-        console.log(error)
-        document.getElementById('quickstart-sign-in').disabled = false
-        // [END_EXCLUDE]
-      })
-
-    document.getElementById('quickstart-sign-in').disabled = true
-  }
-
-  function handleSignUp() {
+  function handleSignUp(name) {
     const email = document.getElementById('useremail').value
     const password = document.getElementById('userpassword').value
+    //const name = document.getElementById('username').value
+    //const phonenumber = document.getElementById('userphonenumber').value
+
     if (email.length < 4) {
       alert('Bitte gebe eine EmailAdresse an.')
       return
@@ -172,24 +96,27 @@ export default function App() {
       alert('Bitte gebe ein Passwort ein.')
       return
     }
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code
-        var errorMessage = error.message
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/weak-password') {
-          alert('Wähle ein stärkeres Passwort')
-        } else {
-          alert(errorMessage)
-        }
-        console.log(error)
-        // [END_EXCLUDE]
+    signUp(email, password)
+    ////////
+
+    /* const user = firebase.auth().currentUser
+    user
+      .updateProfile({
+        displayName: name
       })
+      .then(function() {
+        // Update successful.
+      })
+      .catch(function(error) {
+        // An error happened.
+      })
+ */
+    //update()
+
+    //handleAddUser(email, password, name, phonenumber)
+    //writeUserData(email, password, name, phonenumber)
+    //window.location.href = `/profil`
   }
-  //////////////////////// firebase end
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
@@ -215,9 +142,14 @@ export default function App() {
       })
   }
 
-  function handleAddUser(addUser) {
+  function handleAddUser(email, password, name, phonenumber) {
     db.collection('users')
-      .add(addUser)
+      .add({
+        name: name,
+        email: email,
+        phonenumber: phonenumber,
+        password: password
+      })
       .then(function(dataUser) {
         console.log('Document written with ID: ', dataUser.id)
       })

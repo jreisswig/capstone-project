@@ -4,6 +4,7 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import Sort from './images/sorticon.svg'
+import {user} from './services/constants'
 
 import styled from 'styled-components/macro'
 
@@ -28,7 +29,7 @@ export default function Home({ offers, toggleBookmarked }) {
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </Image>
         <Paragraph>
-          Hallo User, <br /> schaue was in Seestermühe los ist.
+          Hallo {user.displayName}, <br /> schaue was in Seestermühe los ist.
         </Paragraph>
       </Welcome>
       <Searchbar

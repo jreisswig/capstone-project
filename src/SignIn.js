@@ -1,7 +1,9 @@
 import React /* , { useState } */ from 'react'
 import styled from 'styled-components/macro'
+import handleSignIn from './services/firebase'
+import { Link } from 'react-router-dom'
 
-export default function SigngIn({ toggleSignIn }) {
+export default function SigngIn() {
   return (
     <NewProfileContainer>
       <Headline2>Logge dich ein</Headline2>
@@ -32,14 +34,16 @@ export default function SigngIn({ toggleSignIn }) {
             value="Login"
           ></StyledSubmit>
         </FlexBox>
-        <Button>Registrieren</Button>
+        <Link to="/registrieren">
+          <Button>Registrieren</Button>
+        </Link>
       </StyledForm>
     </NewProfileContainer>
   )
 
   function handleSubmit(event) {
     event.preventDefault()
-    toggleSignIn()
+    handleSignIn()
   }
   /* function handleSubmit(event) {
     event.preventDefault()

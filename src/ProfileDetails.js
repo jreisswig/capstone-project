@@ -1,8 +1,18 @@
 import React from 'react'
 import Wappen from './images/WappenSeestermuehe.svg'
 import styled from 'styled-components/macro'
+import 'firebase/auth'
+import * as firebase from 'firebase/app'
+import { logout, currentUser } from './services/firebase'
 
 export default function ProfileDetails() {
+  
+
+const user = firebase.auth().currentUser;
+
+
+
+
   return (
     <ProfilDetailsContainer>
       <Tablist>
@@ -14,10 +24,11 @@ export default function ProfileDetails() {
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </ProfileImage>
         <UserInfos>
-          <Name>Hallo Johanna Reisswig</Name>
+          <Name>Hallo {user.displayName}</Name>
           <Infotext>Aktiv seit: Date</Infotext>
         </UserInfos>
       </ProfileInfos>
+      <p onClick={logout}> Logout</p>
       <Line />
     </ProfilDetailsContainer>
   )

@@ -7,7 +7,8 @@ export default function NewPost({
   handleAddOffer,
   addCategory,
   newPostDate,
-  newOfferDate
+  newOfferDate,
+ 
 }) {
   return (
     <NewPostWrapper>
@@ -28,6 +29,7 @@ export default function NewPost({
         handleAddPost={handleAddPost}
         handleAddOffer={handleAddOffer}
         addCategory={addCategory}
+        
       />
     </NewPostWrapper>
   )

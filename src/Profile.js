@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Registration from './Registration'
 import ProfileDetails from './ProfileDetails'
 import SignIn from './SignIn'
@@ -12,25 +12,39 @@ export default function Profile({
   toggleSignIn,
   initApp
 }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [logedinUser, setLogedinUser] = useState(null)
 
-  render()
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user.displayName)
+      if (user) {
+        setLogedinUser(user)
+      } else {
+        setLogedinUser(user)
+      }
+    })
+  }, [])
 
   return (
     <ProfileContainer>
-      {isLoggedIn ? <ProfileDetails /> : <SignIn toggleSignIn={toggleSignIn} />}
+      {logedinUser ? (
+        <ProfileDetails />
+      ) : (
+        <SignIn toggleSignIn={toggleSignIn} />
+      )}
     </ProfileContainer>
   )
 
-  function render() {
+  /*  function render() {
     firebase.auth().onAuthStateChanged(user => {
+      console.log(user)
       if (user) {
         setIsLoggedIn(true)
       } else {
         setIsLoggedIn(false)
       }
     })
-  }
+  } */
 }
 
 const ProfileContainer = styled.div``

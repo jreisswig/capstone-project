@@ -88,7 +88,8 @@ export default function Registration({ handleAddUser, handleSignUp }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    handleSignUp()
+    const name = document.getElementById('username').value
+    handleSignUp(name)
   }
   /* function handleSubmit(event) {
     event.preventDefault()
