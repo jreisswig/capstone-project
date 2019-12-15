@@ -1,32 +1,22 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import {db} from './constants'
 
+const firebaseConfig = {
+  apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
+  authDomain: 'hallodorf-37e4f.firebaseapp.com',
+  databaseURL: 'https://hallodorf-37e4f.firebaseio.com',
+  projectId: 'hallodorf-37e4f',
+  storageBucket: 'hallodorf-37e4f.appspot.com',
+  messagingSenderId: '212112447808',
+  appId: '1:212112447808:web:56a817d1040990578fc2a5',
+  measurementId: 'G-4Y2JQMDZJY'
+}
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
 
+export const db = firebase.firestore()
 //export const user = firebase.auth().currentUser
-
-export const currentUser = firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    // User is signed in.
-    var displayName = user.displayName;
-    var email = user.email;
-    var emailVerified = user.emailVerified;
-    var photoURL = user.photoURL;
-    var isAnonymous = user.isAnonymous;
-    var uid = user.uid;
-    var providerData = user.providerData;
-    // ...
-  } else {
-    // User is signed out.
-    // ...
-  }
-});
-
-
-
-
-
 
 // Database
 export const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
@@ -114,23 +104,8 @@ export function logout() {
   return firebase.auth().signOut()
 }
 
-/* export function update() {
-  user
-    .updateProfile({
-      displayName: document.getElementById('username').value
-    })
-    .then(function() {
-      // Update successful.
-    })
-    .catch(function(error) {
-      // An error happened.
-    })
-} */
-
 export function saveUser() {
   firebase.auth().onAuthStateChanged(function(user) {
-    
-
     return db
       .collection(`users`)
       .add({

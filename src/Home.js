@@ -4,7 +4,9 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import Sort from './images/sorticon.svg'
-import {user} from './services/constants'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
 
 import styled from 'styled-components/macro'
 
@@ -18,7 +20,7 @@ export default function Home({ offers, toggleBookmarked }) {
     Elektro: false,
     Werkzeuge: false
   })
-
+  const user = firebase.auth().currentUser
   const filteredOffers = filterOffers(offers)
   const [sortByAlphabet, setSortByAlphabet] = useState(false)
 
@@ -29,7 +31,8 @@ export default function Home({ offers, toggleBookmarked }) {
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </Image>
         <Paragraph>
-          Hallo {user.displayName}, <br /> schaue was in Seestermühe los ist.
+          Hallo{user ? ` ${user.displayName}` : ''}, <br /> schaue was in
+          Seestermühe los ist.
         </Paragraph>
       </Welcome>
       <Searchbar
@@ -113,10 +116,10 @@ export default function Home({ offers, toggleBookmarked }) {
           />
         ))
     ) : (
-      <div>
+      <Message>
         Leider sind zu deiner Suche noch keine Angebote vorhanden. Sei der erste
         der ein Angebot erstellt.
-      </div>
+      </Message>
     )
   }
 }
@@ -174,4 +177,7 @@ const FilterButton = styled.button`
     margin-right: 6px;
   }
   
+`
+const Message = styled.div`
+  margin: 20px 0;
 `

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Registration from './Registration'
+
 import ProfileDetails from './ProfileDetails'
 import SignIn from './SignIn'
 import styled from 'styled-components/macro'
@@ -16,7 +16,6 @@ export default function Profile({
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user.displayName)
       if (user) {
         setLogedinUser(user)
       } else {

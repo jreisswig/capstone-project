@@ -3,15 +3,10 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
-import { logout, currentUser } from './services/firebase'
+import { logout } from './services/firebase'
 
 export default function ProfileDetails() {
-  
-
-const user = firebase.auth().currentUser;
-
-
-
+  const user = firebase.auth().currentUser
 
   return (
     <ProfilDetailsContainer>

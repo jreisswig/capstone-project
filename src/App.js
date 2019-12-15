@@ -1,20 +1,22 @@
+//// import Utils
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import 'firebase/auth'
+import { db, signUp } from './services/firebase'
+
+//// import Components
+import Header from './Header'
 import Nav from './Nav'
 import Grid from './Grid'
+import Registration from './Registration'
+
+//// import Pages
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
-import Header from './Header'
 import Profile from './Profile'
-import Registration from './Registration'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import styled from 'styled-components/macro'
-import 'firebase/auth'
-import * as firebase from 'firebase/app'
-import { signUp, writeUserData, update } from './services/firebase'
-import {db} from './services/constants'
-
 
 export default function App() {
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
@@ -35,6 +37,7 @@ export default function App() {
     savedOffers.time = new Date().getTime()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
+
   return (
     <Appcontainer>
       <Grid>
@@ -55,7 +58,6 @@ export default function App() {
               <NewPost
                 handleAddPost={handleAddPost}
                 handleAddOffer={handleAddOffer}
-                
               ></NewPost>
             </Route>
             <Route exact path={`/angebotdetail/:id`}>
@@ -85,8 +87,6 @@ export default function App() {
   function handleSignUp(name) {
     const email = document.getElementById('useremail').value
     const password = document.getElementById('userpassword').value
-    //const name = document.getElementById('username').value
-    //const phonenumber = document.getElementById('userphonenumber').value
 
     if (email.length < 4) {
       alert('Bitte gebe eine EmailAdresse an.')
@@ -97,24 +97,6 @@ export default function App() {
       return
     }
     signUp(email, password)
-    ////////
-
-    /* const user = firebase.auth().currentUser
-    user
-      .updateProfile({
-        displayName: name
-      })
-      .then(function() {
-        // Update successful.
-      })
-      .catch(function(error) {
-        // An error happened.
-      })
- */
-    //update()
-
-    //handleAddUser(email, password, name, phonenumber)
-    //writeUserData(email, password, name, phonenumber)
     //window.location.href = `/profil`
   }
 
