@@ -65,6 +65,7 @@ const PostWrapper = styled.section`
   border-radius: 18px;
   padding: 3px 15px;
   box-shadow: 0 5px 5px #f0efef;
+  cursor: default;
 
   &: hover {
     animation-name: swing;

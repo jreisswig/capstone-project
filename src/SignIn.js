@@ -17,13 +17,12 @@ export default function SigngIn() {
         ></Input>
 
         <Label htmlFor="password"></Label>
-        <ContactInput
+        <PasswordInput
           type="password"
           name="password"
           id="loginuserpassword"
           placeholder="Passwort"
-        ></ContactInput>
-        <legend>Felder mit * sind erforderlich</legend>
+        ></PasswordInput>
 
         <label htmlFor="submit"></label>
         <FlexBox>
@@ -33,10 +32,10 @@ export default function SigngIn() {
             name="senden"
             value="Login"
           ></StyledSubmit>
+          <NewAccount>
+            <Link to="/registrieren">Registrieren</Link>
+          </NewAccount>
         </FlexBox>
-        <Link to="/registrieren">
-          <Button>Registrieren</Button>
-        </Link>
       </StyledForm>
     </NewProfileContainer>
   )
@@ -84,10 +83,9 @@ const Input = styled.input`
   border-radius: 5px;
   color: #7d7b7b;
 `
-const ContactInput = styled.input`
+const PasswordInput = styled.input`
   background: #f3f7f6;
   border: none;
-  width: 45%;
   padding: 9px;
   font-size: 1rem;
   border-radius: 5px;
@@ -100,18 +98,33 @@ const StyledSubmit = styled.input`
   width: 50%;
   border-radius: 5px;
   color: white;
-  padding: 10px;
+  padding: 5px;
   font-size: 1rem;
+  height: 35px;
 `
 
 const FlexBox = styled.div`
   display: flex;
+  justify-content: space-between;
 `
+const NewAccount = styled.div`
+  margin-top: 7px;
+  a:link,
+  a:visited {
+    color: #7aaca2;
+  }
+
+  a:active,
+  a:hover {
+    color: #7aaca2;
+  }
+`
+
 const Button = styled.button`
   background: #7aaca2;
   border: none;
-  margin: 6px;
-  width: 50%;
+  margin: 6px 6px 6px 0;
+  height: 30px;
   font-size: 1rem;
   border-radius: 3px;
   color: white;

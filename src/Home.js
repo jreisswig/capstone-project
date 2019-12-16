@@ -51,14 +51,14 @@ export default function Home({ offers, toggleBookmarked }) {
       <Filter>
         <FilterButton
           onClick={() => sortOffers()}
-          style={{ background: !sortByAlphabet && '#648e86' }}
+          style={{ background: !sortByAlphabet && 'rgb(107, 151, 142)' }}
         >
           <span>Datum</span>
           <img src={Sort} alt="FilterDate" height="8px" width="8px" />
         </FilterButton>
         <FilterButton
           onClick={() => sortOffers()}
-          style={{ background: sortByAlphabet && '#648e86' }}
+          style={{ background: sortByAlphabet && 'rgb(107, 151, 142)' }}
         >
           <span>A-Z</span>
 

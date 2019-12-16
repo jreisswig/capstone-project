@@ -1,18 +1,43 @@
-import React from 'react'
-import Wappen from './images/WappenSeestermuehe.svg'
+//// import Utils
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
 import { logout } from './services/firebase'
 
-export default function ProfileDetails() {
-  const user = firebase.auth().currentUser
+//// import picture
+import Wappen from './images/WappenSeestermuehe.svg'
 
+//// import components
+import Offer from './Offer'
+
+export default function ProfileDetails({ offers, toggleBookmarked }) {
+  const user = firebase.auth().currentUser
+  const [isClicked, setIsClicked] = useState('Bookmark')
+  console.log(isClicked)
   return (
     <ProfilDetailsContainer>
       <Tablist>
-        <Tab>Anzeigen</Tab>
-        <Tab>Merkliste</Tab>
+        <Tab
+          onClick={() => {
+            setIsClicked('MyPosts')
+          }}
+          style={{
+            background: isClicked !== 'Bookmark' && 'rgb(107, 151, 142)'
+          }}
+        >
+          Anzeigen
+        </Tab>
+        <Tab
+          onClick={() => {
+            setIsClicked('Bookmark')
+          }}
+          style={{
+            background: isClicked === 'Bookmark' && 'rgb(107, 151, 142)'
+          }}
+        >
+          Merkliste
+        </Tab>
       </Tablist>
       <ProfileInfos>
         <ProfileImage>
@@ -20,24 +45,52 @@ export default function ProfileDetails() {
         </ProfileImage>
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
-          <Infotext>Aktiv seit: Date</Infotext>
+          <Infotext>{user.email}</Infotext>
         </UserInfos>
       </ProfileInfos>
-      <p onClick={logout}> Logout</p>
+      <Logout onClick={logout}>
+        <p>Logout</p>
+      </Logout>
       <Line />
+
+      {isClicked === 'Bookmark' ? (
+        <RenderContainer>
+          {' '}
+          <Headline3>Deine gemerkten Angebote</Headline3>
+          {renderBookmarked(offers)}
+        </RenderContainer>
+      ) : (
+        <MyPostsContainer>
+          <div>Meine Angebote</div>
+          <Line />
+          <div>Meine Gesuche</div>
+          <Line />
+        </MyPostsContainer>
+      )}
     </ProfilDetailsContainer>
   )
-}
 
-const ProfilDetailsContainer = styled.section`
-  padding: 20px;
-  overflow: scroll;
-`
+  function renderBookmarked(offers) {
+    return offers
+      .filter(offer => offer.isBookmarked === true)
+      .map((offer, index) => (
+        <Offer
+          {...offer}
+          key={index}
+          isBookmarked={offer.isBookmarked}
+          toggleBookmarked={() => toggleBookmarked(offer.id)}
+        />
+      ))
+  }
+}
+const ProfilDetailsContainer = styled.div``
 
 const Tab = styled.div`
   background: #7aaca2;
   color: white;
   padding: 9px;
+  border-radius: 3px;
+  cursor: default;
 `
 
 const Tablist = styled.div`
@@ -45,7 +98,14 @@ const Tablist = styled.div`
   grid-auto-flow: column;
   gap: 10px;
 `
-
+const Logout = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  cursor: default;
+  p {
+    margin: 0;
+  }
+`
 const ProfileInfos = styled.div`
   display: flex;
   height: 20%;
@@ -64,4 +124,17 @@ const Line = styled.hr`
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
+`
+const RenderContainer = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+`
+const MyPostsContainer = styled.div`
+  div {
+    margin-top: 30px;
+  }
+`
+const Headline3 = styled.h3`
+  font-weight: unset;
+  font-size: 1rem;
 `

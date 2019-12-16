@@ -6,16 +6,16 @@
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="Post-icon" transform="translate(1.000000, -1.000000)">
             <g>
-                <polygon id="Triangle" fill="#A3C5BE" transform="translate(12.430189, 8.459315) rotate(-135.000000) translate(-12.430189, -8.459315) " points="12.4532428 6.90796046 13.2044251 9.99914272 11.6559522 10.0106698"></polygon>
+                <polygon id="Triangle" fill="#7AACA2" transform="translate(12.430189, 8.459315) rotate(-135.000000) translate(-12.430189, -8.459315) " points="12.4532428 6.90796046 13.2044251 9.99914272 11.6559522 10.0106698"></polygon>
                 <g id="Group-6" transform="translate(11.760000, 0.000000)" fill="#7AACA2">
                     <ellipse id="Oval" transform="translate(3.080000, 6.117427) rotate(-46.000000) translate(-3.080000, -6.117427) " cx="3.08" cy="6.11742714" rx="1.52835585" ry="2.67580588"></ellipse>
                     <ellipse id="Oval-Copy-6" transform="translate(6.096796, 3.413793) rotate(-46.000000) translate(-6.096796, -3.413793) " cx="6.09679599" cy="3.4137931" rx="1.52835585" ry="2.67580588"></ellipse>
                     <polygon id="Rectangle" transform="translate(5.326796, 4.172414) rotate(43.000000) translate(-5.326796, -4.172414) " points="3.81157101 2.27398175 6.87039995 2.25127857 6.84202097 6.07084584 3.78319203 6.09354902"></polygon>
                 </g>
-                <polyline id="Path-Copy" stroke="#A3C5BE" stroke-width="2" stroke-linejoin="bevel" points="10.9206473 3.10147663 0 3.10147663 0 23.7911318 16.6286199 23.7911318 16.6286199 10.1659813"></polyline>
-                <line x1="5.04" y1="10.7586207" x2="10.08" y2="10.7586207" id="Line-Copy" stroke="#A3C5BE" stroke-width="2" stroke-linecap="round"></line>
-                <line x1="4.2" y1="14.8965517" x2="11.76" y2="14.8965517" id="Line-2-Copy" stroke="#A3C5BE" stroke-width="2" stroke-linecap="round"></line>
-                <line x1="5.88" y1="19.0344828" x2="10.08" y2="19.0344828" id="Line-3-Copy" stroke="#A3C5BE" stroke-width="2" stroke-linecap="round"></line>
+                <polyline id="Path-Copy" stroke="#7AACA2" stroke-width="2" stroke-linejoin="bevel" points="10.9206473 3.10147663 0 3.10147663 0 23.7911318 16.6286199 23.7911318 16.6286199 10.1659813"></polyline>
+                <line x1="5.04" y1="10.7586207" x2="10.08" y2="10.7586207" id="Line-Copy" stroke="rgb(107, 151, 142)" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="4.2" y1="14.8965517" x2="11.76" y2="14.8965517" id="Line-2-Copy" stroke="rgb(107, 151, 142)" stroke-width="2" stroke-linecap="round"></line>
+                <line x1="5.88" y1="19.0344828" x2="10.08" y2="19.0344828" id="Line-3-Copy" stroke="#7AACA2" stroke-width="2" stroke-linecap="round"></line>
             </g>
         </g>
     </g>

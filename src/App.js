@@ -68,8 +68,10 @@ export default function App() {
             </Route>
             <Route path="/profil">
               <Profile
+                offers={offers}
                 handleAddUser={handleAddUser}
                 handleSignUp={handleSignUp}
+                toggleBookmarked={id => toggleBookmarked(id)}
               />
             </Route>
 

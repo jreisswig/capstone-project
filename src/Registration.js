@@ -30,6 +30,19 @@ export default function Registration({ handleAddUser, handleSignUp }) {
           placeholder="Angezeigter Name *"
         ></Input>
         <Flex>
+          <Label htmlFor="email"></Label>
+          <ContactInput
+            type="email"
+            name="email"
+            id="useremail"
+            placeholder="Email *"
+            /*  onInput={event =>
+              setAddUser({
+                ...addUser,
+                email: event.target.value
+              })
+            } */
+          ></ContactInput>
           <Label htmlFor="phonenumber"></Label>
           <ContactInput
             type="tel"
@@ -43,27 +56,13 @@ export default function Registration({ handleAddUser, handleSignUp }) {
               })
             } */
           ></ContactInput>
-
-          <Label htmlFor="email"></Label>
-          <ContactInput
-            type="email"
-            name="email"
-            id="useremail"
-            placeholder="Email"
-            /*  onInput={event =>
-              setAddUser({
-                ...addUser,
-                email: event.target.value
-              })
-            } */
-          ></ContactInput>
         </Flex>
         <Label htmlFor="password"></Label>
         <ContactInput
           type="password"
           name="ppassword"
           id="userpassword"
-          placeholder="Passwort"
+          placeholder="Passwort *"
           /* onInput={event =>
             setAddUser({
               ...addUser,
@@ -79,7 +78,7 @@ export default function Registration({ handleAddUser, handleSignUp }) {
             id="quickstart-sign-in"
             type="submit"
             name="senden"
-            value="Neues Profil anlegen"
+            value="Los geht's"
           ></StyledSubmit>
         </FlexBox>
       </StyledForm>

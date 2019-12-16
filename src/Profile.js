@@ -10,7 +10,9 @@ export default function Profile({
   handleAddUser,
   handleSignUp,
   toggleSignIn,
-  initApp
+  initApp,
+  offers,
+  toggleBookmarked
 }) {
   const [logedinUser, setLogedinUser] = useState(null)
 
@@ -27,7 +29,7 @@ export default function Profile({
   return (
     <ProfileContainer>
       {logedinUser ? (
-        <ProfileDetails />
+        <ProfileDetails offers={offers} toggleBookmarked={toggleBookmarked} />
       ) : (
         <SignIn toggleSignIn={toggleSignIn} />
       )}
@@ -46,4 +48,7 @@ export default function Profile({
   } */
 }
 
-const ProfileContainer = styled.div``
+const ProfileContainer = styled.section`
+  padding: 20px;
+  overflow: scroll;
+`
