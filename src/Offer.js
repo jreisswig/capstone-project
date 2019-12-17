@@ -32,8 +32,8 @@ const OfferTags = styled.div`
   background: #f3f7f6;
   border-radius: 3px;
   display: inline;
-  padding: 3px;
-  margin: 5px;
+  padding: 3px 9px;
+  margin: 5px 0;
   width: 100%;
   cursor: default;
   a {

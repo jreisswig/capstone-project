@@ -1,40 +1,63 @@
 import React from 'react'
-import Homeicon from './images/Homeicon22.svg'
-import Posticon from './images/Posticon22.svg'
-import NewPostIcon from './images/NewPostIcon.svg'
-import ProfilIcon from './images/ProfilIcon.svg'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import { useLocation, Link } from 'react-router-dom'
+
+import Homeicon from './images/Homeicon22.svg'
+import Homeiconactive from './images/Homeicon22 active.svg'
+import Posticon from './images/Posticon22.svg'
+import Posticonactive from './images/Posticon22active.svg'
+import NewPostIcon from './images/NewPostIcon.svg'
+import NewPostIconactive from './images/NewPostIconactive.svg'
+import ProfilIcon from './images/ProfilIcon.svg'
+import ProfilIconactive from './images/ProfilIconactive.svg'
 
 export default function Nav() {
+  const { pathname } = useLocation()
+
   return (
     <Navigation>
       <NavButton>
         <Link to="/">
-          <img src={Homeicon} alt="home" />
+          {pathname === '/' ? (
+            <img src={Homeiconactive} alt="home" />
+          ) : (
+            <img src={Homeicon} alt="home" />
+          )}
         </Link>
       </NavButton>
 
       <NavButton>
         <Link to="/pinnwand">
-          <img src={Posticon} alt="bulletinboard" />
+          {pathname === '/pinnwand' ? (
+            <img src={Posticonactive} alt="bulletinboard" />
+          ) : (
+            <img src={Posticon} alt="bulletinboard" />
+          )}
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/inserieren">
-          <img src={NewPostIcon} alt="newpost" />
+          {pathname === '/inserieren' ? (
+            <img src={NewPostIconactive} alt="newpost" />
+          ) : (
+            <img src={NewPostIcon} alt="newpost" />
+          )}
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/profil">
-          <img src={ProfilIcon} alt="profil" />
+          {pathname === '/profil' ? (
+            <img src={ProfilIconactive} alt="profil" />
+          ) : (
+            <img src={ProfilIcon} alt="newpost" />
+          )}
         </Link>
       </NavButton>
-      <NavButton>
+      {/* <NavButton>
         <Link to="/mehr">
           <img src={Homeicon} alt="" />
         </Link>
-      </NavButton>
+      </NavButton> */}
     </Navigation>
   )
 }
@@ -53,4 +76,8 @@ const Navigation = styled.nav`
 const NavButton = styled.button`
   border: none;
   background: none;
+
+  a {
+    outline: none;
+  }
 `

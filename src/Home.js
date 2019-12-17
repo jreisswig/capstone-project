@@ -4,6 +4,9 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import Sort from './images/sorticon.svg'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
 
 import styled from 'styled-components/macro'
 
@@ -17,7 +20,7 @@ export default function Home({ offers, toggleBookmarked }) {
     Elektro: false,
     Werkzeuge: false
   })
-
+  const user = firebase.auth().currentUser
   const filteredOffers = filterOffers(offers)
   const [sortByAlphabet, setSortByAlphabet] = useState(false)
 
@@ -28,7 +31,8 @@ export default function Home({ offers, toggleBookmarked }) {
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </Image>
         <Paragraph>
-          Hallo User, <br /> schaue was in Seestermühe los ist.
+          Hallo{user ? ` ${user.displayName}` : ''}, <br /> schaue was in
+          Seestermühe los ist.
         </Paragraph>
       </Welcome>
       <Searchbar
@@ -47,14 +51,14 @@ export default function Home({ offers, toggleBookmarked }) {
       <Filter>
         <FilterButton
           onClick={() => sortOffers()}
-          style={{ background: !sortByAlphabet && '#648e86' }}
+          style={{ background: !sortByAlphabet && 'rgb(107, 151, 142)' }}
         >
           <span>Datum</span>
           <img src={Sort} alt="FilterDate" height="8px" width="8px" />
         </FilterButton>
         <FilterButton
           onClick={() => sortOffers()}
-          style={{ background: sortByAlphabet && '#648e86' }}
+          style={{ background: sortByAlphabet && 'rgb(107, 151, 142)' }}
         >
           <span>A-Z</span>
 
@@ -81,6 +85,7 @@ export default function Home({ offers, toggleBookmarked }) {
     return offers.filter(item => {
       const title = item.title.toLowerCase()
       const description = item.description.toLowerCase()
+      const name = item.name.toLowerCase()
       const query = userInput.toLowerCase()
       const areAllCategoriesUnselected = Object.keys(selectedCategories).every(
         key => selectedCategories[key] === false
@@ -89,7 +94,10 @@ export default function Home({ offers, toggleBookmarked }) {
 
       return (
         (areAllCategoriesUnselected || isInCategory) &&
-        (query === '' || title.includes(query) || description.includes(query))
+        (query === '' ||
+          title.includes(query) ||
+          description.includes(query) ||
+          name.includes(query))
       )
     })
   }
@@ -108,10 +116,10 @@ export default function Home({ offers, toggleBookmarked }) {
           />
         ))
     ) : (
-      <div>
+      <Message>
         Leider sind zu deiner Suche noch keine Angebote vorhanden. Sei der erste
         der ein Angebot erstellt.
-      </div>
+      </Message>
     )
   }
 }
@@ -169,4 +177,7 @@ const FilterButton = styled.button`
     margin-right: 6px;
   }
   
+`
+const Message = styled.div`
+  margin: 20px 0;
 `

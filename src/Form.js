@@ -3,6 +3,9 @@ import styled from 'styled-components/macro'
 import CategorieForm from './CategorieForm'
 import RadioOff from './images/radio-button-off.svg'
 import RadioOn from './images/radio-button-on-fill.svg'
+import * as firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
 
 export default function Form({
   handleAddPost,
@@ -45,6 +48,8 @@ export default function Form({
     const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
     return date
   }
+
+  const user = firebase.auth().currentUser
 
   return (
     <StyledForm
@@ -135,6 +140,7 @@ export default function Form({
         type="text"
         name="name"
         id="name"
+        defaultValue={user ? user.displayName : ''}
         onInput={event =>
           selectedOption === 'post'
             ? setAddPost({
@@ -147,6 +153,22 @@ export default function Form({
         placeholder="Angezeigter Name *"
       ></Input>
       <Flex>
+        <Label htmlFor="email"></Label>
+        <ContactInput
+          type="email"
+          name="email"
+          id="email"
+          defaultValue={user ? user.email : ''}
+          onInput={event =>
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  email: event.target.value
+                })
+              : setAddOffer({ ...addOffer, email: event.target.value })
+          }
+          placeholder="Email"
+        ></ContactInput>
         <Label htmlFor="phonenumber"></Label>
         <ContactInput
           type="tel"
@@ -161,22 +183,6 @@ export default function Form({
               : setAddOffer({ ...addOffer, phonenumber: event.target.value })
           }
           placeholder="Telefonnummer"
-        ></ContactInput>
-
-        <Label htmlFor="email"></Label>
-        <ContactInput
-          type="email"
-          name="email"
-          id="email"
-          onInput={event =>
-            selectedOption === 'post'
-              ? setAddPost({
-                  ...addPost,
-                  email: event.target.value
-                })
-              : setAddOffer({ ...addOffer, email: event.target.value })
-          }
-          placeholder="Email"
         ></ContactInput>
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
@@ -274,7 +280,7 @@ const Input = styled.input`
 const ContactInput = styled.input`
   background: #f3f7f6;
   border: none;
-  width: 45%;
+  width: 49%;
   padding: 9px;
   font-size: 1rem;
   border-radius: 5px;

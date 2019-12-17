@@ -1,51 +1,24 @@
+//// import Utils
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import styled from 'styled-components/macro'
+import 'firebase/auth'
+import { db, signUp } from './services/firebase'
+
+//// import Components
+import Header from './Header'
 import Nav from './Nav'
 import Grid from './Grid'
+import Registration from './Registration'
+
+//// import Pages
 import NewPost from './NewPost'
 import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
-import Header from './Header'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import styled from 'styled-components/macro'
-//import postData from './posts.json'
-//import offersData from './offers.json'
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
-
-const firebaseConfig = {
-  apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
-  authDomain: 'hallodorf-37e4f.firebaseapp.com',
-  databaseURL: 'https://hallodorf-37e4f.firebaseio.com',
-  projectId: 'hallodorf-37e4f',
-  storageBucket: 'hallodorf-37e4f.appspot.com',
-  messagingSenderId: '212112447808',
-  appId: '1:212112447808:web:56a817d1040990578fc2a5',
-  measurementId: 'G-4Y2JQMDZJY'
-}
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig)
-var db = firebase.firestore()
+import Profile from './Profile'
 
 export default function App() {
-  var docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
-
-  docRef
-    .get()
-    .then(function(doc) {
-      if (doc.exists) {
-        console.log('Document data:', doc.data())
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!')
-      }
-    })
-    .catch(function(error) {
-      console.log('Error getting document:', error)
-    })
-
-  /////////
-
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
   const [posts, setPosts] = useState(savedPosts)
 
@@ -64,6 +37,7 @@ export default function App() {
     savedOffers.time = new Date().getTime()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
+
   return (
     <Appcontainer>
       <Grid>
@@ -92,9 +66,17 @@ export default function App() {
                 toggleBookmarked={id => toggleBookmarked(id)}
               ></OfferDetailPage>
             </Route>
-
             <Route path="/profil">
-              <h2>Profilseite</h2>
+              <Profile
+                offers={offers}
+                handleAddUser={handleAddUser}
+                handleSignUp={handleSignUp}
+                toggleBookmarked={id => toggleBookmarked(id)}
+              />
+            </Route>
+
+            <Route path="/registrieren">
+              <Registration handleSignUp={handleSignUp} />
             </Route>
           </Switch>
 
@@ -103,6 +85,22 @@ export default function App() {
       </Grid>
     </Appcontainer>
   )
+
+  function handleSignUp(name) {
+    const email = document.getElementById('useremail').value
+    const password = document.getElementById('userpassword').value
+
+    if (email.length < 4) {
+      alert('Bitte gebe eine EmailAdresse an.')
+      return
+    }
+    if (password.length < 4) {
+      alert('Bitte gebe ein Passwort ein.')
+      return
+    }
+    signUp(email, password)
+    //window.location.href = `/profil`
+  }
 
   function handleAddPost(addPost) {
     setPosts([addPost, ...posts])
@@ -122,6 +120,22 @@ export default function App() {
       .add(addOffer)
       .then(function(docRef) {
         console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function(error) {
+        console.error('Error adding document: ', error)
+      })
+  }
+
+  function handleAddUser(email, password, name, phonenumber) {
+    db.collection('users')
+      .add({
+        name: name,
+        email: email,
+        phonenumber: phonenumber,
+        password: password
+      })
+      .then(function(dataUser) {
+        console.log('Document written with ID: ', dataUser.id)
       })
       .catch(function(error) {
         console.error('Error adding document: ', error)

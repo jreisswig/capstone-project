@@ -6,8 +6,8 @@
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="NewPost">
             <g id="Group-13-Copy">
-                <rect id="Rectangle" stroke="#A3C5BE" stroke-width="2" x="1" y="1" width="16" height="20" rx="2"></rect>
-                <path d="M12,10 L10,10 L10,8 C10,7.45 9.55,7 9,7 C8.45,7 8,7.45 8,8 L8,10 L6,10 C5.45,10 5,10.45 5,11 C5,11.55 5.45,12 6,12 L8,12 L8,14 C8,14.55 8.45,15 9,15 C9.55,15 10,14.55 10,14 L10,12 L12,12 C12.55,12 13,11.55 13,11 C13,10.45 12.55,10 12,10" id="Path" fill="#7AACA2"></path>
+                <rect id="Rectangle" stroke="rgb(107, 151, 142)" stroke-width="2" x="1" y="1" width="16" height="20" rx="2"></rect>
+                <path d="M12,10 L10,10 L10,8 C10,7.45 9.55,7 9,7 C8.45,7 8,7.45 8,8 L8,10 L6,10 C5.45,10 5,10.45 5,11 C5,11.55 5.45,12 6,12 L8,12 L8,14 C8,14.55 8.45,15 9,15 C9.55,15 10,14.55 10,14 L10,12 L12,12 C12.55,12 13,11.55 13,11 C13,10.45 12.55,10 12,10" id="Path" fill="rgb(107, 151, 142)"></path>
             </g>
         </g>
     </g>
