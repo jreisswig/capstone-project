@@ -48,9 +48,9 @@ export default function Form({
     const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
     return date
   }
-  
- const user = firebase.auth().currentUser;
-  
+
+  const user = firebase.auth().currentUser
+
   return (
     <StyledForm
       method="post"
@@ -140,7 +140,7 @@ export default function Form({
         type="text"
         name="name"
         id="name"
-        value= {user? user.displayName : ""}
+        defaultValue={user ? user.displayName : ''}
         onInput={event =>
           selectedOption === 'post'
             ? setAddPost({
@@ -158,7 +158,7 @@ export default function Form({
           type="email"
           name="email"
           id="email"
-          value={user? user.email : ""}
+          defaultValue={user ? user.email : ''}
           onInput={event =>
             selectedOption === 'post'
               ? setAddPost({
@@ -184,8 +184,6 @@ export default function Form({
           }
           placeholder="Telefonnummer"
         ></ContactInput>
-
-        
       </Flex>
       <legend>Felder mit * sind erforderlich</legend>
       <label htmlFor="submit"></label>

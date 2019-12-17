@@ -76,4 +76,8 @@ const Navigation = styled.nav`
 const NavButton = styled.button`
   border: none;
   background: none;
+
+  a {
+    outline: none;
+  }
 `

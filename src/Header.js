@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ArrowBack from './images/arrow_back_ios.svg'
 import { useLocation, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
@@ -6,8 +6,22 @@ import styled from 'styled-components/macro'
 export default function Header() {
   let pagetitle
   let icon
-  
+  let classname
+  let [pos, setPos] = useState(window.pageYOffset)
+  let [visible, setVisible] = useState(true)
 
+  useEffect(() => {
+    const handleScroll = () => {
+      let temp = window.pageYOffset
+
+      setVisible(pos > temp)
+      setPos(temp)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  })
   const { pathname } = useLocation()
 
   function checkPath(currentpath) {
@@ -42,8 +56,7 @@ export default function Header() {
       break
     case checkPath('/'):
       pagetitle = 'HalloDorf'
-      
-    
+      classname = !visible && 'headerHidden'
 
       break
     default:
@@ -51,7 +64,7 @@ export default function Header() {
   }
 
   return (
-    <HeaderStyled>
+    <HeaderStyled classname={classname}>
       <Left>{icon}</Left>
       <HeaderTitle>{pagetitle}</HeaderTitle>
       <Right />
@@ -67,15 +80,13 @@ const HeaderStyled = styled.header`
   height: 48px;
   z-index: 1;
 
-& html:not([data-scroll='0']) {
-	
-
-	
-	header {
-		display:none;
-	}
-
-
+  transition-timing-function: ease;
+  transition: 0.8s;
+  &.headerHidden {
+    transition-timing-function: ease;
+    transition: 1.5s;
+    transform: translateY(-130%);
+  }
 `
 const Left = styled.div`
   margin-left: 26px;

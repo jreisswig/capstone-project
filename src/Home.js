@@ -93,11 +93,11 @@ export default function Home({ offers, toggleBookmarked }) {
       const isInCategory = selectedCategories[item.category]
 
       return (
-        ((areAllCategoriesUnselected || isInCategory) &&
-          (query === '' ||
-            title.includes(query) ||
-            description.includes(query))) ||
-        name.includes(query)
+        (areAllCategoriesUnselected || isInCategory) &&
+        (query === '' ||
+          title.includes(query) ||
+          description.includes(query) ||
+          name.includes(query))
       )
     })
   }

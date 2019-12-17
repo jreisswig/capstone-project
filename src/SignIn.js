@@ -119,16 +119,3 @@ const NewAccount = styled.div`
     color: #7aaca2;
   }
 `
-
-const Button = styled.button`
-  background: #7aaca2;
-  border: none;
-  margin: 6px 6px 6px 0;
-  height: 30px;
-  font-size: 1rem;
-  border-radius: 3px;
-  color: white;
-  padding: 6px 9px 9px 9px;
-
-  font-size: 1rem;
-`

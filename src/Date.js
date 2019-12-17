@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 export default function Date({ date }) {
-  console.log(date)
   return <DateAndTime datetime={date}>{date}</DateAndTime>
 }
 

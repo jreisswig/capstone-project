@@ -14,7 +14,7 @@ import Offer from './Offer'
 export default function ProfileDetails({ offers, toggleBookmarked }) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('Bookmark')
-  console.log(isClicked)
+
   return (
     <ProfilDetailsContainer>
       <Tablist>

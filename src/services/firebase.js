@@ -21,7 +21,7 @@ export const db = firebase.firestore()
 // Database
 export const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
 
-docRef
+/* docRef
   .get()
   .then(function(doc) {
     if (doc.exists) {
@@ -33,7 +33,7 @@ docRef
   })
   .catch(function(error) {
     console.log('Error getting document:', error)
-  })
+  }) */
 
 export default function handleSignIn() {
   const email = document.getElementById('loginuseremail').value
