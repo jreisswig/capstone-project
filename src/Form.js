@@ -13,12 +13,13 @@ export default function Form({
   newPostDate,
   newOfferDate
 }) {
+  const user = firebase.auth().currentUser
   const [addPost, setAddPost] = useState({
     title: '',
     description: '',
-    name: '',
+    name: user && user.displayName,
     phonenumber: '',
-    email: '',
+    email: user && user.email,
     category: '',
     date: '',
     id: '',
@@ -27,9 +28,9 @@ export default function Form({
   const [addOffer, setAddOffer] = useState({
     title: '',
     description: '',
-    name: '',
+    name: user && user.displayName,
     phonenumber: '',
-    email: '',
+    email: user && user.email,
     category: '',
     date: '',
     id: '',
@@ -48,8 +49,6 @@ export default function Form({
     const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
     return date
   }
-
-  const user = firebase.auth().currentUser
 
   return (
     <StyledForm
@@ -140,14 +139,17 @@ export default function Form({
         type="text"
         name="name"
         id="name"
-        defaultValue={user ? user.displayName : ''}
+        value={user && user.displayName}
         onInput={event =>
           selectedOption === 'post'
             ? setAddPost({
                 ...addPost,
                 name: event.target.value
               })
-            : setAddOffer({ ...addOffer, name: event.target.value })
+            : setAddOffer({
+                ...addOffer,
+                name: event.target.value
+              })
         }
         required
         placeholder="Angezeigter Name *"
@@ -158,14 +160,17 @@ export default function Form({
           type="email"
           name="email"
           id="email"
-          defaultValue={user ? user.email : ''}
+          value={user && user.email}
           onInput={event =>
             selectedOption === 'post'
               ? setAddPost({
                   ...addPost,
-                  email: event.target.value
+                  email: user ? user.email : event.target.value
                 })
-              : setAddOffer({ ...addOffer, email: event.target.value })
+              : setAddOffer({
+                  ...addOffer,
+                  email: user ? user.email : event.target.value
+                })
           }
           placeholder="Email"
         ></ContactInput>
@@ -201,10 +206,10 @@ export default function Form({
     </StyledForm>
   )
 
-  function addCategoryAndDate(name) {
+  function addCategoryAndDate(categoriename) {
     selectedOption === 'post'
-      ? setAddPost({ ...addPost, category: name })
-      : setAddOffer({ ...addOffer, category: name })
+      ? setAddPost({ ...addPost, category: categoriename })
+      : setAddOffer({ ...addOffer, category: categoriename })
   }
 
   function handlePost(event) {
