@@ -23,7 +23,8 @@ export default function Form({
     category: '',
     date: '',
     id: '',
-    isBookmarked: false
+    isBookmarked: false,
+    userid: user && user.uid
   })
   const [addOffer, setAddOffer] = useState({
     title: '',
@@ -34,7 +35,8 @@ export default function Form({
     category: '',
     date: '',
     id: '',
-    isBookmarked: false
+    isBookmarked: false,
+    userid: user && user.uid
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')

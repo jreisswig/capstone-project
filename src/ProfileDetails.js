@@ -10,10 +10,11 @@ import Wappen from './images/WappenSeestermuehe.svg'
 
 //// import components
 import Offer from './Offer'
+import Post from './Post'
 
-export default function ProfileDetails({ offers, toggleBookmarked }) {
+export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
-  const [isClicked, setIsClicked] = useState('Bookmark')
+  const [isClicked, setIsClicked] = useState('Bookmarklist')
 
   return (
     <ProfilDetailsContainer>
@@ -23,17 +24,17 @@ export default function ProfileDetails({ offers, toggleBookmarked }) {
             setIsClicked('MyPosts')
           }}
           style={{
-            background: isClicked !== 'Bookmark' && 'rgb(107, 151, 142)'
+            background: isClicked !== 'Bookmarklist' && 'rgb(107, 151, 142)'
           }}
         >
           Anzeigen
         </Tab>
         <Tab
           onClick={() => {
-            setIsClicked('Bookmark')
+            setIsClicked('Bookmarklist')
           }}
           style={{
-            background: isClicked === 'Bookmark' && 'rgb(107, 151, 142)'
+            background: isClicked === 'Bookmarklist' && 'rgb(107, 151, 142)'
           }}
         >
           Merkliste
@@ -53,7 +54,7 @@ export default function ProfileDetails({ offers, toggleBookmarked }) {
       </Logout>
       <Line />
 
-      {isClicked === 'Bookmark' ? (
+      {isClicked === 'Bookmarklist' ? (
         <RenderContainer>
           {' '}
           <Headline3>Deine gemerkten Angebote</Headline3>
@@ -61,9 +62,11 @@ export default function ProfileDetails({ offers, toggleBookmarked }) {
         </RenderContainer>
       ) : (
         <MyPostsContainer>
-          <div>Meine Angebote</div>
+          <Headline3>Meine Angebote</Headline3>
+          {renderPersonalOffer(offers)}
           <Line />
-          <div>Meine Gesuche</div>
+          <Headline3>Meine Gesuche</Headline3>
+          {renderPersonalPosts(posts)}
           <Line />
         </MyPostsContainer>
       )}
@@ -82,7 +85,27 @@ export default function ProfileDetails({ offers, toggleBookmarked }) {
         />
       ))
   }
+
+  function renderPersonalOffer(offers) {
+    return offers
+      .filter(offer => offer.userid === user.uid)
+      .map((offer, index) => (
+        <Offer
+          {...offer}
+          key={index}
+          isBookmarked={offer.isBookmarked}
+          toggleBookmarked={() => toggleBookmarked(offer.id)}
+        />
+      ))
+  }
+
+  function renderPersonalPosts(posts) {
+    return posts
+      .filter(item => item.userid === user.uid)
+      .map((post, index) => <Post {...post} key={index} />)
+  }
 }
+
 const ProfilDetailsContainer = styled.div``
 
 const Tab = styled.div`
@@ -130,9 +153,8 @@ const RenderContainer = styled.section`
   flex-wrap: wrap;
 `
 const MyPostsContainer = styled.div`
-  div {
-    margin-top: 30px;
-  }
+  display: flex;
+  flex-wrap: wrap;
 `
 const Headline3 = styled.h3`
   font-weight: unset;
