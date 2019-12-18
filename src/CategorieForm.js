@@ -5,7 +5,7 @@ import HausUndGarten from './images/HausUndGarten.svg'
 import Family from './images/FamilyBig.svg'
 
 export default function CategorieForm({ addCategory }) {
-  const [selectedCategory, setSelectedCategory] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('Haus & Garten')
 
   return (
     <Flex>
