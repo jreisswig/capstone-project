@@ -10,11 +10,12 @@ import Wappen from './images/WappenSeestermuehe.svg'
 
 //// import components
 import Offer from './Offer'
+import MyOffer from './MyOffer'
 import Post from './Post'
 
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
-  const [isClicked, setIsClicked] = useState('Bookmarklist')
+  const [isClicked, setIsClicked] = useState('')
 
   return (
     <ProfilDetailsContainer>
@@ -57,7 +58,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
       {isClicked === 'Bookmarklist' ? (
         <RenderContainer>
           {' '}
-          <Headline3>Deine gemerkten Angebote</Headline3>
+          <Headline3>Meine gemerkten Angebote</Headline3>
           {renderBookmarked(offers)}
         </RenderContainer>
       ) : (
@@ -90,7 +91,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
     return offers
       .filter(offer => offer.userid === user.uid)
       .map((offer, index) => (
-        <Offer
+        <MyOffer
           {...offer}
           key={index}
           isBookmarked={offer.isBookmarked}

@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Form from './Form'
+import Form from './formAddNew/Form'
 
 export default function NewPost({
   handleAddPost,
   handleAddOffer,
   addCategory,
   newPostDate,
-  newOfferDate,
- 
+  newOfferDate
 }) {
   return (
     <NewPostWrapper>
@@ -29,7 +28,6 @@ export default function NewPost({
         handleAddPost={handleAddPost}
         handleAddOffer={handleAddOffer}
         addCategory={addCategory}
-        
       />
     </NewPostWrapper>
   )
