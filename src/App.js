@@ -82,7 +82,7 @@ export default function App() {
             </Route>
 
             <Route path="/edit">
-              <FormEdit offers={offers} />
+              <FormEdit offers={offers} updateOffer={updateOffer} />
             </Route>
           </Switch>
 
@@ -130,6 +130,17 @@ export default function App() {
       .catch(function(error) {
         console.error('Error adding document: ', error)
       })
+  }
+
+  function updateOffer(updatedOffer) {
+    console.log(updatedOffer)
+    const index = offers.findIndex(el => el.id === updatedOffer.id)
+
+    setOffers([
+      ...offers.slice(0, index),
+      { ...updatedOffer },
+      ...offers.slice(index + 1)
+    ])
   }
 
   function handleAddUser(email, password, name, phonenumber) {

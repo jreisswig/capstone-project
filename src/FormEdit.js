@@ -8,51 +8,40 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import Offer from './Offer'
 
-export default function Form({
+export default function FormEdit({
   handleAddPost,
   handleAddOffer,
   newPostDate,
   newOfferDate,
-  offers
+  offers,
+  updateOffer
 }) {
   const user = firebase.auth().currentUser
-  const [addPost, setAddPost] = useState({
-    title: '',
-    description: '',
-    name: user && user.displayName,
-    phonenumber: '',
-    email: user && user.email,
-    category: '',
-    date: '',
-    id: '',
-    isBookmarked: false,
-    userid: user && user.uid
-  })
-  const [addOffer, setAddOffer] = useState({
-    title: '',
-    description: '',
-    name: user && user.displayName,
-    phonenumber: '',
-    email: user && user.email,
-    category: '',
-    date: '',
-    id: '',
-    isBookmarked: false,
-    userid: user && user.uid
+
+  const { pathname } = useLocation()
+  const id = pathname.substring(6)
+  const index = offers.findIndex(el => el.id === id)
+  const offer = offers[index]
+  const [updatedOffer, setUpdatedOffer] = useState({
+    title: offer.title,
+    description: offer.description,
+    name: offer.name,
+    phonenumber: offer.phonenumber,
+    email: offer.email,
+    category: offer.category,
+    date: offer.date,
+    id: offer.id,
+    isBookmarked: offer.isBookmarked,
+    userid: offer.userid
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
-  const { pathname } = useLocation()
-
-  const id = pathname.substring(6)
-  const index = offers.findIndex(el => el.id === id)
-  const offer = offers[index]
-
+  console.log(updatedOffer)
   return (
     <EditWrapper>
       <Headline3>Hier kannst du dein Angebot anpassen</Headline3>
-      <StyledForm method="post" action="" id="">
+      <StyledForm method="post" action="" id="" onSubmit={handleSubmit}>
         <Label htmlFor="title"></Label>
         <Input
           type="text"
@@ -60,7 +49,13 @@ export default function Form({
           id="title"
           required
           placeholder="Titel für deinen Aushang *"
-          value={offer.title}
+          defaultValue={offer.title}
+          onChange={event =>
+            setUpdatedOffer({
+              ...updatedOffer,
+              title: event.target.value
+            })
+          }
         ></Input>
 
         <Headline4>Wähle eine Kategorie:</Headline4>
@@ -72,7 +67,13 @@ export default function Form({
           cols="35"
           rows="4"
           id="description"
-          value={offer.description}
+          defaultValue={offer.description}
+          onChange={event =>
+            setUpdatedOffer({
+              ...updatedOffer,
+              description: event.target.value
+            })
+          }
           required
           maxlength="100"
           placeholder="Beschreibe mit ein paar Worten, wobei du Hilfe benötigst 
@@ -83,7 +84,13 @@ export default function Form({
           type="text"
           name="name"
           id="name"
-          value={offer.name}
+          defaultValue={offer.name}
+          onChange={event =>
+            setUpdatedOffer({
+              ...updatedOffer,
+              name: event.target.value
+            })
+          }
           required
           placeholder="Angezeigter Name *"
         ></Input>
@@ -93,7 +100,13 @@ export default function Form({
             type="email"
             name="email"
             id="email"
-            value={offer.email}
+            defaultValue={offer.email}
+            onChange={event =>
+              setUpdatedOffer({
+                ...updatedOffer,
+                email: event.target.value
+              })
+            }
             placeholder="Email"
           ></ContactInput>
           <Label htmlFor="phonenumber"></Label>
@@ -101,7 +114,13 @@ export default function Form({
             type="tel"
             name="phonenumber"
             id="phonenumber"
-            value={offer.phonenumber}
+            defaultValue={offer.phonenumber}
+            onChange={event =>
+              setUpdatedOffer({
+                ...updatedOffer,
+                phonenumber: event.target.value
+              })
+            }
             placeholder="Telefonnummer"
           ></ContactInput>
         </Flex>
@@ -123,26 +142,28 @@ export default function Form({
   )
 
   function addCategoryAndDate(categoriename) {
-    selectedOption === 'post'
-      ? setAddPost({ ...addPost, category: categoriename })
-      : setAddOffer({ ...addOffer, category: categoriename })
+    setUpdatedOffer({ ...updatedOffer, category: categoriename })
+  }
+  function handleSubmit(event) {
+    event.preventDefault()
+    updateOffer(updatedOffer)
   }
 
-  function handleOffer(event) {
+  /* function handleOffer(event) {
     event.preventDefault()
     handleAddOffer(addOffer)
     event.target[0].focus()
     event.target.reset()
 
     showMessage()
-  }
+  } */
 
-  function showMessage() {
+  /*  function showMessage() {
     setSubmitted(!submitted)
   }
   function handleClick(input) {
     setSelectedOption(input)
-  }
+  }*/
 }
 
 const StyledForm = styled.form`
