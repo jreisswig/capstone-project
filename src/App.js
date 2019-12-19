@@ -17,6 +17,7 @@ import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Profile from './Profile'
+import FormEdit from './FormEdit'
 
 export default function App() {
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
@@ -78,6 +79,10 @@ export default function App() {
 
             <Route path="/registrieren">
               <Registration handleSignUp={handleSignUp} />
+            </Route>
+
+            <Route path="/edit">
+              <FormEdit offers={offers} />
             </Route>
           </Switch>
 

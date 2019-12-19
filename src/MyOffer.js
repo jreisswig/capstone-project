@@ -18,7 +18,9 @@ export default function Offer({ title, description, id }) {
       <Line />
       <Flex>
         <EditWrapper>
-          <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
+          <Link to={`/edit/${id}`} key={id}>
+            <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
+          </Link>
           <Image src={Trash} alt="Löschen" height="15px" width="15px" />
         </EditWrapper>
         <StarWrapper>
