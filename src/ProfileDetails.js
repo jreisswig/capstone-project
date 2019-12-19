@@ -120,6 +120,11 @@ const Tablist = styled.div`
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
+  padding-bottom: 3px;
+  background: white;
+  position: sticky;
+    top: -17px;
+    z-index: 2;
 `
 const Logout = styled.div`
   display: flex;
