@@ -12,6 +12,7 @@ export default function Profile({
   toggleSignIn,
   initApp,
   offers,
+  posts,
   toggleBookmarked
 }) {
   const [logedinUser, setLogedinUser] = useState(null)
@@ -29,7 +30,11 @@ export default function Profile({
   return (
     <ProfileContainer>
       {logedinUser ? (
-        <ProfileDetails offers={offers} toggleBookmarked={toggleBookmarked} />
+        <ProfileDetails
+          offers={offers}
+          posts={posts}
+          toggleBookmarked={toggleBookmarked}
+        />
       ) : (
         <SignIn toggleSignIn={toggleSignIn} />
       )}

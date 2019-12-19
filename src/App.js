@@ -69,6 +69,7 @@ export default function App() {
             <Route path="/profil">
               <Profile
                 offers={offers}
+                posts={posts}
                 handleAddUser={handleAddUser}
                 handleSignUp={handleSignUp}
                 toggleBookmarked={id => toggleBookmarked(id)}
