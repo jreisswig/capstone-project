@@ -124,7 +124,7 @@ const Date = styled.time`
 `
 
 const OfferTitle = styled.div`
-  margin: 7px 35px;
+  margin: 38px 0;
 `
 const Title = styled.h2`
   font-weight: bold;

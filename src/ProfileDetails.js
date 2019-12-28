@@ -16,7 +16,8 @@ import Post from './Post'
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('')
-
+  const lastSignInDate = user.metadata.lastSignInDate
+  console.log(lastSignInDate)
   return (
     <ProfilDetailsContainer>
       <Tablist>
@@ -48,6 +49,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
           <Infotext>{user.email}</Infotext>
+          <LastLogin>{lastSignInDate}</LastLogin>
         </UserInfos>
       </ProfileInfos>
       <Logout onClick={logout}>
@@ -62,14 +64,14 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
           {renderBookmarked(offers)}
         </RenderContainer>
       ) : (
-        <MyPostsContainer>
+        <RenderContainer>
           <Headline3>Meine Angebote</Headline3>
-          {renderPersonalOffer(offers)}
+          <MyPostsContainer>{renderPersonalOffer(offers)}</MyPostsContainer>
           <Line />
           <Headline3>Meine Gesuche</Headline3>
-          {renderPersonalPosts(posts)}
+          <MyPostsContainer>{renderPersonalPosts(posts)}</MyPostsContainer>
           <Line />
-        </MyPostsContainer>
+        </RenderContainer>
       )}
     </ProfilDetailsContainer>
   )
@@ -148,6 +150,7 @@ const Name = styled.div`
 `
 const Infotext = styled.div``
 const UserInfos = styled.div``
+const LastLogin = styled.div``
 const Line = styled.hr`
   border: 0;
   height: 1px;
@@ -156,11 +159,12 @@ const Line = styled.hr`
 `
 const RenderContainer = styled.section`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 `
 const MyPostsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 `
 const Headline3 = styled.h3`
   font-weight: unset;

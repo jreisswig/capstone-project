@@ -147,23 +147,14 @@ export default function FormEdit({
   function handleSubmit(event) {
     event.preventDefault()
     updateOffer(updatedOffer)
-  }
-
-  /* function handleOffer(event) {
-    event.preventDefault()
-    handleAddOffer(addOffer)
-    event.target[0].focus()
-    event.target.reset()
-
     showMessage()
-  } */
-
-  /*  function showMessage() {
-    setSubmitted(!submitted)
   }
-  function handleClick(input) {
-    setSelectedOption(input)
-  }*/
+  function showMessage() {
+    setSubmitted(!submitted)
+    setTimeout(function() {
+      window.location.replace('/profil')
+    }, 1500)
+  }
 }
 
 const StyledForm = styled.form`
