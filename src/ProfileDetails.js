@@ -118,7 +118,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
 }
 
 const ProfilDetailsContainer = styled.div`
-  position: relative;
+  
 `
 
 const Tab = styled.div`
@@ -130,6 +130,7 @@ const Tab = styled.div`
 `
 
 const Tablist = styled.div`
+  position: relative;
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
@@ -137,7 +138,7 @@ const Tablist = styled.div`
   background: white;
   position: sticky;
     top: -17px;
-    z-index: 2;
+    z-index: 10;
 `
 const Logout = styled.div`
   cursor: default;

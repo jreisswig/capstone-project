@@ -32,7 +32,7 @@ export default function MyBookmarkedOffer({
         </EditWrapper>
         {DeleteIsClicked && (
           <PopUp>
-            <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
+            <Text>Bist du sicher, dass du diese Anzeige von deiner Merkliste entfernen möchtest?</Text>
             <FlexButton>
               <Button onClick={handleDeleteClick}>Löschen</Button>
               <Button onClick={() => goBack()}>Abbrechen</Button>
@@ -90,20 +90,21 @@ const Image = styled.img`
 const PopUp = styled.div`
   position: absolute;
   background: white;
-  z-index: 100;
+  z-index: 5;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 10%;
+  height: 19%;
+  width: 90%
   border: 2px solid #f3f7f6;
   border-radius: 20px;
   padding: 10px;
-  top: 117px;
+  top: 220px;
   left: 0%;
 `
 const Text = styled.div`
-width: 75%;`
+width: 80%;`
 
 const FlexButton = styled.div`
   display: flex;
