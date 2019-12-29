@@ -25,13 +25,8 @@ export default function Post({
 
       <PostDescription>{description}</PostDescription>
       <Icon>
-        {isHidden ? (
-          <Button>Kontakt</Button>
-        ) : (
-          <Button>Kontakt</Button>
-          /* <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> 
-           <img src={ArrowHide} alt="IconHide" height="17px" width="17px" />  */
-        )}
+        {isHidden && 
+          <Button>Kontakt</Button>}
       </Icon>
       <Line />
       {!isHidden && (

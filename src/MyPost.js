@@ -93,7 +93,6 @@ const PostTitle = styled.h4`
 `
 const PostDescription = styled.p`
   position: relative;
-  width: 77%;
 `
 
 const PostName = styled.p`

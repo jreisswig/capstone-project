@@ -17,7 +17,7 @@ export default function Bookmark({ toggleBookmarked, isBookmarked }) {
 
 const BookmarkWrapper = styled.div`
   position: absolute;
-  top: 6px;
+  top: 8px;
   right: 30px;
   width: 0;
 `
