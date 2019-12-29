@@ -8,25 +8,27 @@ export default function MyBookmarkedOffer({
   title,
   description,
   toggleBookmarked,
-  id
+  id, date
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
+  
   return (
     <OfferTags>
-      <Link to={`/angebotdetail/${id}`} key={id}>
-        <Title>{title}</Title>
+    
+      <Link to={`/detailangebot/${id}`} key={id}>
+        <FlexContainer><Title>{title}</Title><Date datetime={date}>{date}</Date></FlexContainer>
         <Content>{description}</Content>
       </Link>
       <Line />
 
       <Flex>
-        <EditWrapper>
+        <EditWrapper onClick={() => setDeleteIsClicked(true)}>
           <Image
             src={Trash}
             alt="Löschen"
             height="15px"
             width="15px"
-            onClick={() => setDeleteIsClicked(true)}
+            
           />
           Von Merkliste enfernen
         </EditWrapper>
@@ -68,6 +70,14 @@ const OfferTags = styled.div`
 `
 const Title = styled.h4`
   margin: 4px 0;
+`
+const FlexContainer = styled.div`
+display: flex;
+justify-content: space-between; `
+
+const Date =styled.div`
+font-size: 0.9rem; 
+margin-top: 4px;
 `
 const Content = styled.div``
 

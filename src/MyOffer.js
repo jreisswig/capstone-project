@@ -1,5 +1,5 @@
 //// import utils
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
@@ -8,11 +8,12 @@ import Trash from './images/trash.svg'
 import Edit from './images/edit.svg'
 import Star from './images/star.svg'
 
-export default function Offer({ title, description, id }) {
+export default function Offer({ title, description, id, date }) {const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
+
   return (
     <OfferTags>
       <Link to={`/angebotdetail/${id}`} key={id}>
-        <Title> {title}</Title>
+        <FlexContainer><Title>{title}</Title><Date datetime={date}>{date}</Date></FlexContainer>
         <Content>{description}</Content>
       </Link>
       <Line />
@@ -21,19 +22,34 @@ export default function Offer({ title, description, id }) {
           <Link to={`/edit/${id}`} key={id}>
             <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
           </Link>
-          <Image src={Trash} alt="Löschen" height="15px" width="15px" />
+          <Image src={Trash} alt="Löschen" height="15px" width="15px" onClick={() => setDeleteIsClicked(true)}/>
         </EditWrapper>
         <StarWrapper>
           <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
           <div>2</div>
         </StarWrapper>
       </Flex>
+      {DeleteIsClicked && (
+          <PopUp>
+            <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
+            <FlexButton>
+              <Button onClick={handleDeleteClick}>Löschen</Button>
+              <Button onClick={() => goBack()}>Abbrechen</Button>
+            </FlexButton>
+          </PopUp>
+        )}
     </OfferTags>
   )
+  function handleDeleteClick() {
+    goBack()
+  }
+
+  function goBack() {
+    setDeleteIsClicked(false)
+  }
 }
 
 const OfferTags = styled.div`
-  position: relative;
   background: #f3f7f6;
   border-radius: 3px;
   display: inline;
@@ -49,6 +65,14 @@ const OfferTags = styled.div`
 `
 const Title = styled.h4`
   margin: 4px 0;
+`
+const FlexContainer = styled.div`
+display: flex;
+justify-content: space-between; `
+
+const Date =styled.div`
+font-size: 0.9rem; 
+margin-top: 4px;
 `
 const Content = styled.div``
 
@@ -72,4 +96,40 @@ const ImageStar = styled.img`
 `
 const StarWrapper = styled.div`
   display: flex;
+`
+const PopUp = styled.div`
+  position: absolute;
+  background: white;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 19%;
+  width: 100%;
+  border: 2px solid #f3f7f6;
+  border-radius: 20px;
+  padding: 10px;
+  top: 220px;
+  left: 0%;
+  
+`
+const Text = styled.div`
+width: 80%;`
+
+const FlexButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+`
+
+const Button = styled.button`
+  background: #7aaca2;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 0, 3px;
+  font-size: 0.89rem;
+  height: 26px;
+  margin-right: 20px;
 `

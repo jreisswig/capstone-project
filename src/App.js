@@ -39,6 +39,12 @@ export default function App() {
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
 
+  useEffect(() => {
+    let savedOffers = offers
+    savedOffers.time = new Date().getTime()
+    localStorage.savedOffers = JSON.stringify(savedOffers)
+  }, [offers])
+
   return (
     <Appcontainer>
       <Grid>
@@ -62,6 +68,12 @@ export default function App() {
               ></NewPost>
             </Route>
             <Route exact path={`/angebotdetail/:id`}>
+              <OfferDetailPage
+                offers={offers}
+                toggleBookmarked={id => toggleBookmarked(id)}
+              ></OfferDetailPage>
+            </Route>
+            <Route exact path={`/detailangebot/:id`}>
               <OfferDetailPage
                 offers={offers}
                 toggleBookmarked={id => toggleBookmarked(id)}
@@ -133,7 +145,6 @@ export default function App() {
   }
 
   function updateOffer(updatedOffer) {
-    console.log(updatedOffer)
     const index = offers.findIndex(el => el.id === updatedOffer.id)
 
     setOffers([
