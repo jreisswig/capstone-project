@@ -53,12 +53,15 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
           <Infotext>{user.email}</Infotext>
-          <LastLogin>Registriert seit: {creationTime}</LastLogin>
+          <Flex>
+            <CreationDate>Registriert seit: {creationTime}</CreationDate>
+            <Logout onClick={logout}>
+              <p>Logout</p>
+            </Logout>
+          </Flex>
         </UserInfos>
       </ProfileInfos>
-      <Logout onClick={logout}>
-        <p>Logout</p>
-      </Logout>
+
       <Line />
 
       {isClicked === 'Bookmarklist' ? (
@@ -134,8 +137,6 @@ const Tablist = styled.div`
     z-index: 2;
 `
 const Logout = styled.div`
-  display: flex;
-  justify-content: flex-end;
   cursor: default;
   p {
     margin: 0;
@@ -153,8 +154,16 @@ const Name = styled.div`
   margin-top: 12px;
 `
 const Infotext = styled.div``
-const UserInfos = styled.div``
-const LastLogin = styled.div``
+const UserInfos = styled.div`
+  width: 100%;
+  margin-left: 10px;
+`
+const CreationDate = styled.div``
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+`
 const Line = styled.hr`
   border: 0;
   height: 1px;
