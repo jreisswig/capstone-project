@@ -9,13 +9,14 @@ import { logout } from './services/firebase'
 import Wappen from './images/WappenSeestermuehe.svg'
 
 //// import components
-import Offer from './Offer'
+import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
 import Post from './Post'
 
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('')
+
   const creationDate = new Date(user.metadata.creationTime)
   const day = creationDate.getDate()
   const month = creationDate.getMonth() + 1
@@ -87,7 +88,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
     return offers
       .filter(offer => offer.isBookmarked === true)
       .map((offer, index) => (
-        <Offer
+        <MyBookmarkedOffer
           {...offer}
           key={index}
           isBookmarked={offer.isBookmarked}
@@ -116,7 +117,9 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   }
 }
 
-const ProfilDetailsContainer = styled.div``
+const ProfilDetailsContainer = styled.div`
+  position: relative;
+`
 
 const Tab = styled.div`
   background: #7aaca2;
