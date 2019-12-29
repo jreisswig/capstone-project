@@ -95,10 +95,10 @@ export default function App() {
             </Route>
 
             <Route path="/angebotbearbeiten">
-              <FormEditOffer offers={offers} updateOffer={updateOffer}/>
+              <FormEditOffer offers={offers} updateOffer={updateOffer} />
             </Route>
-             <Route path="/gesuchebearbeiten">
-              <FormEditPost posts={posts} updatePost={updatePost}/>
+            <Route path="/gesuchebearbeiten">
+              <FormEditPost posts={posts} updatePost={updatePost} />
             </Route>
           </Switch>
 
@@ -150,15 +150,25 @@ export default function App() {
 
   function updateOffer(updatedOffer) {
     const index = offers.findIndex(el => el.id === updatedOffer.id)
-
     setOffers([
       ...offers.slice(0, index),
       { ...updatedOffer },
       ...offers.slice(index + 1)
     ])
+
+    db.collection('Offers')
+      .where('id', '==', updatedOffer.id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection('Offers')
+            .doc(doc.id)
+            .update(updatedOffer)
+        })
+      })
   }
 
-   function updatePost(updatedPost) {
+  function updatePost(updatedPost) {
     const index = posts.findIndex(el => el.id === updatedPost.id)
 
     setPosts([
@@ -166,6 +176,17 @@ export default function App() {
       { ...updatedPost },
       ...posts.slice(index + 1)
     ])
+
+    db.collection('Posts')
+      .where('id', '==', updatedPost.id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection('Posts')
+            .doc(doc.id)
+            .update(updatedPost)
+        })
+      })
   }
 
   function handleAddUser(email, password, name, phonenumber) {

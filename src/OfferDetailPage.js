@@ -71,8 +71,11 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           <Title>{offer.title}</Title>
         </OfferTitle>
         <Line />
-<Flex><div>Kategorie</div><div>{isCategory}</div></Flex>
-<Line />
+        <Flex>
+          <div>Kategorie</div>
+          <div>{isCategory}</div>
+        </Flex>
+        <Line />
         <OfferDetail
           description={offer.description}
           name={offer.name}
@@ -115,7 +118,6 @@ const CategoryImage = styled.div`
   z-index: 2;
 `
 const OfferContent = styled.div`
-  
   padding: 20px;
   background-color: #f3f7f6;
 
@@ -130,7 +132,6 @@ const Date = styled.time`
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
- 
 `
 const OfferTitle = styled.div`
   margin: 35px 0 16px 0;

@@ -210,8 +210,11 @@ export default function Form({
 
   function addCategoryAndDate(categoriename) {
     selectedOption === 'post'
-      ? setAddPost({ ...addPost, category: categoriename })
-      : setAddOffer({ ...addOffer, category: categoriename })
+      ? setAddPost({ ...addPost, category: categoriename || 'Haus und Garten' })
+      : setAddOffer({
+          ...addOffer,
+          category: categoriename || 'Haus und Garten'
+        })
   }
 
   function handlePost(event) {
