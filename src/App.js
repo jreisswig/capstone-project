@@ -87,6 +87,7 @@ export default function App() {
                 handleAddUser={handleAddUser}
                 handleSignUp={handleSignUp}
                 toggleBookmarked={id => toggleBookmarked(id)}
+                deleteOffer={id => deleteOffer(id)}
               />
             </Route>
 
@@ -164,6 +165,27 @@ export default function App() {
           db.collection('Offers')
             .doc(doc.id)
             .update(updatedOffer)
+        })
+      })
+  }
+  function deleteOffer(id) {
+    const index = offers.findIndex(el => el.id === id)
+
+    setOffers([...offers.slice(0, index), ...offers.slice(index + 1)])
+    db.collection('Offers')
+      .where('id', '==', id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection('Offers')
+            .doc(doc.id)
+            .delete()
+            .then(function() {
+              console.log('Document successfully deleted!')
+            })
+            .catch(function(error) {
+              console.error('Error removing document: ', error)
+            })
         })
       })
   }
