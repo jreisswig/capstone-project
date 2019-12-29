@@ -91,9 +91,7 @@ const PostWrapper = styled.section`
     }
   }
 `
-const PostTitle = styled.p`
-  font-weight: bold;
-  color: #424242;
+const PostTitle = styled.h4`
   margin-top: 7px;
   margin-bottom: 4px;
 `

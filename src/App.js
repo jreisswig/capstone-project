@@ -17,7 +17,8 @@ import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Profile from './Profile'
-import FormEdit from './FormEdit'
+import FormEditOffer from './FormEditOffer'
+import FormEditPost from './FormEditPost'
 
 export default function App() {
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
@@ -93,8 +94,11 @@ export default function App() {
               <Registration handleSignUp={handleSignUp} />
             </Route>
 
-            <Route path="/edit">
-              <FormEdit offers={offers} updateOffer={updateOffer} />
+            <Route path="/angebotbearbeiten">
+              <FormEditOffer offers={offers} updateOffer={updateOffer}/>
+            </Route>
+             <Route path="/gesuchebearbeiten">
+              <FormEditPost posts={posts} updatePost={updatePost}/>
             </Route>
           </Switch>
 
@@ -151,6 +155,16 @@ export default function App() {
       ...offers.slice(0, index),
       { ...updatedOffer },
       ...offers.slice(index + 1)
+    ])
+  }
+
+   function updatePost(updatedPost) {
+    const index = posts.findIndex(el => el.id === updatedPost.id)
+
+    setPosts([
+      ...posts.slice(0, index),
+      { ...updatedPost },
+      ...posts.slice(index + 1)
     ])
   }
 

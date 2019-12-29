@@ -62,8 +62,16 @@ export default function Header() {
       pagetitle = 'settings'
 
       break
-    case checkPath('/edit'):
-      pagetitle = 'Inhalte bearbeiten'
+    case checkPath('/angebotbearbeiten'):
+      pagetitle = 'Angebot bearbeiten'
+      icon = (
+        <Link to="/profil">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
+       case checkPath('/gesuchebearbeiten'):
+      pagetitle = 'Gesuch bearbeiten'
       icon = (
         <Link to="/profil">
           <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>

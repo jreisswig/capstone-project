@@ -6,41 +6,41 @@ import CategorieForm from './formAddNew/CategorieForm'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import Offer from './Offer'
+import Post from './Post'
 
-export default function FormEdit({
+export default function FormEditPost({
   handleAddPost,
   handleAddOffer,
   newPostDate,
   newOfferDate,
-  offers,
-  updateOffer
+  posts,
+  updatePost
 }) {
   const user = firebase.auth().currentUser
 
   const { pathname } = useLocation()
-  const id = pathname.substring(6)
-  const index = offers.findIndex(el => el.id === id)
-  const offer = offers[index]
-  const [updatedOffer, setUpdatedOffer] = useState({
-    title: offer.title,
-    description: offer.description,
-    name: offer.name,
-    phonenumber: offer.phonenumber,
-    email: offer.email,
-    category: offer.category,
-    date: offer.date,
-    id: offer.id,
-    isBookmarked: offer.isBookmarked,
-    userid: offer.userid
+  const id = pathname.substring(19)
+  const index = posts.findIndex(el => el.id === id)
+  const post = posts[index]
+  const [updatedPost, setUpdatedPost] = useState({
+    title: post.title,
+    description: post.description,
+    name: post.name,
+    phonenumber: post.phonenumber,
+    email: post.email,
+    category: post.category,
+    date: post.date,
+    id: post.id,
+    isBookmarked: post.isBookmarked,
+    userid: post.userid
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
-  console.log(updatedOffer)
+  console.log(updatedPost)
   return (
     <EditWrapper>
-      <Headline3>Hier kannst du dein Angebot anpassen</Headline3>
+      <Headline3>Hier kannst du dein Gesuch anpassen</Headline3>
       <StyledForm method="post" action="" id="" onSubmit={handleSubmit}>
         <Label htmlFor="title"></Label>
         <Input
@@ -49,10 +49,10 @@ export default function FormEdit({
           id="title"
           required
           placeholder="Titel für deinen Aushang *"
-          defaultValue={offer.title}
+          defaultValue={post.title}
           onChange={event =>
-            setUpdatedOffer({
-              ...updatedOffer,
+            setUpdatedPost({
+              ...updatedPost,
               title: event.target.value
             })
           }
@@ -67,10 +67,10 @@ export default function FormEdit({
           cols="35"
           rows="4"
           id="description"
-          defaultValue={offer.description}
+          defaultValue={post.description}
           onChange={event =>
-            setUpdatedOffer({
-              ...updatedOffer,
+            setUpdatedPost({
+              ...updatedPost,
               description: event.target.value
             })
           }
@@ -84,10 +84,10 @@ export default function FormEdit({
           type="text"
           name="name"
           id="name"
-          defaultValue={offer.name}
+          defaultValue={post.name}
           onChange={event =>
-            setUpdatedOffer({
-              ...updatedOffer,
+            setUpdatedPost({
+              ...updatedPost,
               name: event.target.value
             })
           }
@@ -100,10 +100,10 @@ export default function FormEdit({
             type="email"
             name="email"
             id="email"
-            defaultValue={offer.email}
+            defaultValue={post.email}
             onChange={event =>
-              setUpdatedOffer({
-                ...updatedOffer,
+              setUpdatedPost({
+                ...updatedPost,
                 email: event.target.value
               })
             }
@@ -114,10 +114,10 @@ export default function FormEdit({
             type="tel"
             name="phonenumber"
             id="phonenumber"
-            defaultValue={offer.phonenumber}
+            defaultValue={post.phonenumber}
             onChange={event =>
-              setUpdatedOffer({
-                ...updatedOffer,
+              setUpdatedPost({
+                ...updatedPost,
                 phonenumber: event.target.value
               })
             }
@@ -142,11 +142,11 @@ export default function FormEdit({
   )
 
   function addCategoryAndDate(categoriename) {
-    setUpdatedOffer({ ...updatedOffer, category: categoriename })
+    setUpdatedPost({ ...updatedPost, category: categoriename })
   }
   function handleSubmit(event) {
     event.preventDefault()
-    updateOffer(updatedOffer)
+    updatePost(updatedPost)
     showMessage()
   }
   function showMessage() {

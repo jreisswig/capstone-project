@@ -1,34 +1,52 @@
-//// import utils
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+
+
+
 
 //// import images
 import Trash from './images/trash.svg'
 import Edit from './images/edit.svg'
-import Star from './images/star.svg'
 
-export default function Offer({ title, description, id, date }) {
-  const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
 
+export default function MyPost({
+  title,
+  description,
+  name,
+  phonenumber,
+  email,
+  date,
+  id
+}) {
+  
+const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
   return (
-    <OfferTags>
-      <Link to={`/detailangebot/${id}`} key={id}>
-        <FlexContainer><Title>{title}</Title><Date datetime={date}>{date}</Date></FlexContainer>
-        <Content>{description}</Content>
-      </Link>
+    <PostWrapper>
+      <FlexContainer><PostSearch>ICH SUCHE</PostSearch><Date datetime={date}>{date}</Date></FlexContainer>
+      
+     
+      <PostTitle>{title}</PostTitle>
+
+      <PostDescription>{description}</PostDescription>
+     
       <Line />
-      <Flex>
+     
+       
+          <PostName>{name}</PostName>
+          <ContactWrapper>
+            <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
+            <p>•</p>
+            <PostMail href="mailto:{email}">{email}</PostMail>
+          </ContactWrapper>
+          <Line />
+       <Flex>
         <EditWrapper>
-          <Link to={`/angebotbearbeiten/${id}`} key={id}>
+          <Link to={`/gesuchebearbeiten/${id}`} key={id}>
             <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
           </Link>
           <Image src={Trash} alt="Löschen" height="15px" width="15px" onClick={() => setDeleteIsClicked(true)}/>
         </EditWrapper>
-        <StarWrapper>
-          <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
-          <div>2</div>
-        </StarWrapper>
       </Flex>
       {DeleteIsClicked && (
           <PopUp>
@@ -39,8 +57,9 @@ export default function Offer({ title, description, id, date }) {
             </FlexButton>
           </PopUp>
         )}
-    </OfferTags>
+    </PostWrapper>
   )
+  
   function handleDeleteClick() {
     goBack()
   }
@@ -50,22 +69,14 @@ export default function Offer({ title, description, id, date }) {
   }
 }
 
-const OfferTags = styled.div`
-  background: #f3f7f6;
-  border-radius: 3px;
-  display: inline;
-  padding: 3px 9px;
-  margin: 5px 0;
-  width: 100%;
+
+const PostWrapper = styled.section`
+  
+  background-color: #f3f7f6;
+  border-radius: 7px;
+  padding: 3px 15px;
+  box-shadow: 0 5px 5px #f0efef;
   cursor: default;
-  a {
-    text-decoration: none;
-    cursor: default;
-    color: #7d7b7b;
-  }
-`
-const Title = styled.h4`
-  margin: 4px 0;
 `
 const FlexContainer = styled.div`
 display: flex;
@@ -75,11 +86,47 @@ const Date =styled.div`
 font-size: 0.9rem; 
 margin-top: 4px;
 `
-const Content = styled.div``
-
-const Line = styled.hr`
+const PostTitle = styled.h4`
   
-border: 0;
+  margin-top: 7px;
+  margin-bottom: 4px;
+`
+const PostDescription = styled.p`
+  position: relative;
+  width: 77%;
+`
+
+const PostName = styled.p`
+  color: #424242;
+  margin-top: 3px;
+  margin-bottom: 0px;
+`
+const PostPhone = styled.a`
+  padding-right: 7px;
+  text-decoration: none;
+  color: #7d7b7b;
+`
+
+const PostMail = styled.a`
+  padding-left: 7px;
+  text-decoration: none;
+  color: #7d7b7b;
+`
+const PostSearch = styled.p`
+  font-weight: lighter;
+  margin-top: 6px;
+  margin-bottom: 6px;
+`
+const ContactWrapper = styled.section`
+  display: flex;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  p {
+    margin: 0;
+  }
+`
+const Line = styled.hr`
+  border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
@@ -95,9 +142,7 @@ const Image = styled.img`
 const ImageStar = styled.img`
   margin-right: 8px;
 `
-const StarWrapper = styled.div`
-  display: flex;
-`
+
 const PopUp = styled.div`
   position: absolute;
   background: white;

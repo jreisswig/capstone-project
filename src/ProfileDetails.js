@@ -11,7 +11,7 @@ import Wappen from './images/WappenSeestermuehe.svg'
 //// import components
 import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
-import Post from './Post'
+import MyPost from './MyPost'
 
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
@@ -113,7 +113,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   function renderPersonalPosts(posts) {
     return posts
       .filter(item => item.userid === user.uid)
-      .map((post, index) => <Post {...post} key={index} />)
+      .map((post, index) => <MyPost {...post} key={index} />)
   }
 }
 
