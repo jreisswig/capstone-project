@@ -14,7 +14,8 @@ export default function Profile({
   offers,
   posts,
   toggleBookmarked,
-  deleteOffer
+  deleteOffer,
+  deletePost
 }) {
   const [logedinUser, setLogedinUser] = useState(null)
 
@@ -36,6 +37,7 @@ export default function Profile({
           posts={posts}
           toggleBookmarked={toggleBookmarked}
           deleteOffer={deleteOffer}
+          deletePost={deletePost}
         />
       ) : (
         <SignIn toggleSignIn={toggleSignIn} />

@@ -88,6 +88,7 @@ export default function App() {
                 handleSignUp={handleSignUp}
                 toggleBookmarked={id => toggleBookmarked(id)}
                 deleteOffer={id => deleteOffer(id)}
+                deletePost={id => deletePost(id)}
               />
             </Route>
 
@@ -207,6 +208,28 @@ export default function App() {
           db.collection('Posts')
             .doc(doc.id)
             .update(updatedPost)
+        })
+      })
+  }
+
+  function deletePost(id) {
+    const index = posts.findIndex(el => el.id === id)
+
+    setPosts([...posts.slice(0, index), ...posts.slice(index + 1)])
+    db.collection('Posts')
+      .where('id', '==', id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection('Posts')
+            .doc(doc.id)
+            .delete()
+            .then(function() {
+              console.log('Document successfully deleted!')
+            })
+            .catch(function(error) {
+              console.error('Error removing document: ', error)
+            })
         })
       })
   }

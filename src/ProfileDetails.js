@@ -17,7 +17,8 @@ export default function ProfileDetails({
   offers,
   posts,
   toggleBookmarked,
-  deleteOffer
+  deleteOffer,
+  deletePost
 }) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('')
@@ -119,7 +120,9 @@ export default function ProfileDetails({
   function renderPersonalPosts(posts) {
     return posts
       .filter(item => item.userid === user.uid)
-      .map((post, index) => <MyPost {...post} key={index} />)
+      .map((post, index) => (
+        <MyPost {...post} key={index} deletePost={() => deletePost(post.id)} />
+      ))
   }
 }
 

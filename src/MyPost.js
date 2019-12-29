@@ -2,13 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-
-
-
 //// import images
 import Trash from './images/trash.svg'
 import Edit from './images/edit.svg'
-
 
 export default function MyPost({
   title,
@@ -17,50 +13,58 @@ export default function MyPost({
   phonenumber,
   email,
   date,
-  id
+  id,
+  deletePost
 }) {
-  
-const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
+  const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
   return (
     <PostWrapper>
-      <FlexContainer><PostSearch>ICH SUCHE</PostSearch><Date datetime={date}>{date}</Date></FlexContainer>
-      
-     
+      <FlexContainer>
+        <PostSearch>ICH SUCHE</PostSearch>
+        <Date datetime={date}>{date}</Date>
+      </FlexContainer>
+
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
-     
+
       <Line />
-     
-       
-          <PostName>{name}</PostName>
-          <ContactWrapper>
-            <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
-            <p>•</p>
-            <PostMail href="mailto:{email}">{email}</PostMail>
-          </ContactWrapper>
-          <Line />
-       <Flex>
+
+      <PostName>{name}</PostName>
+      <ContactWrapper>
+        <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
+        <p>•</p>
+        <PostMail href="mailto:{email}">{email}</PostMail>
+      </ContactWrapper>
+      <Line />
+      <Flex>
         <EditWrapper>
           <Link to={`/gesuchebearbeiten/${id}`} key={id}>
             <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
           </Link>
-          <Image src={Trash} alt="Löschen" height="15px" width="15px" onClick={() => setDeleteIsClicked(true)}/>
+          <Image
+            src={Trash}
+            alt="Löschen"
+            height="15px"
+            width="15px"
+            onClick={() => setDeleteIsClicked(true)}
+          />
         </EditWrapper>
       </Flex>
       {DeleteIsClicked && (
-          <PopUp>
-            <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
-            <FlexButton>
-              <Button onClick={handleDeleteClick}>Löschen</Button>
-              <Button onClick={() => goBack()}>Abbrechen</Button>
-            </FlexButton>
-          </PopUp>
-        )}
+        <PopUp>
+          <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
+          <FlexButton>
+            <Button onClick={() => handleDeleteClick()}>Löschen</Button>
+            <Button onClick={() => goBack()}>Abbrechen</Button>
+          </FlexButton>
+        </PopUp>
+      )}
     </PostWrapper>
   )
-  
+
   function handleDeleteClick() {
+    deletePost()
     goBack()
   }
 
@@ -69,9 +73,7 @@ const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
   }
 }
 
-
 const PostWrapper = styled.section`
-  
   background-color: #f3f7f6;
   border-radius: 7px;
   padding: 3px 15px;
@@ -79,15 +81,15 @@ const PostWrapper = styled.section`
   cursor: default;
 `
 const FlexContainer = styled.div`
-display: flex;
-justify-content: space-between; `
+  display: flex;
+  justify-content: space-between;
+`
 
-const Date =styled.div`
-font-size: 0.9rem; 
-margin-top: 4px;
+const Date = styled.div`
+  font-size: 0.9rem;
+  margin-top: 4px;
 `
 const PostTitle = styled.h4`
-  
   margin-top: 7px;
   margin-bottom: 4px;
 `
@@ -157,10 +159,10 @@ const PopUp = styled.div`
   padding: 10px;
   top: 220px;
   left: 0%;
-  
 `
 const Text = styled.div`
-width: 80%;`
+  width: 80%;
+`
 
 const FlexButton = styled.div`
   display: flex;
