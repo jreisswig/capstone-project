@@ -9,12 +9,19 @@ import { logout } from './services/firebase'
 import Wappen from './images/WappenSeestermuehe.svg'
 
 //// import components
-import Offer from './Offer'
-import Post from './Post'
+import MyBookmarkedOffer from './MyBookmarkedOffer'
+import MyOffer from './MyOffer'
+import MyPost from './MyPost'
 
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
-  const [isClicked, setIsClicked] = useState('Bookmarklist')
+  const [isClicked, setIsClicked] = useState('')
+
+  const creationDate = new Date(user.metadata.creationTime)
+  const day = creationDate.getDate()
+  const month = creationDate.getMonth() + 1
+  const year = creationDate.getFullYear()
+  const creationTime = day + '.' + month + '.' + year
 
   return (
     <ProfilDetailsContainer>
@@ -47,28 +54,32 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
           <Infotext>{user.email}</Infotext>
+          <Flex>
+            <CreationDate>Registriert seit: {creationTime}</CreationDate>
+            <Logout onClick={logout}>
+              <p>Logout</p>
+            </Logout>
+          </Flex>
         </UserInfos>
       </ProfileInfos>
-      <Logout onClick={logout}>
-        <p>Logout</p>
-      </Logout>
+
       <Line />
 
       {isClicked === 'Bookmarklist' ? (
         <RenderContainer>
           {' '}
-          <Headline3>Deine gemerkten Angebote</Headline3>
+          <Headline3>Meine gemerkten Angebote</Headline3>
           {renderBookmarked(offers)}
         </RenderContainer>
       ) : (
-        <MyPostsContainer>
+        <RenderContainer>
           <Headline3>Meine Angebote</Headline3>
-          {renderPersonalOffer(offers)}
+          <MyPostsContainer>{renderPersonalOffer(offers)}</MyPostsContainer>
           <Line />
           <Headline3>Meine Gesuche</Headline3>
-          {renderPersonalPosts(posts)}
+          <MyPostsContainer>{renderPersonalPosts(posts)}</MyPostsContainer>
           <Line />
-        </MyPostsContainer>
+        </RenderContainer>
       )}
     </ProfilDetailsContainer>
   )
@@ -77,7 +88,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
     return offers
       .filter(offer => offer.isBookmarked === true)
       .map((offer, index) => (
-        <Offer
+        <MyBookmarkedOffer
           {...offer}
           key={index}
           isBookmarked={offer.isBookmarked}
@@ -90,7 +101,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
     return offers
       .filter(offer => offer.userid === user.uid)
       .map((offer, index) => (
-        <Offer
+        <MyOffer
           {...offer}
           key={index}
           isBookmarked={offer.isBookmarked}
@@ -102,11 +113,13 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   function renderPersonalPosts(posts) {
     return posts
       .filter(item => item.userid === user.uid)
-      .map((post, index) => <Post {...post} key={index} />)
+      .map((post, index) => <MyPost {...post} key={index} />)
   }
 }
 
-const ProfilDetailsContainer = styled.div``
+const ProfilDetailsContainer = styled.div`
+  
+`
 
 const Tab = styled.div`
   background: #7aaca2;
@@ -117,6 +130,7 @@ const Tab = styled.div`
 `
 
 const Tablist = styled.div`
+  position: relative;
   display: grid;
   grid-auto-flow: column;
   gap: 10px;
@@ -124,11 +138,9 @@ const Tablist = styled.div`
   background: white;
   position: sticky;
     top: -17px;
-    z-index: 2;
+    z-index: 10;
 `
 const Logout = styled.div`
-  display: flex;
-  justify-content: flex-end;
   cursor: default;
   p {
     margin: 0;
@@ -146,7 +158,16 @@ const Name = styled.div`
   margin-top: 12px;
 `
 const Infotext = styled.div``
-const UserInfos = styled.div``
+const UserInfos = styled.div`
+  width: 100%;
+  margin-left: 10px;
+`
+const CreationDate = styled.div``
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9px;
+`
 const Line = styled.hr`
   border: 0;
   height: 1px;
@@ -155,11 +176,12 @@ const Line = styled.hr`
 `
 const RenderContainer = styled.section`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 `
 const MyPostsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
 `
 const Headline3 = styled.h3`
   font-weight: unset;

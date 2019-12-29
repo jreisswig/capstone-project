@@ -49,11 +49,36 @@ export default function Header() {
         </Link>
       )
       break
+      case checkPath('/detailangebot'):
+      pagetitle = 'Angebot'
+      icon = (
+        <Link to="/profil">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
 
     case checkPath('/settings'):
       pagetitle = 'settings'
 
       break
+    case checkPath('/angebotbearbeiten'):
+      pagetitle = 'Angebot bearbeiten'
+      icon = (
+        <Link to="/profil">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
+       case checkPath('/gesuchebearbeiten'):
+      pagetitle = 'Gesuch bearbeiten'
+      icon = (
+        <Link to="/profil">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
+
     case checkPath('/'):
       pagetitle = 'HalloDorf'
       classname = !visible && 'headerHidden'

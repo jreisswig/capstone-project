@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Boot from './images/Boot.svg'
-import HausUndGarten from './images/HausUndGarten.svg'
-import Family from './images/FamilyBig.svg'
+import Boot from '../images/Boot.svg'
+import HausUndGarten from '../images/HausUndGarten.svg'
+import Family from '../images/FamilyBig.svg'
 
 export default function CategorieForm({ addCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('Haus & Garten')

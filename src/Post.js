@@ -25,13 +25,8 @@ export default function Post({
 
       <PostDescription>{description}</PostDescription>
       <Icon>
-        {isHidden ? (
-          <Button>Kontakt</Button>
-        ) : (
-          <Button>Kontakt</Button>
-          /* <img src={ArrowShow} alt="IconShow" height="17px" width="17px" /> 
-           <img src={ArrowHide} alt="IconHide" height="17px" width="17px" />  */
-        )}
+        {isHidden && 
+          <Button>Kontakt</Button>}
       </Icon>
       <Line />
       {!isHidden && (
@@ -91,9 +86,7 @@ const PostWrapper = styled.section`
     }
   }
 `
-const PostTitle = styled.p`
-  font-weight: bold;
-  color: #424242;
+const PostTitle = styled.h4`
   margin-top: 7px;
   margin-bottom: 4px;
 `

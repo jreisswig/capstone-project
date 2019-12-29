@@ -70,6 +70,9 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
         <OfferTitle>
           <Title>{offer.title}</Title>
         </OfferTitle>
+        <Line />
+<Flex><div>Kategorie</div><div>{isCategory}</div></Flex>
+<Line />
         <OfferDetail
           description={offer.description}
           name={offer.name}
@@ -88,8 +91,10 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
 }
 
 const OfferDetailContainer = styled.section`
+  position: relative;
   margin: 20px;
   display: grid;
+  grid-template-rows: 130px auto;
   overflow: scroll;
   border-radius: 20px;
   background-color: #f3f7f6;
@@ -110,7 +115,7 @@ const CategoryImage = styled.div`
   z-index: 2;
 `
 const OfferContent = styled.div`
-  position: relative;
+  
   padding: 20px;
   background-color: #f3f7f6;
 
@@ -119,14 +124,24 @@ const OfferContent = styled.div`
 `
 const Date = styled.time`
   position: absolute;
-  top: 13px;
+  top: 147px;
   right: 11px;
 `
-
+const Flex = styled.div`
+  display: flex;
+  justify-content: space-between;
+ 
+`
 const OfferTitle = styled.div`
-  margin: 7px 35px;
+  margin: 35px 0 16px 0;
 `
 const Title = styled.h2`
   font-weight: bold;
   color: #424242;
+`
+const Line = styled.hr`
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
+  );
 `

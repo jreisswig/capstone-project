@@ -17,6 +17,8 @@ import Bulletinboard from './Bulletinboard'
 import Home from './Home'
 import OfferDetailPage from './OfferDetailPage'
 import Profile from './Profile'
+import FormEditOffer from './FormEditOffer'
+import FormEditPost from './FormEditPost'
 
 export default function App() {
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
@@ -31,6 +33,12 @@ export default function App() {
 
     localStorage.savedPosts = JSON.stringify(savedPosts)
   }, [posts])
+
+  useEffect(() => {
+    let savedOffers = offers
+    savedOffers.time = new Date().getTime()
+    localStorage.savedOffers = JSON.stringify(savedOffers)
+  }, [offers])
 
   useEffect(() => {
     let savedOffers = offers
@@ -66,6 +74,12 @@ export default function App() {
                 toggleBookmarked={id => toggleBookmarked(id)}
               ></OfferDetailPage>
             </Route>
+            <Route exact path={`/detailangebot/:id`}>
+              <OfferDetailPage
+                offers={offers}
+                toggleBookmarked={id => toggleBookmarked(id)}
+              ></OfferDetailPage>
+            </Route>
             <Route path="/profil">
               <Profile
                 offers={offers}
@@ -78,6 +92,13 @@ export default function App() {
 
             <Route path="/registrieren">
               <Registration handleSignUp={handleSignUp} />
+            </Route>
+
+            <Route path="/angebotbearbeiten">
+              <FormEditOffer offers={offers} updateOffer={updateOffer}/>
+            </Route>
+             <Route path="/gesuchebearbeiten">
+              <FormEditPost posts={posts} updatePost={updatePost}/>
             </Route>
           </Switch>
 
@@ -125,6 +146,26 @@ export default function App() {
       .catch(function(error) {
         console.error('Error adding document: ', error)
       })
+  }
+
+  function updateOffer(updatedOffer) {
+    const index = offers.findIndex(el => el.id === updatedOffer.id)
+
+    setOffers([
+      ...offers.slice(0, index),
+      { ...updatedOffer },
+      ...offers.slice(index + 1)
+    ])
+  }
+
+   function updatePost(updatedPost) {
+    const index = posts.findIndex(el => el.id === updatedPost.id)
+
+    setPosts([
+      ...posts.slice(0, index),
+      { ...updatedPost },
+      ...posts.slice(index + 1)
+    ])
   }
 
   function handleAddUser(email, password, name, phonenumber) {

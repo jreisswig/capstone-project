@@ -31,7 +31,8 @@ export default function OfferDetail({
   )
 }
 const OfferWrapper = styled.div`
-  position: relative;
+  
+  margin-top: 24px;
 `
 
 const OfferDescription = styled.p`
