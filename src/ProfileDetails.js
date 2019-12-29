@@ -16,8 +16,12 @@ import Post from './Post'
 export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('')
-  const lastSignInDate = user.metadata.lastSignInDate
-  console.log(lastSignInDate)
+  const creationDate = new Date(user.metadata.creationTime)
+  const day = creationDate.getDate()
+  const month = creationDate.getMonth() + 1
+  const year = creationDate.getFullYear()
+  const creationTime = day + '.' + month + '.' + year
+
   return (
     <ProfilDetailsContainer>
       <Tablist>
@@ -49,7 +53,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
           <Infotext>{user.email}</Infotext>
-          <LastLogin>{lastSignInDate}</LastLogin>
+          <LastLogin>Registriert seit: {creationTime}</LastLogin>
         </UserInfos>
       </ProfileInfos>
       <Logout onClick={logout}>
