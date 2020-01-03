@@ -41,7 +41,7 @@ export default function MyOffer({ title, description, id, date, deleteOffer }) {
       </Flex>
       {DeleteIsClicked && (
         <PopUp>
-          <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
+          <Text>Bist du sicher, dass du dieses Angebot löschen möchtest?</Text>
           <FlexButton>
             <Button onClick={() => handleDeleteClick()}>Löschen</Button>
             <Button onClick={() => goBack()}>Abbrechen</Button>

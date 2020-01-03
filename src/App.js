@@ -10,6 +10,8 @@ import Header from './Header'
 import Nav from './Nav'
 import Grid from './Grid'
 import Registration from './Registration'
+//import Offers from './offers.json'
+//import Posts from './posts.json'
 
 //// import Pages
 import NewPost from './NewPost'
@@ -26,11 +28,43 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
+  console.log(offers)
+  console.log(posts)
+
+  /// zu viele render
+  /*   function getData() {
+    db.collection('Posts')
+      .get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data())
+        setPosts(data)
+      })
+     */
+  function getDataPosts() {
+    db.collection('Posts')
+      .get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data())
+        setPosts(data)
+      })
+  }
+  let enddataPost = setTimeout(getDataPosts, 1000)
+  clearTimeout(enddataPost)
+
+  function getDataOffer() {
+    db.collection('Offers')
+      .get()
+      .then(querySnapshot => {
+        const data = querySnapshot.docs.map(doc => doc.data())
+        setOffers(data)
+      })
+  }
+  let enddataOffer = setTimeout(getDataOffer, 1000)
+  clearTimeout(enddataOffer)
 
   useEffect(() => {
     let savedPosts = posts
     savedPosts.time = new Date().getTime()
-
     localStorage.savedPosts = JSON.stringify(savedPosts)
   }, [posts])
 
@@ -45,6 +79,8 @@ export default function App() {
     savedOffers.time = new Date().getTime()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
+
+  console.log(offers)
 
   return (
     <Appcontainer>
@@ -123,7 +159,9 @@ export default function App() {
       return
     }
     signUp(email, password)
-    //window.location.href = `/profil`
+    setTimeout(function() {
+      window.location.replace('/profil')
+    }, 1500)
   }
 
   function handleAddPost(addPost) {

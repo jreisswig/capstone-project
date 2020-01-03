@@ -141,8 +141,8 @@ export default function Form({
         type="text"
         name="name"
         id="name"
-        value={user && user.displayName}
-        onInput={event =>
+        defaultValue={user && user.displayName}
+        onChange={event =>
           selectedOption === 'post'
             ? setAddPost({
                 ...addPost,
@@ -153,6 +153,17 @@ export default function Form({
                 name: event.target.value
               })
         }
+        /* onInput={event =>
+          selectedOption === 'post'
+            ? setAddPost({
+                ...addPost,
+                name: event.target.value
+              })
+            : setAddOffer({
+                ...addOffer,
+                name: event.target.value
+              })
+        } */
         required
         placeholder="Angezeigter Name *"
       ></Input>
@@ -162,8 +173,19 @@ export default function Form({
           type="email"
           name="email"
           id="email"
-          value={user && user.email}
-          onInput={event =>
+          defaultValue={user && user.email}
+          onChange={event =>
+            selectedOption === 'post'
+              ? setAddPost({
+                  ...addPost,
+                  email: event.target.value
+                })
+              : setAddOffer({
+                  ...addOffer,
+                  email: event.target.value
+                })
+          }
+          /* onInput={event =>
             selectedOption === 'post'
               ? setAddPost({
                   ...addPost,
@@ -173,7 +195,7 @@ export default function Form({
                   ...addOffer,
                   email: user ? user.email : event.target.value
                 })
-          }
+          } */
           placeholder="Email"
         ></ContactInput>
         <Label htmlFor="phonenumber"></Label>

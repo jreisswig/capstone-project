@@ -53,7 +53,7 @@ export default function MyPost({
       </Flex>
       {DeleteIsClicked && (
         <PopUp>
-          <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
+          <Text>Bist du sicher, dass du dieses Gesuch löschen möchtest?</Text>
           <FlexButton>
             <Button onClick={() => handleDeleteClick()}>Löschen</Button>
             <Button onClick={() => goBack()}>Abbrechen</Button>
