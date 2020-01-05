@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Home from './images/Home.svg'
 import Boot from './images/Boot.svg'
 import Family from './images/FamilyBig.svg'
+import Freizeit from './images/Freizeit icon.svg'
+import Elektro from './images/ElektroIcon.svg'
+import Werkzeug from './images/Werkzeug2.svg'
 
 import { useLocation } from 'react-router-dom'
 
@@ -22,7 +26,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           {isCategory === '' && changeCategoryImage(offer.category)}
           {isCategory === 'Haus & Garten' && (
             <img
-              src={HausUndGarten}
+              src={Home}
               alt="Haus und Garten"
               height="130px"
               width="130px"
@@ -46,22 +50,17 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           )}
           {isCategory === 'Freizeit & Hobby' && (
             <img
-              src={Boot}
+              src={Freizeit}
               alt="Freizeit und Hobby"
               height="130px"
               width="130px"
             />
           )}
           {isCategory === 'Elektro' && (
-            <img
-              src={HausUndGarten}
-              alt="Elektro"
-              height="130px"
-              width="130px"
-            />
+            <img src={Elektro} alt="Elektro" height="130px" width="130px" />
           )}
           {isCategory === 'Werkzeuge' && (
-            <img src={Family} alt="Werkzeuge" height="130px" width="130px" />
+            <img src={Werkzeug} alt="Werkzeuge" height="130px" width="130px" />
           )}
         </CategoryImage>
       </CategorieHeader>

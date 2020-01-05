@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { db, signUp } from './services/firebase'
 
@@ -23,6 +24,8 @@ import FormEditOffer from './FormEditOffer'
 import FormEditPost from './FormEditPost'
 
 export default function App() {
+  const user = firebase.auth().currentUser
+
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
   const [posts, setPosts] = useState(savedPosts)
 
@@ -31,15 +34,6 @@ export default function App() {
   console.log(offers)
   console.log(posts)
 
-  /// zu viele render
-  /*   function getData() {
-    db.collection('Posts')
-      .get()
-      .then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data())
-        setPosts(data)
-      })
-     */
   function getDataPosts() {
     db.collection('Posts')
       .get()
@@ -79,8 +73,6 @@ export default function App() {
     savedOffers.time = new Date().getTime()
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
-
-  console.log(offers)
 
   return (
     <Appcontainer>
@@ -296,6 +288,22 @@ export default function App() {
       { ...offer, isBookmarked: !offer.isBookmarked },
       ...offers.slice(index + 1)
     ])
+
+    db.collection('Offers')
+      .where('id', '==', id)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          db.collection('Offers')
+            .doc(doc.id)
+            .update({
+              isBookmarked: [offer.isBookmarked, user && user.uid]
+            })
+          console.log(offer.isBookmarked)
+        })
+      })
+    let enddataOffer = setTimeout(getDataOffer, 1000)
+    clearTimeout(enddataOffer)
   }
 }
 

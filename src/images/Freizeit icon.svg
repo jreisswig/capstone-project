@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="68px" height="68px" viewBox="0 0 68 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Freizeit icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0.0662023169" y="-4.54747351e-13" width="2" height="33"></rect>
+        <path d="M5,15.8248548 C6.2612211,15.8248548 4.89772084,15.8636637 3.90064329,14.9254859 C3.08573181,14.1587133 3.08573181,12.6015611 3.90064329,11.7579365 C6.0090135,9.57527865 10.7867858,7.62027299 10.7867858,5.64714885 C10.7867858,0.968972146 8.53756612,0 5.5,0 C2.46243388,0 0,3.79250156 0,8.47067826 C0,13.148855 1.96243388,15.8248548 5,15.8248548 Z" id="path-3"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Freizeit-icon">
+            <g id="Freizeit-icon-Copy-2">
+                <circle id="Oval" fill="#E4F5F0" cx="34" cy="34" r="34"></circle>
+                <path d="M54.1159898,7 C39.0785176,11.0296376 28,24.7905844 28,41.1542192 C28,51.8984988 32.7814533,61.5160569 40.3175736,68 C56.073372,65.0380771 68,51.1683076 68,34.4943216 C68,23.20766 62.5331312,13.2062254 54.1159898,7 Z" id="Shape" fill="#FFFFF4" opacity="0.300000012"></path>
+                <path d="M47,40.6681212 C47,48.2146131 52.4732054,54.5117468 59.7595821,56 C64.8984759,50.0525958 68,42.376708 68,33.991346 C68,31.04809 67.6180274,28.1918991 66.9006476,25.4668401 C65.6707754,25.1729285 64.3924204,25 63.0695545,25 C54.1946156,25 47,32.0147535 47,40.6681212 Z" id="Shape" fill="#FFFFF4" opacity="0.400000006"></path>
+                <circle id="Oval" fill-opacity="0.38" fill="#ECF8F0" cx="29" cy="65" r="1"></circle>
+                <circle id="Oval" fill="#ECF8F0" cx="31" cy="49" r="1"></circle>
+                <circle id="Oval" fill="#ECF8F0" cx="39" cy="61" r="1"></circle>
+                <circle id="Oval" fill="#ECF8F0" opacity="0.59" cx="59" cy="52" r="1"></circle>
+                <rect id="Rectangle" fill="#E8F2C7" transform="translate(34.793904, 33.763729) rotate(-18.000000) translate(-34.793904, -33.763729) " x="17.2939041" y="10.2637292" width="35" height="47" rx="2"></rect>
+            </g>
+            <g id="Group-15-Copy-2" transform="translate(27.578217, 31.993844) rotate(-9.000000) translate(-27.578217, -31.993844) translate(9.078217, 8.993844)">
+                <path d="M19.5,45 C24.9988666,42.254883 19.4235769,30.3174126 23,25.5 C24.3884329,23.6297923 28.0311902,23.0657731 30.1869588,22.2246584 C32.5655442,21.2966073 34.615139,19.1554278 35.6146775,16.5 C36.4389352,14.3102328 36.5410906,12.1106471 36.1828633,10.3702993 C34.5828425,2.59704167 28.2994512,0 19.5,0 C8.73044738,0 -3.55271368e-15,10.0735931 -3.55271368e-15,22.5 C-3.55271368e-15,32.1443724 5.15758493,40.6983796 12.5471176,43.8987716 C14.6787167,44.8219629 17.2930109,46.1017622 19.5,45 Z" id="Oval" fill="#7AACA2"></path>
+                <circle id="Oval" fill="#F7746C" cx="14.0293008" cy="9.21528895" r="3"></circle>
+                <circle id="Oval-Copy-24" fill="#40514E" cx="24.1162951" cy="6.25681884" r="3"></circle>
+                <circle id="Oval-Copy-26" fill="#E8F2C7" cx="7.5" cy="16.5" r="2.5"></circle>
+                <circle id="Oval-Copy-27" fill="#E4F5F0" cx="12.5094428" cy="34.7924278" r="2.5"></circle>
+                <circle id="Oval-Copy-28" fill="#F8B5AD" cx="7.83478844" cy="25.9523143" r="2.5"></circle>
+            </g>
+            <g id="Group-14-Copy-2" transform="translate(48.000000, 36.500000) rotate(15.000000) translate(-48.000000, -36.500000) translate(42.000000, 11.000000)">
+                <g id="Rectangle-Copy-57" transform="translate(4.936150, 0.635364)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#7AACA2" xlink:href="#path-1"></use>
+                    <rect fill="#E8F2C7" mask="url(#mask-2)" x="1.13686838e-13" y="23.5437473" width="3" height="3"></rect>
+                </g>
+                <rect id="Rectangle-Copy-56" fill="#40514E" x="5.01147148" y="26.5637496" width="2" height="9"></rect>
+                <g id="Oval" transform="translate(0.016140, 34.120632)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="Mask" fill="#F7746C" xlink:href="#path-3"></use>
+                    <path d="M6,1.88244297 C10.418278,1.88244297 13.1551772,6.37268829 13.1551772,5.07319476 C13.1551772,3.77370123 10.418278,9.00266588e-05 6,9.00266588e-05 C1.581722,9.00266588e-05 -1.71327287,3.03191094 -1.71327287,4.33140447 C-1.71327287,5.630898 1.581722,1.88244297 6,1.88244297 Z" fill="#40514E" mask="url(#mask-4)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
