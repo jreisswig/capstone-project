@@ -84,6 +84,14 @@ export default function Header() {
         </Link>
       )
       break
+    case checkPath('/registrieren'):
+      pagetitle = 'Registrieren'
+      icon = (
+        <Link to="/login">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
 
     case checkPath('/'):
       pagetitle = (

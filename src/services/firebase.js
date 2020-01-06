@@ -60,10 +60,12 @@ export default function handleSignIn() {
         alert(errorMessage)
       }
       console.log(error)
-      document.getElementById('quickstart-sign-in').disabled = false
     })
-
-  document.getElementById('quickstart-sign-in').disabled = true
+    .then(
+      setTimeout(function() {
+        window.location.replace('/')
+      }, 1500)
+    )
 }
 
 export function signUp(email, password) {

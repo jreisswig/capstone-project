@@ -9,26 +9,14 @@ import 'firebase/auth'
 export default function Profile({
   handleAddUser,
   handleSignUp,
-  toggleSignIn,
   initApp,
   offers,
   posts,
   toggleBookmarked,
   deleteOffer,
-  deletePost
+  deletePost,
+  logedinUser
 }) {
-  const [logedinUser, setLogedinUser] = useState(null)
-
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        setLogedinUser(user)
-      } else {
-        setLogedinUser(user)
-      }
-    })
-  }, [])
-
   return (
     <ProfileContainer>
       {logedinUser ? (
@@ -40,21 +28,10 @@ export default function Profile({
           deletePost={deletePost}
         />
       ) : (
-        <SignIn toggleSignIn={toggleSignIn} />
+        <SignIn />
       )}
     </ProfileContainer>
   )
-
-  /*  function render() {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log(user)
-      if (user) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
-    })
-  } */
 }
 
 const ProfileContainer = styled.section`

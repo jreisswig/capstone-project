@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import handleSignIn from './services/firebase'
 import { Link } from 'react-router-dom'
 
-export default function SigngIn() {
+export default function SignIn() {
   return (
     <NewProfileContainer>
       <Headline2>Logge dich ein</Headline2>
@@ -44,13 +44,6 @@ export default function SigngIn() {
     event.preventDefault()
     handleSignIn()
   }
-  /* function handleSubmit(event) {
-    event.preventDefault()
-    event.target[0].focus()
-    event.target.reset()
-    handleAddUser(addUser)
-    handleState()
-  } */
 }
 
 const NewProfileContainer = styled.div`

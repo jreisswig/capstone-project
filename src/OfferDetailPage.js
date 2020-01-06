@@ -8,6 +8,7 @@ import Family from './images/FamilyBig.svg'
 import Freizeit from './images/Freizeit icon.svg'
 import Elektro from './images/ElektroIcon.svg'
 import Werkzeug from './images/Werkzeug2.svg'
+import calendar from './images/calendargrey.svg'
 
 import { useLocation } from 'react-router-dom'
 
@@ -65,7 +66,10 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
         </CategoryImage>
       </CategorieHeader>
       <OfferContent>
-        <Date datetime={date}>{offer.date}</Date>
+        <DateFlex>
+          <img src={calendar} alt="Kalender" height="12px" width="12px" />
+          <Date datetime={date}>{offer.date}</Date>
+        </DateFlex>
         <OfferTitle>
           <Title>{offer.title}</Title>
         </OfferTitle>
@@ -124,6 +128,9 @@ const OfferContent = styled.div`
   box-shadow: 0 5px 5px #f0efef;
 `
 const Date = styled.time`
+  margin-left: 7px;
+`
+const DateFlex = styled.div`
   position: absolute;
   top: 147px;
   right: 11px;

@@ -1,6 +1,11 @@
 //// import Utils
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 import styled from 'styled-components/macro'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
@@ -11,8 +16,8 @@ import Header from './Header'
 import Nav from './Nav'
 import Grid from './Grid'
 import Registration from './Registration'
-//import Offers from './offers.json'
-//import Posts from './posts.json'
+import Offers from './offers.json'
+import Posts from './posts.json'
 
 //// import Pages
 import NewPost from './NewPost'
@@ -22,6 +27,7 @@ import OfferDetailPage from './OfferDetailPage'
 import Profile from './Profile'
 import FormEditOffer from './FormEditOffer'
 import FormEditPost from './FormEditPost'
+import SignIn from './SignIn'
 
 export default function App() {
   const user = firebase.auth().currentUser
@@ -31,8 +37,6 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-  console.log(offers)
-  console.log(posts)
 
   function getDataPosts() {
     db.collection('Posts')
@@ -68,34 +72,66 @@ export default function App() {
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
 
+  console.log(offers)
+  console.log(posts)
+
+  const [logedinUser, setLogedinUser] = useState(null)
+
   useEffect(() => {
-    let savedOffers = offers
-    savedOffers.time = new Date().getTime()
-    localStorage.savedOffers = JSON.stringify(savedOffers)
-  }, [offers])
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        setLogedinUser(user)
+      } else {
+        setLogedinUser(user)
+      }
+    })
+  }, [])
+  console.log(logedinUser)
 
   return (
     <Appcontainer>
       <Grid>
         <Router>
           <Header />
+
           <Switch>
+            <Route path="/registrieren">
+              <Registration handleSignUp={handleSignUp} />
+            </Route>
+
+            <Route path="/login">
+              <SignIn />
+            </Route>
+
             <Route exact path="/">
-              <Home
-                offers={offers}
-                posts={posts}
-                toggleBookmarked={id => toggleBookmarked(id)}
-              ></Home>
+              {logedinUser ? (
+                <Home
+                  offers={offers}
+                  posts={posts}
+                  toggleBookmarked={id => toggleBookmarked(id)}
+                  logedinUser={logedinUser}
+                ></Home>
+              ) : (
+                <SignIn />
+              )}
             </Route>
-            <Route path="/pinnwand">
-              <Bulletinboard posts={posts}></Bulletinboard>
-            </Route>
-            <Route path="/inserieren">
-              <NewPost
-                handleAddPost={handleAddPost}
-                handleAddOffer={handleAddOffer}
-              ></NewPost>
-            </Route>
+            {logedinUser ? (
+              <Route path="/pinnwand">
+                <Bulletinboard posts={posts}></Bulletinboard>
+              </Route>
+            ) : (
+              <Redirect to="/login" />
+            )}
+            {logedinUser ? (
+              <Route path="/inserieren">
+                <NewPost
+                  handleAddPost={handleAddPost}
+                  handleAddOffer={handleAddOffer}
+                ></NewPost>
+              </Route>
+            ) : (
+              <Redirect to="/login" />
+            )}
             <Route exact path={`/angebotdetail/:id`}>
               <OfferDetailPage
                 offers={offers}
@@ -117,11 +153,8 @@ export default function App() {
                 toggleBookmarked={id => toggleBookmarked(id)}
                 deleteOffer={id => deleteOffer(id)}
                 deletePost={id => deletePost(id)}
+                logedinUser={logedinUser}
               />
-            </Route>
-
-            <Route path="/registrieren">
-              <Registration handleSignUp={handleSignUp} />
             </Route>
 
             <Route path="/angebotbearbeiten">

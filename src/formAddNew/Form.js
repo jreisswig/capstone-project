@@ -6,6 +6,8 @@ import RadioOn from '../images/radio-button-on-fill.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import dayjs from 'dayjs'
+import de from 'dayjs/locale/de'
 
 export default function Form({
   handleAddPost,
@@ -20,7 +22,7 @@ export default function Form({
     name: user && user.displayName,
     phonenumber: '',
     email: user && user.email,
-    category: '',
+    category: 'Haus und Garten',
     date: '',
     id: '',
     isBookmarked: false,
@@ -32,7 +34,7 @@ export default function Form({
     name: user && user.displayName,
     phonenumber: '',
     email: user && user.email,
-    category: '',
+    category: 'Haus und Garten',
     date: '',
     id: '',
     isBookmarked: false,
@@ -41,7 +43,7 @@ export default function Form({
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
-  function getDate() {
+  function getDate1() {
     const actualDate = new Date()
     const day = actualDate.getDate()
     const month = actualDate.getMonth() + 1
@@ -50,6 +52,12 @@ export default function Form({
     const minute = actualDate.getMinutes()
     const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
     return date
+  }
+
+  function getDate() {
+    return dayjs(new Date())
+      .locale('de-german', de)
+      .format('dd DD.MM.YY')
   }
 
   return (
@@ -141,7 +149,7 @@ export default function Form({
         type="text"
         name="name"
         id="name"
-        defaultValue={user && user.displayName}
+        defaultValue={user.displayName}
         onChange={event =>
           selectedOption === 'post'
             ? setAddPost({
@@ -173,7 +181,7 @@ export default function Form({
           type="email"
           name="email"
           id="email"
-          defaultValue={user && user.email}
+          defaultValue={user.email}
           onChange={event =>
             selectedOption === 'post'
               ? setAddPost({
@@ -232,10 +240,10 @@ export default function Form({
 
   function addCategoryAndDate(categoriename) {
     selectedOption === 'post'
-      ? setAddPost({ ...addPost, category: categoriename || 'Haus und Garten' })
+      ? setAddPost({ ...addPost, category: categoriename })
       : setAddOffer({
           ...addOffer,
-          category: categoriename || 'Haus und Garten'
+          category: categoriename
         })
   }
 

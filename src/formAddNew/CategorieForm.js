@@ -3,6 +3,9 @@ import styled from 'styled-components/macro'
 import Boot from '../images/Boot.svg'
 import HausUndGarten from '../images/HausUndGarten.svg'
 import Family from '../images/FamilyBig.svg'
+import Freizeit from '../images/Freizeit icon.svg'
+import Elektro from '../images/Elektro2Icon.svg'
+import Werkzeug from '../images/Werkzeug2.svg'
 
 export default function CategorieForm({ addCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('Haus & Garten')
@@ -59,7 +62,7 @@ export default function CategorieForm({ addCategory }) {
             border:
               selectedCategory === 'Freizeit & Hobby' && '2px solid #7aaca2'
           }}
-          src={Boot}
+          src={Freizeit}
           alt="Family"
           height="40px"
           width="40px"
@@ -73,7 +76,7 @@ export default function CategorieForm({ addCategory }) {
             borderRadius: '50%',
             border: selectedCategory === 'Elektro' && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Elektro}
           alt="Family"
           height="40px"
           width="40px"
@@ -87,7 +90,7 @@ export default function CategorieForm({ addCategory }) {
             borderRadius: '50%',
             border: selectedCategory === 'Werkzeuge' && '2px solid #7aaca2'
           }}
-          src={Family}
+          src={Werkzeug}
           alt="Family"
           height="40px"
           width="40px"
@@ -99,7 +102,7 @@ export default function CategorieForm({ addCategory }) {
   )
   function handleClick(name) {
     addCategory(name)
-    setSelectedCategory(name)
+    setSelectedCategory(name || 'Haus und Garten')
   }
 }
 
