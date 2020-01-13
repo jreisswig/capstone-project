@@ -38,27 +38,80 @@ export default function App() {
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
 
-  function getDataPosts() {
+  /*   useEffect(() => {
     db.collection('Posts')
       .get()
       .then(querySnapshot => {
         const data = querySnapshot.docs.map(doc => doc.data())
         setPosts(data)
+        return data
+      })
+    // [END get_multiple_all]
+  }, []) */
+
+  /*  useEffect(() => {
+    db.collection('Posts')
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          
+          console.log(doc.data())
+        })
+      })
+    // [END get_multiple_all]
+  }, []) */
+
+  useEffect(() => {
+    getAllPosts()
+    getAllOffers()
+  }, [])
+
+  function getAllPosts() {
+    db.collection('Posts')
+      .get()
+      .then(data => {
+        let allposts = []
+        data.forEach(doc => {
+          allposts.push({
+            category: doc.data().category,
+            date: doc.data().date,
+            description: doc.data().description,
+            email: doc.data().email,
+            id: doc.data().id,
+            isBookmarked: doc.data().isBookmarked,
+            name: doc.data().name,
+            phonenumber: doc.data().phonenumber,
+            title: doc.data().title
+          })
+        })
+        console.log(allposts)
+        setPosts(allposts)
       })
   }
-  let enddataPost = setTimeout(getDataPosts, 1000)
-  clearTimeout(enddataPost)
-
-  function getDataOffer() {
+  function getAllOffers() {
     db.collection('Offers')
       .get()
-      .then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data())
-        setOffers(data)
+      .then(data => {
+        let alloffers = []
+        data.forEach(doc => {
+          alloffers.push({
+            category: doc.data().category,
+            date: doc.data().date,
+            description: doc.data().description,
+            email: doc.data().email,
+            id: doc.data().id,
+            isBookmarked: doc.data().isBookmarked,
+            name: doc.data().name,
+            phonenumber: doc.data().phonenumber,
+            title: doc.data().title,
+            userid: doc.data().userid
+          })
+        })
+        console.log(alloffers)
+        setOffers(alloffers)
       })
   }
-  let enddataOffer = setTimeout(getDataOffer, 1000)
-  clearTimeout(enddataOffer)
 
   useEffect(() => {
     let savedPosts = posts
@@ -322,7 +375,7 @@ export default function App() {
       ...offers.slice(index + 1)
     ])
 
-    db.collection('Offers')
+    /*  db.collection('Offers')
       .where('id', '==', id)
       .get()
       .then(function(querySnapshot) {
@@ -334,9 +387,7 @@ export default function App() {
             })
           console.log(offer.isBookmarked)
         })
-      })
-    let enddataOffer = setTimeout(getDataOffer, 1000)
-    clearTimeout(enddataOffer)
+      }) */
   }
 }
 

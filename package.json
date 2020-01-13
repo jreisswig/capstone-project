@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@storybook/addon-knobs": "^5.2.6",
+    "axois": "0.0.1-security",
     "cypress": "^3.7.0",
     "dayjs": "^1.8.18",
     "eslint-plugin-cypress": "^2.7.0",
