@@ -4,13 +4,14 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import Categories from './Categories'
 import Searchbar from './Searchbar'
 import Sort from './images/sorticon.svg'
+import SignIn from './SignIn'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
 import styled from 'styled-components/macro'
 
-export default function Home({ offers, toggleBookmarked }) {
+export default function Home({ offers, toggleBookmarked, logedinUser }) {
   const [userInput, setUserInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus & Garten': false,

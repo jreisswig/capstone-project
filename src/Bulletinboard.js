@@ -1,11 +1,12 @@
 import React from 'react'
 import Post from './Post'
 import styled from 'styled-components/macro'
-
+import { db } from './services/firebase'
 export default function Bulletinboard({ posts }) {
   return (
     <PostContainer>
       <Paragraph>Hier siehst du die Gesuche deiner Nachbarn.</Paragraph>
+
       {posts.map((post, index) => (
         <Post {...post} key={index} />
       ))}

@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import OfferDetail from './OfferDetail'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Home from './images/Home.svg'
 import Boot from './images/Boot.svg'
 import Family from './images/FamilyBig.svg'
+import Freizeit from './images/Freizeit icon.svg'
+import Elektro from './images/ElektroIcon.svg'
+import Werkzeug from './images/Werkzeug2.svg'
+import calendar from './images/calendargrey.svg'
 
 import { useLocation } from 'react-router-dom'
 
@@ -22,7 +27,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           {isCategory === '' && changeCategoryImage(offer.category)}
           {isCategory === 'Haus & Garten' && (
             <img
-              src={HausUndGarten}
+              src={Home}
               alt="Haus und Garten"
               height="130px"
               width="130px"
@@ -46,33 +51,34 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           )}
           {isCategory === 'Freizeit & Hobby' && (
             <img
-              src={Boot}
+              src={Freizeit}
               alt="Freizeit und Hobby"
               height="130px"
               width="130px"
             />
           )}
           {isCategory === 'Elektro' && (
-            <img
-              src={HausUndGarten}
-              alt="Elektro"
-              height="130px"
-              width="130px"
-            />
+            <img src={Elektro} alt="Elektro" height="130px" width="130px" />
           )}
           {isCategory === 'Werkzeuge' && (
-            <img src={Family} alt="Werkzeuge" height="130px" width="130px" />
+            <img src={Werkzeug} alt="Werkzeuge" height="130px" width="130px" />
           )}
         </CategoryImage>
       </CategorieHeader>
       <OfferContent>
-        <Date datetime={date}>{offer.date}</Date>
+        <DateFlex>
+          <img src={calendar} alt="Kalender" height="12px" width="12px" />
+          <Date datetime={date}>{offer.date}</Date>
+        </DateFlex>
         <OfferTitle>
           <Title>{offer.title}</Title>
         </OfferTitle>
         <Line />
-<Flex><div>Kategorie</div><div>{isCategory}</div></Flex>
-<Line />
+        <Flex>
+          <div>Kategorie</div>
+          <div>{isCategory}</div>
+        </Flex>
+        <Line />
         <OfferDetail
           description={offer.description}
           name={offer.name}
@@ -115,7 +121,6 @@ const CategoryImage = styled.div`
   z-index: 2;
 `
 const OfferContent = styled.div`
-  
   padding: 20px;
   background-color: #f3f7f6;
 
@@ -123,6 +128,9 @@ const OfferContent = styled.div`
   box-shadow: 0 5px 5px #f0efef;
 `
 const Date = styled.time`
+  margin-left: 7px;
+`
+const DateFlex = styled.div`
   position: absolute;
   top: 147px;
   right: 11px;
@@ -130,7 +138,6 @@ const Date = styled.time`
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;
- 
 `
 const OfferTitle = styled.div`
   margin: 35px 0 16px 0;

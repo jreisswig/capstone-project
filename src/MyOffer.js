@@ -1,5 +1,5 @@
 //// import utils
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
@@ -8,13 +8,16 @@ import Trash from './images/trash.svg'
 import Edit from './images/edit.svg'
 import Star from './images/star.svg'
 
-export default function Offer({ title, description, id, date }) {
+export default function MyOffer({ title, description, id, date, deleteOffer }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
 
   return (
     <OfferTags>
       <Link to={`/detailangebot/${id}`} key={id}>
-        <FlexContainer><Title>{title}</Title><Date datetime={date}>{date}</Date></FlexContainer>
+        <FlexContainer>
+          <Title>{title}</Title>
+          <Date datetime={date}>{date}</Date>
+        </FlexContainer>
         <Content>{description}</Content>
       </Link>
       <Line />
@@ -23,7 +26,13 @@ export default function Offer({ title, description, id, date }) {
           <Link to={`/angebotbearbeiten/${id}`} key={id}>
             <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
           </Link>
-          <Image src={Trash} alt="Löschen" height="15px" width="15px" onClick={() => setDeleteIsClicked(true)}/>
+          <Image
+            src={Trash}
+            alt="Löschen"
+            height="15px"
+            width="15px"
+            onClick={() => setDeleteIsClicked(true)}
+          />
         </EditWrapper>
         <StarWrapper>
           <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
@@ -31,17 +40,18 @@ export default function Offer({ title, description, id, date }) {
         </StarWrapper>
       </Flex>
       {DeleteIsClicked && (
-          <PopUp>
-            <Text>Bist du sicher, dass du diese Anzeige löschen möchtest?</Text>
-            <FlexButton>
-              <Button onClick={handleDeleteClick}>Löschen</Button>
-              <Button onClick={() => goBack()}>Abbrechen</Button>
-            </FlexButton>
-          </PopUp>
-        )}
+        <PopUp>
+          <Text>Bist du sicher, dass du dieses Angebot löschen möchtest?</Text>
+          <FlexButton>
+            <Button onClick={() => handleDeleteClick()}>Löschen</Button>
+            <Button onClick={() => goBack()}>Abbrechen</Button>
+          </FlexButton>
+        </PopUp>
+      )}
     </OfferTags>
   )
   function handleDeleteClick() {
+    deleteOffer()
     goBack()
   }
 
@@ -68,12 +78,13 @@ const Title = styled.h4`
   margin: 4px 0;
 `
 const FlexContainer = styled.div`
-display: flex;
-justify-content: space-between; `
+  display: flex;
+  justify-content: space-between;
+`
 
-const Date =styled.div`
-font-size: 0.9rem; 
-margin-top: 4px;
+const Date = styled.div`
+  font-size: 0.9rem;
+  margin-top: 4px;
 `
 const Content = styled.div``
 
@@ -113,10 +124,10 @@ const PopUp = styled.div`
   padding: 10px;
   top: 220px;
   left: 0%;
-  
 `
 const Text = styled.div`
-width: 80%;`
+  width: 80%;
+`
 
 const FlexButton = styled.div`
   display: flex;

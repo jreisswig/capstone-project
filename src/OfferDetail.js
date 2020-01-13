@@ -31,13 +31,11 @@ export default function OfferDetail({
   )
 }
 const OfferWrapper = styled.div`
-  
   margin-top: 24px;
 `
 
 const OfferDescription = styled.p`
   padding: 20px 0;
-  
 `
 const OfferSearch = styled.p`
   font-weight: lighter;

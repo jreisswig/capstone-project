@@ -13,7 +13,13 @@ import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
 import MyPost from './MyPost'
 
-export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
+export default function ProfileDetails({
+  offers,
+  posts,
+  toggleBookmarked,
+  deleteOffer,
+  deletePost
+}) {
   const user = firebase.auth().currentUser
   const [isClicked, setIsClicked] = useState('')
 
@@ -106,6 +112,7 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
           key={index}
           isBookmarked={offer.isBookmarked}
           toggleBookmarked={() => toggleBookmarked(offer.id)}
+          deleteOffer={() => deleteOffer(offer.id)}
         />
       ))
   }
@@ -113,13 +120,13 @@ export default function ProfileDetails({ offers, posts, toggleBookmarked }) {
   function renderPersonalPosts(posts) {
     return posts
       .filter(item => item.userid === user.uid)
-      .map((post, index) => <MyPost {...post} key={index} />)
+      .map((post, index) => (
+        <MyPost {...post} key={index} deletePost={() => deletePost(post.id)} />
+      ))
   }
 }
 
-const ProfilDetailsContainer = styled.div`
-  
-`
+const ProfilDetailsContainer = styled.div``
 
 const Tab = styled.div`
   background: #7aaca2;

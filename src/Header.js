@@ -3,10 +3,13 @@ import ArrowBack from './images/arrow_back_ios.svg'
 import { useLocation, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
+import HalloDorf from './images/HalloDorf Logo.png'
+
 export default function Header() {
   let pagetitle
   let icon
   let classname
+  let style
   let [pos, setPos] = useState(window.pageYOffset)
   let [visible, setVisible] = useState(true)
 
@@ -43,14 +46,16 @@ export default function Header() {
       break
     case checkPath('/angebotdetail'):
       pagetitle = 'Angebot'
+
       icon = (
         <Link to="/">
           <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
         </Link>
       )
       break
-      case checkPath('/detailangebot'):
+    case checkPath('/detailangebot'):
       pagetitle = 'Angebot'
+
       icon = (
         <Link to="/profil">
           <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
@@ -64,13 +69,14 @@ export default function Header() {
       break
     case checkPath('/angebotbearbeiten'):
       pagetitle = 'Angebot bearbeiten'
+
       icon = (
         <Link to="/profil">
           <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
         </Link>
       )
       break
-       case checkPath('/gesuchebearbeiten'):
+    case checkPath('/gesuchebearbeiten'):
       pagetitle = 'Gesuch bearbeiten'
       icon = (
         <Link to="/profil">
@@ -78,11 +84,30 @@ export default function Header() {
         </Link>
       )
       break
+    case checkPath('/registrieren'):
+      pagetitle = 'Registrieren'
+      icon = (
+        <Link to="/login">
+          <img src={ArrowBack} alt="ArrowBack" height="20px" width="20px"></img>
+        </Link>
+      )
+      break
 
     case checkPath('/'):
-      pagetitle = 'HalloDorf'
-      classname = !visible && 'headerHidden'
+      pagetitle = (
+        <img
+          src={HalloDorf}
+          alt="HalloDorfLogo"
+          height="35px"
+          width="105px"
+          style={{
+            objectFit: 'contain'
+          }}
+        ></img>
+      )
 
+      classname = !visible && 'headerHidden'
+      style = { marginTop: '5px' }
       break
     default:
       pagetitle = ''
@@ -91,7 +116,8 @@ export default function Header() {
   return (
     <HeaderStyled classname={classname}>
       <Left>{icon}</Left>
-      <HeaderTitle>{pagetitle}</HeaderTitle>
+      <HeaderTitle style={style}>{pagetitle}</HeaderTitle>
+
       <Right />
     </HeaderStyled>
   )
@@ -113,12 +139,14 @@ const HeaderStyled = styled.header`
     transform: translateY(-130%);
   }
 `
+
 const Left = styled.div`
   margin-left: 26px;
   margin-top: 15px;
 `
 const HeaderTitle = styled.h1`
-  margin: auto;
+  margin: 12px auto 0 auto;
+  height: 40px;
   font-size: 1.5rem;
 `
 const Right = styled.div``

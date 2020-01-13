@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Boot from './images/Boot.svg'
 import HausUndGarten from './images/HausUndGarten.svg'
+import Home from './images/Home.svg'
 import Family from './images/Family_Icon.svg'
+import Freizeit from './images/Freizeit icon.svg'
+import Elektro from './images/Elektro2Icon.svg'
+import Werkzeug from './images/Werkzeug2.svg'
 
 export default function Categories({ selectedCategories, toggleCategory }) {
   return (
@@ -13,7 +17,7 @@ export default function Categories({ selectedCategories, toggleCategory }) {
             borderRadius: '50%',
             border: selectedCategories['Haus & Garten'] && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Home}
           alt="Haus und Garten"
           height="40px"
           width="40px"
@@ -57,7 +61,7 @@ export default function Categories({ selectedCategories, toggleCategory }) {
             border:
               selectedCategories['Freizeit & Hobby'] && '2px solid #7aaca2'
           }}
-          src={Boot}
+          src={Freizeit}
           alt="Family"
           height="40px"
           width="40px"
@@ -71,7 +75,7 @@ export default function Categories({ selectedCategories, toggleCategory }) {
             borderRadius: '50%',
             border: selectedCategories['Elektro'] && '2px solid #7aaca2'
           }}
-          src={HausUndGarten}
+          src={Elektro}
           alt="Family"
           height="40px"
           width="40px"
@@ -85,7 +89,7 @@ export default function Categories({ selectedCategories, toggleCategory }) {
             borderRadius: '50%',
             border: selectedCategories['Werkzeuge'] && '2px solid #7aaca2'
           }}
-          src={Family}
+          src={Werkzeug}
           alt="Family"
           height="40px"
           width="40px"
@@ -103,11 +107,10 @@ const Flex = styled.section`
   border: none;
   padding: 5px 0;
   margin: 0;
-  position: sticky; 
-  top:23px;
+  position: sticky;
+  top: 23px;
   background: white;
   z-index: 2;
-  
 `
 const Categorie = styled.div`
   width: 16%;
