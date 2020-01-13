@@ -188,7 +188,7 @@ const RenderContainer = styled.section`
 const MyPostsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 2px;
 `
 const Headline3 = styled.h3`
   font-weight: unset;
