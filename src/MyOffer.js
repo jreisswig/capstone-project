@@ -34,10 +34,10 @@ export default function MyOffer({ title, description, id, date, deleteOffer }) {
             onClick={() => setDeleteIsClicked(true)}
           />
         </EditWrapper>
-        <StarWrapper>
+        {/* <StarWrapper>
           <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
           <div>2</div>
-        </StarWrapper>
+        </StarWrapper> */}
       </Flex>
       {DeleteIsClicked && (
         <PopUp>
