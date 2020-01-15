@@ -6,10 +6,11 @@ import * as firebase from 'firebase/app'
 
 export default function Bookmark({ toggleBookmarked, isBookmarked }) {
   const user = firebase.auth().currentUser
-  console.log(user.uid)
+  let array = [1, 2, 3]
+  console.log(isBookmarked)
   return (
     <BookmarkWrapper onClick={toggleBookmarked}>
-      {isBookmarked.includes(user.uid) ? (
+      {isBookmarked.includes(user && user.uid) ? (
         <img src={StarFill} alt="Gemerkt" height="15px" width="15px" />
       ) : (
         <img src={Star} alt="Merken" height="15px" width="15px" />
