@@ -371,11 +371,14 @@ export default function App() {
     const offer = offers[index]
     setOffers([
       ...offers.slice(0, index),
-      { ...offer, isBookmarked: !offer.isBookmarked },
+      {
+        ...offer,
+        isBookmarked: firebase.firestore.FieldValue.arrayUnion(user && user.uid)
+      },
       ...offers.slice(index + 1)
     ])
 
-    /*  db.collection('Offers')
+    db.collection('Offers')
       .where('id', '==', id)
       .get()
       .then(function(querySnapshot) {
@@ -383,11 +386,13 @@ export default function App() {
           db.collection('Offers')
             .doc(doc.id)
             .update({
-              isBookmarked: [offer.isBookmarked, user && user.uid]
+              isBookmarked: firebase.firestore.FieldValue.arrayUnion(
+                user && user.uid
+              )
             })
-          console.log(offer.isBookmarked)
+          console.log(doc.id.isBookmarked)
         })
-      }) */
+      })
   }
 }
 
