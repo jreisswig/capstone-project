@@ -1,11 +1,11 @@
-//// import Utils
+//// import utils
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
 import { logout } from './services/firebase'
 
-//// import picture
+//// import pictures
 import Wappen from './images/WappenSeestermuehe.svg'
 
 //// import components
@@ -54,6 +54,10 @@ export default function ProfileDetails({
         </Tab>
       </Tablist>
       <ProfileInfos>
+        <Form>
+          {' '}
+          <input type="image" name="image" id="image" alt="" />
+        </Form>
         <ProfileImage>
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </ProfileImage>
@@ -193,4 +197,7 @@ const MyPostsContainer = styled.div`
 const Headline3 = styled.h3`
   font-weight: unset;
   font-size: 1rem;
+`
+const Form = styled.form`
+  height: 20px;
 `
