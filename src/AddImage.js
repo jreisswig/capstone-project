@@ -69,71 +69,61 @@ export default function AddImage() {
       }
     )
   }
-
-  /* let fileInput = React.createRef()
-  const user = firebase.auth().currentUser
-
-  function upload(event) {
-    const formData = new FormData()
-    const file = event.target.files[0]
-    const storageRef = firebase
-      .storage()
-      .ref(user + '/profilePicture/' + file.name)
-    storageRef.put(file)
-    user
-      .updateProfile({
-        photoURL: formData.append('file', file)
-      })
-      .then(function() {
-        // Update successful.
-      })
-      .catch(function(error) {
-        // An error happened.
-      })
-  }
-
-  function handleClick() {
-    fileInput.current.click()
-  } */
-
   return (
     <Form onSubmit={handleFireBaseUpload}>
-      <label htmlFor="file-input">
-        <input
-          type="file"
-          name="file"
-          id="file-input"
-          onChange={handleImageAsFile}
-          style={{ display: 'none' }}
-        />
-        <BtnCamera
-          src={camera}
-          alt=""
-          width="25px"
-          height="25px"
-          /* onClick={handleFireBaseUpload} */
-        />
-      </label>
-      <button
+      {imageAsFile === '' ? (
+        <label htmlFor="file-input">
+          <input
+            type="file"
+            name="file"
+            id="file-input"
+            onChange={handleImageAsFile}
+            style={{ display: 'none' }}
+          />
+          <BtnCamera
+            src={camera}
+            alt=""
+            width="30px"
+            height="30px"
+            /* onClick={handleFireBaseUpload} */
+          />
+        </label>
+      ) : (
+        <Add>
+          ein Bild ausgewählt
+          <Button
 
-      /* onClick={handleFireBaseUpload} */
-      ></button>
+          /* onClick={handleFireBaseUpload} */
+          >
+            hinzufügen
+          </Button>
+        </Add>
+      )}
     </Form>
   )
 }
 
 const Form = styled.form`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
-  border: 2px solid #7aaca2;
-  height: 50px;
-  width: 50px;
+  height: 55px;
+  width: 70px;
 `
-
+const Button = styled.button`
+  background: #7aaca2;
+  color: white;
+  border: none;
+  border-radius: 2px;
+  margin-top: 6px;
+`
 const BtnCamera = styled.img`
   border: 0;
   cursor: default;
   z-index: 2;
+`
+const Add = styled.div`
+  margin-left: 17px;
+  width: 70px;
 `

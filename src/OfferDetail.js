@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Bookmark from './Bookmark'
-
+import { user } from './services/constants'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
 export default function OfferDetail({
   offer,
   description,
@@ -11,6 +13,7 @@ export default function OfferDetail({
   isBookmarked,
   toggleBookmarked
 }) {
+  const user = firebase.auth().currentUser
   return (
     <OfferWrapper>
       <OfferSearch>ICH BIETE</OfferSearch>
@@ -22,6 +25,9 @@ export default function OfferDetail({
 
       <OfferName>{name}</OfferName>
       <ContactWrapper>
+        {user && user.photoURL != null && (
+          <Image src={user.photoURL} alt="profilbild" />
+        )}
         <OfferPhone href="tel: {phonenumber}"> {phonenumber} </OfferPhone>
         <p>•</p>
         <OfferMail href="mailto:{email}">{email}</OfferMail>
@@ -71,4 +77,9 @@ const Line = styled.hr`
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
+`
+const Image = styled.img`
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
 `
