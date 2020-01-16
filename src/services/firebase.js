@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC1DS8tlqAeLKB3Uj9fakcvMUwhalWV2oo',
@@ -16,24 +17,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 
 export const db = firebase.firestore()
-//export const user = firebase.auth().currentUser
+
+export const storage = firebase.storage()
 
 // Database
 export const docRef = db.collection('Offers').doc('IHLUCy8hwRiL7bm9Tqn6')
-
-/* docRef
-  .get()
-  .then(function(doc) {
-    if (doc.exists) {
-      console.log('Document data:', doc.data())
-    } else {
-      // doc.data() will be undefined in this case
-      console.log('No such document!')
-    }
-  })
-  .catch(function(error) {
-    console.log('Error getting document:', error)
-  }) */
 
 export default function handleSignIn() {
   const email = document.getElementById('loginuseremail').value
