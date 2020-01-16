@@ -12,6 +12,7 @@ import Wappen from './images/WappenSeestermuehe.svg'
 import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
 import MyPost from './MyPost'
+import AddImage from './AddImage'
 
 export default function ProfileDetails({
   offers,
@@ -21,6 +22,7 @@ export default function ProfileDetails({
   deletePost
 }) {
   const user = firebase.auth().currentUser
+
   const [isClicked, setIsClicked] = useState('')
 
   const creationDate = new Date(user.metadata.creationTime)
@@ -28,6 +30,16 @@ export default function ProfileDetails({
   const month = creationDate.getMonth() + 1
   const year = creationDate.getFullYear()
   const creationTime = day + '.' + month + '.' + year
+
+  if (user != null) {
+    user.providerData.forEach(function(profile) {
+      console.log('Sign-in provider: ' + profile.providerId)
+      console.log('  Provider-specific UID: ' + profile.uid)
+      console.log('  Name: ' + profile.displayName)
+      console.log('  Email: ' + profile.email)
+      console.log('  Photo URL: ' + profile.photoURL)
+    })
+  }
 
   return (
     <ProfilDetailsContainer>
@@ -54,12 +66,13 @@ export default function ProfileDetails({
         </Tab>
       </Tablist>
       <ProfileInfos>
-        <Form>
-          {' '}
-          <input type="image" name="image" id="image" alt="" />
-        </Form>
         <ProfileImage>
-          <img src={Wappen} alt="Wappen" height="50px" width="50px" />
+          {user && user.photoURL != null ? (
+            <Image src={user.photoURL} alt="profilepicture" />
+          ) : (
+            <AddImage />
+          )}
+          {/* <img src={Wappen} alt="Wappen" height="50px" width="50px" /> */}
         </ProfileImage>
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
@@ -198,6 +211,8 @@ const Headline3 = styled.h3`
   font-weight: unset;
   font-size: 1rem;
 `
-const Form = styled.form`
-  height: 20px;
+const Image = styled.img`
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
 `
