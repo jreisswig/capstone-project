@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import Bookmark from './Bookmark'
 import { user } from './services/constants'
 import * as firebase from 'firebase/app'
+import * as admin from 'firebase-admin'
 import 'firebase/auth'
 export default function OfferDetail({
   offer,
@@ -11,9 +12,20 @@ export default function OfferDetail({
   phonenumber,
   email,
   isBookmarked,
+  userid,
   toggleBookmarked
 }) {
-  const user = firebase.auth().currentUser
+  admin
+    .auth()
+    .getUser(userid)
+    .then(function(userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log('Successfully fetched user data:', userRecord.toJSON())
+    })
+    .catch(function(error) {
+      console.log('Error fetching user data:', error)
+    })
+
   return (
     <OfferWrapper>
       <OfferSearch>ICH BIETE</OfferSearch>
@@ -25,9 +37,8 @@ export default function OfferDetail({
 
       <OfferName>{name}</OfferName>
       <ContactWrapper>
-        {user && user.photoURL != null && (
-          <Image src={user.photoURL} alt="profilbild" />
-        )}
+        <Image src={''} alt="profilbild" />
+
         <OfferPhone href="tel: {phonenumber}"> {phonenumber} </OfferPhone>
         <p>•</p>
         <OfferMail href="mailto:{email}">{email}</OfferMail>

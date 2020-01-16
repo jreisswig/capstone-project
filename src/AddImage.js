@@ -5,8 +5,9 @@ import styled from 'styled-components/macro'
 import camera from './images/camera.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
+import { db } from './services/firebase'
 
-export default function AddImage() {
+export default function AddImage(handleClick) {
   const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
   const [imageAsUrl, setImageAsUrl] = useState(allInputs)
@@ -64,6 +65,21 @@ export default function AddImage() {
               })
               .catch(function(error) {
                 // An error happened.
+              })
+            db.collection('users')
+              .where('uid', '==', user.uid)
+              .get()
+              .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                  db.collection('users')
+                    .doc(doc.id)
+                    .update({
+                      photoURL: fireBaseUrl
+                    })
+                    .then(function() {
+                      console.log('Document successfully updated!')
+                    })
+                })
               })
           })
       }

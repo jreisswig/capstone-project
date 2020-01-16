@@ -86,6 +86,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           email={offer.email}
           isBookmarked={offer.isBookmarked}
           id={offer.id}
+          userid={offer.userid}
           toggleBookmarked={() => toggleBookmarked(offer.id)}
         />
       </OfferContent>
