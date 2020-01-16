@@ -1,6 +1,6 @@
 # Welcome to HalloDorf
 
-![HalloDorf](./src/images/johanna_reisswig_hallodorf.png 'HalloDorf')
+![HalloDorf](./src/images/johanna_reisswig_hallodorf.png = 186x333 'HalloDorf')
 
 ## About this app
 
