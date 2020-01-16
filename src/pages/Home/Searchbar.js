@@ -1,5 +1,5 @@
 import React from 'react'
-import Searchgreen from './images/Searchgreen.svg'
+import Searchgreen from '../../images/Searchgreen.svg'
 import styled from 'styled-components/macro'
 
 export default function Searchbar({ onInput, onSubmit }) {

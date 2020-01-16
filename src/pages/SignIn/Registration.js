@@ -1,16 +1,9 @@
-import React /* , { useState } */ from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
 import 'firebase/app'
 import 'firebase/auth'
 
-export default function Registration({ handleAddUser, handleSignUp }) {
-  /* const [addUser, setAddUser] = useState({
-    name: '',
-    phonenumber: '',
-    email: '',
-    password: ''
-  })
- */
+export default function Registration({ handleSignUp }) {
   return (
     <NewProfileContainer>
       <Headline2>Lege ein neues Profil an</Headline2>
@@ -20,12 +13,6 @@ export default function Registration({ handleAddUser, handleSignUp }) {
           type="text"
           name="name"
           id="username"
-          /* onInput={event =>
-            setAddUser({
-              ...addUser,
-              name: event.target.value
-            })
-          } */
           required
           placeholder="Angezeigter Name *"
         ></Input>
@@ -36,12 +23,6 @@ export default function Registration({ handleAddUser, handleSignUp }) {
             name="email"
             id="useremail"
             placeholder="Email *"
-            /*  onInput={event =>
-              setAddUser({
-                ...addUser,
-                email: event.target.value
-              })
-            } */
           ></ContactInput>
           <Label htmlFor="phonenumber"></Label>
           <ContactInput
@@ -49,12 +30,6 @@ export default function Registration({ handleAddUser, handleSignUp }) {
             name="phonenumber"
             id="userphonenumber"
             placeholder="Telefonnummer"
-            /*  onInput={event =>
-              setAddUser({
-                ...addUser,
-                phonenumber: event.target.value
-              })
-            } */
           ></ContactInput>
         </Flex>
         <Label htmlFor="password"></Label>
@@ -63,12 +38,6 @@ export default function Registration({ handleAddUser, handleSignUp }) {
           name="ppassword"
           id="userpassword"
           placeholder="Passwort *"
-          /* onInput={event =>
-            setAddUser({
-              ...addUser,
-              password: event.target.value
-            })
-          } */
         ></ContactInput>
         <legend>Felder mit * sind erforderlich</legend>
 
@@ -90,13 +59,6 @@ export default function Registration({ handleAddUser, handleSignUp }) {
     const name = document.getElementById('username').value
     handleSignUp(name)
   }
-  /* function handleSubmit(event) {
-    event.preventDefault()
-    event.target[0].focus()
-    event.target.reset()
-    handleAddUser(addUser)
-    handleState()
-  } */
 }
 
 const NewProfileContainer = styled.div`

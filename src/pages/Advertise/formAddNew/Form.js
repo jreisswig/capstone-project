@@ -1,20 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import CategorieForm from './CategorieForm'
-import RadioOff from '../images/radio-button-off.svg'
-import RadioOn from '../images/radio-button-on-fill.svg'
+import RadioOff from '../../../images/radio-button-off.svg'
+import RadioOn from '../../../images/radio-button-on-fill.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import dayjs from 'dayjs'
 import de from 'dayjs/locale/de'
 
-export default function Form({
-  handleAddPost,
-  handleAddOffer,
-  newPostDate,
-  newOfferDate
-}) {
+export default function Form({ handleAddPost, handleAddOffer }) {
   const user = firebase.auth().currentUser
   const [addPost, setAddPost] = useState({
     title: '',
@@ -42,17 +37,6 @@ export default function Form({
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
-
-  function getDate1() {
-    const actualDate = new Date()
-    const day = actualDate.getDate()
-    const month = actualDate.getMonth() + 1
-    const year = actualDate.getFullYear()
-    const hour = actualDate.getHours()
-    const minute = actualDate.getMinutes()
-    const date = day + '.' + month + '.' + year + ' ' + hour + ':' + minute
-    return date
-  }
 
   function getDate() {
     return dayjs(new Date())

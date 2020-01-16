@@ -1,16 +1,19 @@
+// import utils
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import OfferDetail from './OfferDetail'
-import HausUndGarten from './images/HausUndGarten.svg'
-import Home from './images/Home.svg'
-import Boot from './images/Boot.svg'
-import Family from './images/FamilyBig.svg'
-import Freizeit from './images/Freizeit icon.svg'
-import Elektro from './images/ElektroIcon.svg'
-import Werkzeug from './images/Werkzeug2.svg'
-import calendar from './images/calendargrey.svg'
-
 import { useLocation } from 'react-router-dom'
+
+// import components
+import OfferDetail from './OfferDetail'
+
+// import images
+import Home from '../../images/Home.svg'
+import Boot from '../../images/Boot.svg'
+import Family from '../../images/FamilyBig.svg'
+import Freizeit from '../../images/Freizeit icon.svg'
+import Elektro from '../../images/ElektroIcon.svg'
+import Werkzeug from '../../images/Werkzeug2.svg'
+import calendar from '../../images/calendargrey.svg'
 
 export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
   const [isCategory, setIsCategory] = useState('')
@@ -86,6 +89,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
           email={offer.email}
           isBookmarked={offer.isBookmarked}
           id={offer.id}
+          userid={offer.userid}
           toggleBookmarked={() => toggleBookmarked(offer.id)}
         />
       </OfferContent>

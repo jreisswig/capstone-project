@@ -3,16 +3,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
-import { logout } from './services/firebase'
-
-//// import pictures
-import Wappen from './images/WappenSeestermuehe.svg'
+import { logout } from '../../services/firebase'
 
 //// import components
 import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
 import MyPost from './MyPost'
-import AddImage from './AddImage'
+import AddImage from '../../components/AddImage'
 
 export default function ProfileDetails({
   offers,
@@ -24,6 +21,7 @@ export default function ProfileDetails({
   const user = firebase.auth().currentUser
 
   const [isClicked, setIsClicked] = useState('')
+  const [changeIsClicked, setChangeIsClicked] = useState(false)
 
   const creationDate = new Date(user.metadata.creationTime)
   const day = creationDate.getDate()
@@ -67,12 +65,22 @@ export default function ProfileDetails({
       </Tablist>
       <ProfileInfos>
         <ProfileImage>
-          {user && user.photoURL != null ? (
-            <Image src={user.photoURL} alt="profilepicture" />
+          {changeIsClicked === true ? (
+            <AddImage />
+          ) : user && user.photoURL != null ? (
+            <div>
+              <Image src={user.photoURL} alt="profilbild" />
+              <p
+                onClick={() => {
+                  setChangeIsClicked(true)
+                }}
+              >
+                ändern
+              </p>
+            </div>
           ) : (
             <AddImage />
           )}
-          {/* <img src={Wappen} alt="Wappen" height="50px" width="50px" /> */}
         </ProfileImage>
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
@@ -173,9 +181,16 @@ const Logout = styled.div`
 const ProfileInfos = styled.div`
   display: flex;
   height: 20%;
+
+  justify-content: space-between;
 `
 const ProfileImage = styled.div`
   margin: 10px 15px 0 0;
+  width: 100px;
+  p {
+    margin: 0 0 0 6px;
+    cursor: default;
+  }
 `
 const Name = styled.div`
   font-weight: bold;

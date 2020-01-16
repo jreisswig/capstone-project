@@ -1,23 +1,9 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import CategorieForm from './formAddNew/CategorieForm'
+import CategorieForm from '../../formAddNew/CategorieForm'
 
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
-import Offer from './Offer'
-
-export default function FormEditOffer({
-  handleAddPost,
-  handleAddOffer,
-  newPostDate,
-  newOfferDate,
-  offers,
-  updateOffer
-}) {
-  const user = firebase.auth().currentUser
-
+export default function FormEditOffer({ offers, updateOffer }) {
   const { pathname } = useLocation()
   const id = pathname.substring(19)
   const index = offers.findIndex(el => el.id === id)
@@ -35,9 +21,7 @@ export default function FormEditOffer({
     userid: offer.userid
   })
   const [submitted, setSubmitted] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('')
 
-  console.log(updatedOffer)
   return (
     <EditWrapper>
       <Headline3>Hier kannst du dein Angebot anpassen</Headline3>

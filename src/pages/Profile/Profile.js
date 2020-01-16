@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react'
-
-import ProfileDetails from './ProfileDetails'
-import SignIn from './SignIn'
+import React from 'react'
 import styled from 'styled-components/macro'
-import * as firebase from 'firebase/app'
 import 'firebase/auth'
 
+// import pages
+import ProfileDetails from './ProfileDetails'
+import SignIn from '../SignIn/SignIn'
+
 export default function Profile({
-  handleAddUser,
-  handleSignUp,
-  initApp,
   offers,
   posts,
   toggleBookmarked,

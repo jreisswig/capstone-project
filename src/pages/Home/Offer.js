@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import Bookmark from './Bookmark'
+import Bookmark from '../../components/Bookmark'
 
 export default function Offer({
   title,

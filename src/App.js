@@ -12,22 +12,20 @@ import 'firebase/auth'
 import { db, signUp } from './services/firebase'
 
 //// import Components
-import Header from './Header'
-import Nav from './Nav'
-import Grid from './Grid'
-import Registration from './Registration'
-import Offers from './offers.json'
-import Posts from './posts.json'
+import Header from './components/Header'
+import Nav from './components/Nav'
+import Grid from './utils/Grid'
+import Registration from './pages/SignIn/Registration'
 
 //// import Pages
-import NewPost from './NewPost'
-import Bulletinboard from './Bulletinboard'
-import Home from './Home'
-import OfferDetailPage from './OfferDetailPage'
-import Profile from './Profile'
-import FormEditOffer from './FormEditOffer'
-import FormEditPost from './FormEditPost'
-import SignIn from './SignIn'
+import NewPost from './pages/Advertise/NewPost'
+import Bulletinboard from './pages/Bulletinboard/Bulletinboard'
+import Home from './pages/Home/Home'
+import OfferDetailPage from './pages/OfferDetail/OfferDetailPage'
+import Profile from './pages/Profile/Profile'
+import FormEditOffer from './pages/Edit/FormEditOffer'
+import FormEditPost from './pages/Edit/FormEditPost'
+import SignIn from './pages/SignIn/SignIn'
 
 export default function App() {
   const user = firebase.auth().currentUser
@@ -37,30 +35,6 @@ export default function App() {
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-
-  /*   useEffect(() => {
-    db.collection('Posts')
-      .get()
-      .then(querySnapshot => {
-        const data = querySnapshot.docs.map(doc => doc.data())
-        setPosts(data)
-        return data
-      })
-    // [END get_multiple_all]
-  }, []) */
-
-  /*  useEffect(() => {
-    db.collection('Posts')
-      .get()
-      .then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          
-          console.log(doc.data())
-        })
-      })
-    // [END get_multiple_all]
-  }, []) */
 
   useEffect(() => {
     getAllPosts()
@@ -85,7 +59,7 @@ export default function App() {
             title: doc.data().title
           })
         })
-        console.log(allposts)
+
         setPosts(allposts)
       })
   }
@@ -108,7 +82,7 @@ export default function App() {
             userid: doc.data().userid
           })
         })
-        console.log(alloffers)
+
         setOffers(alloffers)
       })
   }
@@ -125,9 +99,6 @@ export default function App() {
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
 
-  console.log(offers)
-  console.log(posts)
-
   const [logedinUser, setLogedinUser] = useState(null)
 
   useEffect(() => {
@@ -139,7 +110,6 @@ export default function App() {
       }
     })
   }, [])
-  console.log(logedinUser)
 
   return (
     <Appcontainer>

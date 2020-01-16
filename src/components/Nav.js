@@ -1,15 +1,17 @@
+// import utils
 import React from 'react'
 import styled from 'styled-components/macro'
 import { useLocation, Link } from 'react-router-dom'
 
-import Homeicon from './images/Homeicon22.svg'
-import Homeiconactive from './images/Homeicon22 active.svg'
-import Posticon from './images/Posticon22.svg'
-import Posticonactive from './images/Posticon22active.svg'
-import NewPostIcon from './images/NewPostIcon.svg'
-import NewPostIconactive from './images/NewPostIconactive.svg'
-import ProfilIcon from './images/ProfilIcon.svg'
-import ProfilIconactive from './images/ProfilIconactive.svg'
+// import images
+import Homeicon from '../images/Homeicon22.svg'
+import Homeiconactive from '../images/Homeicon22 active.svg'
+import Posticon from '../images/Posticon22.svg'
+import Posticonactive from '../images/Posticon22active.svg'
+import NewPostIcon from '../images/NewPostIcon.svg'
+import NewPostIconactive from '../images/NewPostIconactive.svg'
+import ProfilIcon from '../images/ProfilIcon.svg'
+import ProfilIconactive from '../images/ProfilIconactive.svg'
 
 export default function Nav() {
   const { pathname } = useLocation()
