@@ -1,23 +1,9 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import CategorieForm from './formAddNew/CategorieForm'
+import CategorieForm from '../Advertise/formAddNew/CategorieForm'
 
-import * as firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
-import Post from './Post'
-
-export default function FormEditPost({
-  handleAddPost,
-  handleAddOffer,
-  newPostDate,
-  newOfferDate,
-  posts,
-  updatePost
-}) {
-  const user = firebase.auth().currentUser
-
+export default function FormEditPost({ posts, updatePost }) {
   const { pathname } = useLocation()
   const id = pathname.substring(19)
   const index = posts.findIndex(el => el.id === id)
@@ -35,9 +21,7 @@ export default function FormEditPost({
     userid: post.userid
   })
   const [submitted, setSubmitted] = useState(false)
-  const [selectedOption, setSelectedOption] = useState('')
 
-  console.log(updatedPost)
   return (
     <EditWrapper>
       <Headline3>Hier kannst du dein Gesuch anpassen</Headline3>

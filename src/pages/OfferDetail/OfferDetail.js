@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Bookmark from './Bookmark'
-import { user } from './services/constants'
-import * as firebase from 'firebase/app'
+import Bookmark from '../../components/Bookmark'
+
 /* import * as admin from 'firebase-admin' */
 import 'firebase/auth'
 export default function OfferDetail({
-  offer,
   description,
   name,
   phonenumber,

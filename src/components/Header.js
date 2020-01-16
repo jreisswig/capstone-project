@@ -1,9 +1,12 @@
+// import utils
 import React, { useState, useEffect } from 'react'
-import ArrowBack from './images/arrow_back_ios.svg'
 import { useLocation, Link } from 'react-router-dom'
+
+// import images
+import ArrowBack from '../images/arrow_back_ios.svg'
 import styled from 'styled-components/macro'
 
-import HalloDorf from './images/HalloDorf Logo.png'
+import HalloDorf from '../images/HalloDorf Logo.png'
 
 export default function Header() {
   let pagetitle

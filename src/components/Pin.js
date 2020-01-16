@@ -1,5 +1,5 @@
 import React from 'react'
-import pin from './images/Pin.png'
+import pin from '../images/Pin.png'
 import styled from 'styled-components/macro'
 
 export default function Pin() {

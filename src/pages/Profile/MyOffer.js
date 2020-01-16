@@ -1,45 +1,36 @@
+//// import utils
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 //// import images
-import Trash from './images/trash.svg'
-import Edit from './images/edit.svg'
+import Trash from '../../images/trash.svg'
+import Edit from '../../images/edit.svg'
+import Star from '../../images/star.svg'
 
-export default function MyPost({
+export default function MyOffer({
   title,
   description,
-  name,
-  phonenumber,
-  email,
-  date,
   id,
-  deletePost
+  date,
+  deleteOffer,
+  isBookmarked
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
+
   return (
-    <PostWrapper>
-      <FlexContainer>
-        <PostSearch>ICH SUCHE</PostSearch>
-        <Date datetime={date}>{date}</Date>
-      </FlexContainer>
-
-      <PostTitle>{title}</PostTitle>
-
-      <PostDescription>{description}</PostDescription>
-
-      <Line />
-
-      <PostName>{name}</PostName>
-      <ContactWrapper>
-        <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
-        <p>•</p>
-        <PostMail href="mailto:{email}">{email}</PostMail>
-      </ContactWrapper>
+    <OfferTags>
+      <Link to={`/detailangebot/${id}`} key={id}>
+        <FlexContainer>
+          <Title>{title}</Title>
+          <Date datetime={date}>{date}</Date>
+        </FlexContainer>
+        <Content>{description}</Content>
+      </Link>
       <Line />
       <Flex>
         <EditWrapper>
-          <Link to={`/gesuchebearbeiten/${id}`} key={id}>
+          <Link to={`/angebotbearbeiten/${id}`} key={id}>
             <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
           </Link>
           <Image
@@ -50,21 +41,26 @@ export default function MyPost({
             onClick={() => setDeleteIsClicked(true)}
           />
         </EditWrapper>
+        {
+          <StarWrapper>
+            <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
+            <div>{isBookmarked.length}</div>
+          </StarWrapper>
+        }
       </Flex>
       {DeleteIsClicked && (
         <PopUp>
-          <Text>Bist du sicher, dass du dieses Gesuch löschen möchtest?</Text>
+          <Text>Bist du sicher, dass du dieses Angebot löschen möchtest?</Text>
           <FlexButton>
             <Button onClick={() => handleDeleteClick()}>Löschen</Button>
             <Button onClick={() => goBack()}>Abbrechen</Button>
           </FlexButton>
         </PopUp>
       )}
-    </PostWrapper>
+    </OfferTags>
   )
-
   function handleDeleteClick() {
-    deletePost()
+    deleteOffer()
     goBack()
   }
 
@@ -73,12 +69,22 @@ export default function MyPost({
   }
 }
 
-const PostWrapper = styled.section`
-  background-color: #f3f7f6;
-  border-radius: 7px;
-  padding: 3px 15px;
-  box-shadow: 0 5px 5px #f0efef;
+const OfferTags = styled.div`
+  background: #f3f7f6;
+  border-radius: 3px;
+  display: inline;
+  padding: 3px 9px;
+  margin: 5px 0;
+  width: 100%;
   cursor: default;
+  a {
+    text-decoration: none;
+    cursor: default;
+    color: #7d7b7b;
+  }
+`
+const Title = styled.h4`
+  margin: 4px 0;
 `
 const FlexContainer = styled.div`
   display: flex;
@@ -89,45 +95,11 @@ const Date = styled.div`
   font-size: 0.9rem;
   margin-top: 4px;
 `
-const PostTitle = styled.h4`
-  margin-top: 7px;
-  margin-bottom: 4px;
-`
-const PostDescription = styled.p`
-  position: relative;
-`
+const Content = styled.div``
 
-const PostName = styled.p`
-  color: #424242;
-  margin-top: 3px;
-  margin-bottom: 0px;
-`
-const PostPhone = styled.a`
-  padding-right: 7px;
-  text-decoration: none;
-  color: #7d7b7b;
-`
-
-const PostMail = styled.a`
-  padding-left: 7px;
-  text-decoration: none;
-  color: #7d7b7b;
-`
-const PostSearch = styled.p`
-  font-weight: lighter;
-  margin-top: 6px;
-  margin-bottom: 6px;
-`
-const ContactWrapper = styled.section`
-  display: flex;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  p {
-    margin: 0;
-  }
-`
 const Line = styled.hr`
-  border: 0;
+  
+border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
@@ -143,7 +115,9 @@ const Image = styled.img`
 const ImageStar = styled.img`
   margin-right: 8px;
 `
-
+const StarWrapper = styled.div`
+  display: flex;
+`
 const PopUp = styled.div`
   position: absolute;
   background: white;

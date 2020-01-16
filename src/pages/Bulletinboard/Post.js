@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Pin from './Pin.js'
-import Date from './Date'
-/* import ArrowShow from './images/ArrowShow.svg'
-import ArrowHide from './images/ArrowHide.svg' */
+import Pin from '../../components/Pin'
+import Date from '../../components/Date'
 import PropTypes from 'prop-types'
 
 export default function Post({
@@ -24,10 +22,7 @@ export default function Post({
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
-      <Icon>
-        {isHidden && 
-          <Button>Kontakt</Button>}
-      </Icon>
+      <Icon>{isHidden && <Button>Kontakt</Button>}</Icon>
       <Line />
       {!isHidden && (
         <>

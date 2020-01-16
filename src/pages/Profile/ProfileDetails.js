@@ -3,16 +3,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
-import { logout } from './services/firebase'
-
-//// import pictures
-import Wappen from './images/WappenSeestermuehe.svg'
+import { logout } from '../../services/firebase'
 
 //// import components
 import MyBookmarkedOffer from './MyBookmarkedOffer'
 import MyOffer from './MyOffer'
 import MyPost from './MyPost'
-import AddImage from './AddImage'
+import AddImage from '../../components/AddImage'
 
 export default function ProfileDetails({
   offers,

@@ -1,20 +1,15 @@
-//// import utils
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-//// import images
-import Trash from './images/trash.svg'
-import Edit from './images/edit.svg'
-import Star from './images/star.svg'
+import Trash from '../../images/trash.svg'
 
-export default function MyOffer({
+export default function MyBookmarkedOffer({
   title,
   description,
+  toggleBookmarked,
   id,
-  date,
-  deleteOffer,
-  isBookmarked
+  date
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
 
@@ -28,39 +23,29 @@ export default function MyOffer({
         <Content>{description}</Content>
       </Link>
       <Line />
+
       <Flex>
-        <EditWrapper>
-          <Link to={`/angebotbearbeiten/${id}`} key={id}>
-            <Image src={Edit} alt="Bearbeiten" height="15px" width="15px" />
-          </Link>
-          <Image
-            src={Trash}
-            alt="Löschen"
-            height="15px"
-            width="15px"
-            onClick={() => setDeleteIsClicked(true)}
-          />
+        <EditWrapper onClick={() => setDeleteIsClicked(true)}>
+          <Image src={Trash} alt="Löschen" height="15px" width="15px" />
+          Von Merkliste enfernen
         </EditWrapper>
-        {
-          <StarWrapper>
-            <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
-            <div>{isBookmarked.length}</div>
-          </StarWrapper>
-        }
+        {DeleteIsClicked && (
+          <PopUp>
+            <Text>
+              Bist du sicher, dass du diese Anzeige von deiner Merkliste
+              entfernen möchtest?
+            </Text>
+            <FlexButton>
+              <Button onClick={handleDeleteClick}>Löschen</Button>
+              <Button onClick={() => goBack()}>Abbrechen</Button>
+            </FlexButton>
+          </PopUp>
+        )}
       </Flex>
-      {DeleteIsClicked && (
-        <PopUp>
-          <Text>Bist du sicher, dass du dieses Angebot löschen möchtest?</Text>
-          <FlexButton>
-            <Button onClick={() => handleDeleteClick()}>Löschen</Button>
-            <Button onClick={() => goBack()}>Abbrechen</Button>
-          </FlexButton>
-        </PopUp>
-      )}
     </OfferTags>
   )
   function handleDeleteClick() {
-    deleteOffer()
+    toggleBookmarked()
     goBack()
   }
 
@@ -97,8 +82,7 @@ const Date = styled.div`
 `
 const Content = styled.div``
 
-const Line = styled.hr`
-  
+const Line = styled.hr`  
 border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
@@ -108,15 +92,10 @@ const Flex = styled.div`
   display: flex;
   justify-content: space-between;
 `
+
 const EditWrapper = styled.div``
 const Image = styled.img`
   margin-right: 12px;
-`
-const ImageStar = styled.img`
-  margin-right: 8px;
-`
-const StarWrapper = styled.div`
-  display: flex;
 `
 const PopUp = styled.div`
   position: absolute;
@@ -127,7 +106,7 @@ const PopUp = styled.div`
   justify-content: center;
   align-items: center;
   height: 19%;
-  width: 100%;
+  width: 90%
   border: 2px solid #f3f7f6;
   border-radius: 20px;
   padding: 10px;

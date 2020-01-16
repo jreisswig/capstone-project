@@ -1,7 +1,7 @@
 import React from 'react'
-import Post from './Post'
 import styled from 'styled-components/macro'
-import { db } from './services/firebase'
+import Post from './Post'
+
 export default function Bulletinboard({ posts }) {
   return (
     <PostContainer>

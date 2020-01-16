@@ -15,6 +15,7 @@ const firebaseConfig = {
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
+firebase.auth().languageCode = 'de'
 
 export const db = firebase.firestore()
 
