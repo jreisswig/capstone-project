@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import Bookmark from './Bookmark'
 import { user } from './services/constants'
 import * as firebase from 'firebase/app'
-import * as admin from 'firebase-admin'
+/* import * as admin from 'firebase-admin' */
 import 'firebase/auth'
 export default function OfferDetail({
   offer,
@@ -15,7 +15,7 @@ export default function OfferDetail({
   userid,
   toggleBookmarked
 }) {
-  admin
+  /* admin
     .auth()
     .getUser(userid)
     .then(function(userRecord) {
@@ -24,7 +24,7 @@ export default function OfferDetail({
     })
     .catch(function(error) {
       console.log('Error fetching user data:', error)
-    })
+    }) */
 
   return (
     <OfferWrapper>
