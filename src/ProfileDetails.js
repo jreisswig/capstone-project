@@ -92,7 +92,7 @@ export default function ProfileDetails({
 
   function renderBookmarked(offers) {
     return offers
-      .filter(offer => offer.isBookmarked === true)
+      .filter(offer => offer.isBookmarked.includes(user.uid))
       .map((offer, index) => (
         <MyBookmarkedOffer
           {...offer}

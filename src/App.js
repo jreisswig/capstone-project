@@ -367,27 +367,35 @@ export default function App() {
   }
 
   function toggleBookmarked(id) {
-    const index = offers.findIndex(el => el.id === id)
-    const offer = offers[index]
-    setOffers([
-      ...offers.slice(0, index),
-      { ...offer, isBookmarked: !offer.isBookmarked },
-      ...offers.slice(index + 1)
-    ])
-
-    /*  db.collection('Offers')
+    db.collection('Offers')
       .where('id', '==', id)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
           db.collection('Offers')
             .doc(doc.id)
+
             .update({
-              isBookmarked: [offer.isBookmarked, user && user.uid]
+              isBookmarked: doc.data().isBookmarked.includes(user && user.uid)
+                ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
+                : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
             })
-          console.log(offer.isBookmarked)
+          console.log(doc.data().isBookmarked)
+          getAllOffers()
+          /* const index = offers.findIndex(el => el.id === id)
+          const offer = offers[index]
+          setOffers([
+            ...offers.slice(0, index),
+            {
+              ...offer,
+              isBookmarked: offer.isBookmarked.includes(user && user.uid)
+                ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
+                : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
+            },
+            ...offers.slice(index + 1)
+          ]) */
         })
-      }) */
+      })
   }
 }
 

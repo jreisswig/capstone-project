@@ -37,6 +37,7 @@ export default function Home({ offers, toggleBookmarked, logedinUser }) {
         </Paragraph>
       </Welcome>
       <Searchbar
+        onSubmit={handleSubmit}
         onInput={event => setUserInput(event.target.value)}
         style={{ position: 'sticky', top: '50' }}
       />
@@ -70,7 +71,9 @@ export default function Home({ offers, toggleBookmarked, logedinUser }) {
       <Line />
     </HomeContainer>
   )
-
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
   function toggleCategory(category) {
     setSelectedCategories({
       ...selectedCategories,

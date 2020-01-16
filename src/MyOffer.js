@@ -8,7 +8,14 @@ import Trash from './images/trash.svg'
 import Edit from './images/edit.svg'
 import Star from './images/star.svg'
 
-export default function MyOffer({ title, description, id, date, deleteOffer }) {
+export default function MyOffer({
+  title,
+  description,
+  id,
+  date,
+  deleteOffer,
+  isBookmarked
+}) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
 
   return (
@@ -34,10 +41,12 @@ export default function MyOffer({ title, description, id, date, deleteOffer }) {
             onClick={() => setDeleteIsClicked(true)}
           />
         </EditWrapper>
-        {/* <StarWrapper>
-          <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
-          <div>2</div>
-        </StarWrapper> */}
+        {
+          <StarWrapper>
+            <ImageStar src={Star} alt="Merken" height="15px" width="15px" />
+            <div>{isBookmarked.length}</div>
+          </StarWrapper>
+        }
       </Flex>
       {DeleteIsClicked && (
         <PopUp>

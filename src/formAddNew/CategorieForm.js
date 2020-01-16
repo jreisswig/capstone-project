@@ -102,7 +102,7 @@ export default function CategorieForm({ addCategory }) {
   )
   function handleClick(name) {
     addCategory(name)
-    setSelectedCategory(name || 'Haus und Garten')
+    setSelectedCategory(name)
   }
 }
 
