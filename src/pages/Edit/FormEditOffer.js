@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import CategorieForm from '../../formAddNew/CategorieForm'
+import CategorieForm from '../Advertise/formAddNew/CategorieForm'
 
 export default function FormEditOffer({ offers, updateOffer }) {
   const { pathname } = useLocation()
