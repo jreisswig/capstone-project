@@ -56,7 +56,8 @@ export default function App() {
             isBookmarked: doc.data().isBookmarked,
             name: doc.data().name,
             phonenumber: doc.data().phonenumber,
-            title: doc.data().title
+            title: doc.data().title,
+            userid: doc.data().userid
           })
         })
 

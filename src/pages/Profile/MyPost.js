@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import Moment from 'moment'
+import 'moment/locale/de'
 
 //// import images
 import Trash from '../../images/trash.svg'
@@ -17,11 +19,12 @@ export default function MyPost({
   deletePost
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
+  const localeDate = new Moment(date).format('L')
   return (
     <PostWrapper>
       <FlexContainer>
         <PostSearch>ICH SUCHE</PostSearch>
-        <Date datetime={date}>{date}</Date>
+        <Date datetime={localeDate}>{localeDate}</Date>
       </FlexContainer>
 
       <PostTitle>{title}</PostTitle>

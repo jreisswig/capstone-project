@@ -144,7 +144,7 @@ export default function ProfileDetails({
 
   function renderPersonalPosts(posts) {
     return posts
-      .filter(item => item.userid === user.uid)
+      .filter(post => post.userid === user.uid)
       .map((post, index) => (
         <MyPost {...post} key={index} deletePost={() => deletePost(post.id)} />
       ))
@@ -220,7 +220,7 @@ const RenderContainer = styled.section`
 const MyPostsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 20px;
 `
 const Headline3 = styled.h3`
   font-weight: unset;

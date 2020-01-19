@@ -8,6 +8,7 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import dayjs from 'dayjs'
 import de from 'dayjs/locale/de'
+import Moment from 'moment'
 
 export default function Form({ handleAddPost, handleAddOffer }) {
   const user = firebase.auth().currentUser
@@ -20,7 +21,7 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     category: 'Haus und Garten',
     date: '',
     id: '',
-    isBookmarked: false,
+    isBookmarked: [],
     userid: user && user.uid
   })
   const [addOffer, setAddOffer] = useState({
@@ -32,16 +33,19 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     category: 'Haus und Garten',
     date: '',
     id: '',
-    isBookmarked: false,
+    isBookmarked: [],
     userid: user && user.uid
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
-  function getDate() {
+  /*  function getDate1() {
     return dayjs(new Date())
       .locale('de-german', de)
-      .format('dd DD.MM.YY')
+      .format('DD.MM.YY, dd.')
+  } */
+  function getDate() {
+    return new Moment().format('YYYY-MM-DD')
   }
 
   return (
