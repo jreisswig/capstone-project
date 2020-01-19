@@ -1,4 +1,4 @@
-//// import Utils
+// import utils
 import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
@@ -11,10 +11,12 @@ import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import { db, signUp } from './services/firebase'
 
-//// import Components
-import Header from './components/Header'
-import Nav from './components/Nav'
+// import commons
+import Header from './commons/Header'
+import Nav from './commons/Nav'
 import Grid from './utils/Grid'
+
+// import components
 import Registration from './pages/SignIn/Registration'
 
 //// import Pages
@@ -29,64 +31,12 @@ import SignIn from './pages/SignIn/SignIn'
 
 export default function App() {
   const user = firebase.auth().currentUser
-
+  const [logedinUser, setLogedinUser] = useState(null)
   let savedPosts = JSON.parse(localStorage.savedPosts || null) || {}
   const [posts, setPosts] = useState(savedPosts)
 
   let savedOffers = JSON.parse(localStorage.savedOffers || null) || {}
   const [offers, setOffers] = useState(savedOffers)
-
-  useEffect(() => {
-    getAllPosts()
-    getAllOffers()
-  }, [])
-
-  function getAllPosts() {
-    db.collection('Posts')
-      .get()
-      .then(data => {
-        let allposts = []
-        data.forEach(doc => {
-          allposts.push({
-            category: doc.data().category,
-            date: doc.data().date,
-            description: doc.data().description,
-            email: doc.data().email,
-            id: doc.data().id,
-            isBookmarked: doc.data().isBookmarked,
-            name: doc.data().name,
-            phonenumber: doc.data().phonenumber,
-            title: doc.data().title,
-            userid: doc.data().userid
-          })
-        })
-
-        setPosts(allposts)
-      })
-  }
-  function getAllOffers() {
-    db.collection('Offers')
-      .get()
-      .then(data => {
-        let alloffers = []
-        data.forEach(doc => {
-          alloffers.push({
-            category: doc.data().category,
-            date: doc.data().date,
-            description: doc.data().description,
-            email: doc.data().email,
-            id: doc.data().id,
-            isBookmarked: doc.data().isBookmarked,
-            name: doc.data().name,
-            phonenumber: doc.data().phonenumber,
-            title: doc.data().title,
-            userid: doc.data().userid
-          })
-        })
-
-        setOffers(alloffers)
-      })
-  }
 
   useEffect(() => {
     let savedPosts = posts
@@ -100,8 +50,6 @@ export default function App() {
     localStorage.savedOffers = JSON.stringify(savedOffers)
   }, [offers])
 
-  const [logedinUser, setLogedinUser] = useState(null)
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -110,6 +58,11 @@ export default function App() {
         setLogedinUser(user)
       }
     })
+  }, [])
+
+  useEffect(() => {
+    getAllPosts()
+    getAllOffers()
   }, [])
 
   return (
@@ -195,6 +148,52 @@ export default function App() {
     </Appcontainer>
   )
 
+  function getAllPosts() {
+    db.collection('Posts')
+      .get()
+      .then(data => {
+        let allposts = []
+        data.forEach(doc => {
+          allposts.push({
+            category: doc.data().category,
+            date: doc.data().date,
+            description: doc.data().description,
+            email: doc.data().email,
+            id: doc.data().id,
+            isBookmarked: doc.data().isBookmarked,
+            name: doc.data().name,
+            phonenumber: doc.data().phonenumber,
+            title: doc.data().title,
+            userid: doc.data().userid
+          })
+        })
+        setPosts(allposts)
+      })
+  }
+
+  function getAllOffers() {
+    db.collection('Offers')
+      .get()
+      .then(data => {
+        let alloffers = []
+        data.forEach(doc => {
+          alloffers.push({
+            category: doc.data().category,
+            date: doc.data().date,
+            description: doc.data().description,
+            email: doc.data().email,
+            id: doc.data().id,
+            isBookmarked: doc.data().isBookmarked,
+            name: doc.data().name,
+            phonenumber: doc.data().phonenumber,
+            title: doc.data().title,
+            userid: doc.data().userid
+          })
+        })
+        setOffers(alloffers)
+      })
+  }
+
   function handleSignUp(name) {
     const email = document.getElementById('useremail').value
     const password = document.getElementById('userpassword').value
@@ -256,10 +255,12 @@ export default function App() {
         })
       })
   }
+
   function deleteOffer(id) {
     const index = offers.findIndex(el => el.id === id)
 
     setOffers([...offers.slice(0, index), ...offers.slice(index + 1)])
+
     db.collection('Offers')
       .where('id', '==', id)
       .get()
@@ -303,6 +304,7 @@ export default function App() {
     const index = posts.findIndex(el => el.id === id)
 
     setPosts([...posts.slice(0, index), ...posts.slice(index + 1)])
+
     db.collection('Posts')
       .where('id', '==', id)
       .get()

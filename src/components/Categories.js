@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 // import images
-import Boot from '../images/Boot.svg'
+import Boot from '../images/BootIcon.svg'
 import Home from '../images/Home.svg'
-import Family from '../images/Family_Icon.svg'
+import Family from '../images/FamilyBig.svg'
 import Freizeit from '../images/Freizeit icon.svg'
 import Elektro from '../images/Elektro2Icon.svg'
 import Werkzeug from '../images/Werkzeug2.svg'

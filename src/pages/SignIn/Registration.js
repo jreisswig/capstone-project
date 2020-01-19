@@ -6,7 +6,7 @@ import 'firebase/auth'
 export default function Registration({ handleSignUp }) {
   return (
     <NewProfileContainer>
-      <Headline2>Lege ein neues Profil an</Headline2>
+      <h2>Lege ein neues Profil an</h2>
       <StyledForm method="post" action="" id="" onSubmit={handleSubmit}>
         <Label htmlFor="name"></Label>
         <Input
@@ -70,18 +70,15 @@ const NewProfileContainer = styled.div`
   border-radius: 20px;
   margin-top: 38%;
 `
-
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;
   width: 90%;
   align-items: center;
 `
-
 const Label = styled.label`
   display: none;
 `
-const Headline2 = styled.h2``
 const Input = styled.input`
   background: #f3f7f6;
   border: none;
@@ -99,7 +96,6 @@ const ContactInput = styled.input`
   border-radius: 5px;
   color: #7d7b7b;
 `
-
 const Flex = styled.fieldset`
   display: flex;
   justify-content: space-between;
@@ -107,7 +103,6 @@ const Flex = styled.fieldset`
   padding: 0;
   margin: 0;
 `
-
 const StyledSubmit = styled.input`
   background: #7aaca2;
   border: none;
@@ -117,7 +112,6 @@ const StyledSubmit = styled.input`
   padding: 10px;
   font-size: 1rem;
 `
-
 const FlexBox = styled.div`
   display: flex;
 `

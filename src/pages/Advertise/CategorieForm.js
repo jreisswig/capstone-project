@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Boot from '../../../images/Boot.svg'
-import HausUndGarten from '../../../images/HausUndGarten.svg'
-import Family from '../../../images/FamilyBig.svg'
-import Freizeit from '../../../images/Freizeit icon.svg'
-import Elektro from '../../../images/Elektro2Icon.svg'
-import Werkzeug from '../../../images/Werkzeug2.svg'
+
+// import images
+import Boot from '../../images/BootIcon.svg'
+import HausUndGarten from '../../images/HausUndGarten.svg'
+import Family from '../../images/FamilyBig.svg'
+import Freizeit from '../../images/Freizeit icon.svg'
+import Elektro from '../../images/Elektro2Icon.svg'
+import Werkzeug from '../../images/Werkzeug2.svg'
 
 export default function CategorieForm({ addCategory }) {
   const [selectedCategory, setSelectedCategory] = useState('Haus & Garten')

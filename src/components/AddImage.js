@@ -11,11 +11,31 @@ import { db } from '../services/firebase'
 // import images
 import camera from '../images/camera.svg'
 
-export default function AddImage(handleClick) {
-  const allInputs = { imgUrl: '' }
+export default function AddImage() {
   const [imageAsFile, setImageAsFile] = useState('')
-  const [setImageAsUrl] = useState(allInputs)
   const user = firebase.auth().currentUser
+
+  return (
+    <Form onSubmit={handleFireBaseUpload}>
+      {imageAsFile === '' ? (
+        <label htmlFor="file-input">
+          <input
+            type="file"
+            name="file"
+            id="file-input"
+            onChange={handleImageAsFile}
+            style={{ display: 'none' }}
+          />
+          <BtnCamera src={camera} alt="" width="30px" height="30px" />
+        </label>
+      ) : (
+        <Add>
+          ein Bild ausgewählt
+          <Button>hinzufügen</Button>
+        </Add>
+      )}
+    </Form>
+  )
 
   function handleImageAsFile(event) {
     const image = event.target.files[0]
@@ -47,11 +67,6 @@ export default function AddImage(handleClick) {
           .child(imageAsFile.name)
           .getDownloadURL()
           .then(fireBaseUrl => {
-            setImageAsUrl(prevObject => ({
-              ...prevObject,
-              imgUrl: fireBaseUrl
-            }))
-
             user
               .updateProfile({
                 photoURL: fireBaseUrl
@@ -80,27 +95,6 @@ export default function AddImage(handleClick) {
       }
     )
   }
-  return (
-    <Form onSubmit={handleFireBaseUpload}>
-      {imageAsFile === '' ? (
-        <label htmlFor="file-input">
-          <input
-            type="file"
-            name="file"
-            id="file-input"
-            onChange={handleImageAsFile}
-            style={{ display: 'none' }}
-          />
-          <BtnCamera src={camera} alt="" width="30px" height="30px" />
-        </label>
-      ) : (
-        <Add>
-          ein Bild ausgewählt
-          <Button>hinzufügen</Button>
-        </Add>
-      )}
-    </Form>
-  )
 }
 
 const Form = styled.form`

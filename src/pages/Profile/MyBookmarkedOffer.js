@@ -17,6 +17,7 @@ export default function MyBookmarkedOffer({
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
   const localeDate = new Moment(date).format('L')
+
   return (
     <OfferTags>
       <Link to={`/detailangebot/${id}`} key={id}>
@@ -24,7 +25,7 @@ export default function MyBookmarkedOffer({
           <Title>{title}</Title>
           <Date datetime={localeDate}>{localeDate}</Date>
         </FlexContainer>
-        <Content>{description}</Content>
+        <div>{description}</div>
       </Link>
       <Line />
 
@@ -79,13 +80,10 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
 const Date = styled.div`
   font-size: 0.9rem;
   margin-top: 4px;
 `
-const Content = styled.div``
-
 const Line = styled.hr`  
 border: 0;
   height: 1px;

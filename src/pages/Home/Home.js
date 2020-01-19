@@ -1,17 +1,21 @@
+// import utils
 import React, { useState } from 'react'
-import Offer from './Offer'
-import Wappen from '../../images/WappenSeestermuehe.svg'
-import Categories from '../../components/Categories'
-import Searchbar from './Searchbar'
-import Sort from '../../images/sorticon.svg'
-
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import Moment from 'moment'
 import styled from 'styled-components/macro'
 
-export default function Home({ offers, toggleBookmarked, logedinUser }) {
+// import components
+import Offer from './Offer'
+import Categories from '../../components/Categories'
+import Searchbar from './Searchbar'
+
+// import images
+import Wappen from '../../images/WappenSeestermuehe.svg'
+import Sort from '../../images/sorticon.svg'
+
+export default function Home({ offers, toggleBookmarked }) {
   const [userInput, setUserInput] = useState('')
   const [selectedCategories, setSelectedCategories] = useState({
     'Haus & Garten': false,
@@ -31,10 +35,10 @@ export default function Home({ offers, toggleBookmarked, logedinUser }) {
         <Image>
           <img src={Wappen} alt="Wappen" height="50px" width="50px" />
         </Image>
-        <Paragraph>
+        <p>
           Hallo{user ? ` ${user.displayName}` : ''}, <br /> schaue was in
           Seestermühe los ist.
-        </Paragraph>
+        </p>
       </Welcome>
       <Searchbar
         onSubmit={handleSubmit}
@@ -63,7 +67,6 @@ export default function Home({ offers, toggleBookmarked, logedinUser }) {
           style={{ background: sortByAlphabet && 'rgb(107, 151, 142)' }}
         >
           <span>A-Z</span>
-
           <img src={Sort} alt="FilterABC" height="8px" width="8px" />
         </FilterButton>
       </Filter>
@@ -138,11 +141,9 @@ const HomeContainer = styled.div`
 const Welcome = styled.section`
   display: flex;
 `
-
 const Image = styled.div`
   margin-right: 15px;
 `
-
 const OfferContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
@@ -152,14 +153,11 @@ const Headline3 = styled.h3`
   font-size: 1rem;
   margin-bottom: 1px;
 `
-
-const Paragraph = styled.p``
 const Line = styled.hr`
   border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5) 100%);
   );
- 
 `
 const Filter = styled.div`
   display: flex;
@@ -170,7 +168,6 @@ const Filter = styled.div`
     z-index: 2;
 `
 const FilterButton = styled.button`
-  
   background: #7aaca2;
   border: none;
   margin: 6px;
@@ -184,7 +181,6 @@ const FilterButton = styled.button`
   span {
     margin-right: 6px;
   }
-  
 `
 const Message = styled.div`
   margin: 20px 0;

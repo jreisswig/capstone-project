@@ -1,8 +1,11 @@
+// import utils
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
+
+// import components
 import Pin from '../../components/Pin'
 import Date from '../../components/Date'
-import PropTypes from 'prop-types'
 
 export default function Post({
   title,
@@ -52,7 +55,7 @@ const Button = styled.button`
 const PostWrapper = styled.section`
   position: relative;
   background-color: #f3f7f6;
-  border-radius: 18px;
+  border-radius: 3px;
   padding: 3px 15px;
   box-shadow: 0 5px 5px #f0efef;
   cursor: default;
