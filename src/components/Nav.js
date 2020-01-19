@@ -55,11 +55,6 @@ export default function Nav() {
           )}
         </Link>
       </NavButton>
-      {/* <NavButton>
-        <Link to="/mehr">
-          <img src={Homeicon} alt="" />
-        </Link>
-      </NavButton> */}
     </Navigation>
   )
 }

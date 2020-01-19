@@ -56,7 +56,8 @@ export default function App() {
             isBookmarked: doc.data().isBookmarked,
             name: doc.data().name,
             phonenumber: doc.data().phonenumber,
-            title: doc.data().title
+            title: doc.data().title,
+            userid: doc.data().userid
           })
         })
 
@@ -350,20 +351,7 @@ export default function App() {
                 ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
                 : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
             })
-          console.log(doc.data().isBookmarked)
           getAllOffers()
-          /* const index = offers.findIndex(el => el.id === id)
-          const offer = offers[index]
-          setOffers([
-            ...offers.slice(0, index),
-            {
-              ...offer,
-              isBookmarked: offer.isBookmarked.includes(user && user.uid)
-                ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
-                : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
-            },
-            ...offers.slice(index + 1)
-          ]) */
         })
       })
   }

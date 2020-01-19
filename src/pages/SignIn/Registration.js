@@ -12,8 +12,7 @@ export default function Registration({ handleSignUp }) {
         <Input
           type="text"
           name="name"
-          id="username"
-          required
+          id="registrationusername"
           placeholder="Angezeigter Name *"
         ></Input>
         <Flex>
@@ -35,7 +34,7 @@ export default function Registration({ handleSignUp }) {
         <Label htmlFor="password"></Label>
         <ContactInput
           type="password"
-          name="ppassword"
+          name="password"
           id="userpassword"
           placeholder="Passwort *"
         ></ContactInput>
@@ -56,7 +55,7 @@ export default function Registration({ handleSignUp }) {
 
   function handleSubmit(event) {
     event.preventDefault()
-    const name = document.getElementById('username').value
+    const name = document.getElementById('registrationusername').value
     handleSignUp(name)
   }
 }

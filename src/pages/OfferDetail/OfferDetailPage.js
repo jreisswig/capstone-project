@@ -14,14 +14,17 @@ import Freizeit from '../../images/Freizeit icon.svg'
 import Elektro from '../../images/ElektroIcon.svg'
 import Werkzeug from '../../images/Werkzeug2.svg'
 import calendar from '../../images/calendargrey.svg'
+import Moment from 'moment'
+import 'moment/locale/de'
 
-export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
+export default function OfferDetailPage({ offers, toggleBookmarked }) {
   const [isCategory, setIsCategory] = useState('')
   const { pathname } = useLocation()
 
   const id = pathname.substring(15)
   const index = offers.findIndex(el => el.id === id)
   const offer = offers[index]
+  const localeDate = new Moment(offer.date).format('L')
 
   return (
     <OfferDetailContainer>
@@ -71,7 +74,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
       <OfferContent>
         <DateFlex>
           <img src={calendar} alt="Kalender" height="12px" width="12px" />
-          <Date datetime={date}>{offer.date}</Date>
+          <Date datetime={localeDate}>{localeDate}</Date>
         </DateFlex>
         <OfferTitle>
           <Title>{offer.title}</Title>

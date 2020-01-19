@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-export default function Date({ date }) {
-  return <DateAndTime datetime={date}>{date}</DateAndTime>
+export default function Date({ localeDate }) {
+  return <DateAndTime datetime={localeDate}>{localeDate}</DateAndTime>
 }
 
 const DateAndTime = styled.time`

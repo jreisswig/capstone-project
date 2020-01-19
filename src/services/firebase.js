@@ -63,15 +63,15 @@ export function signUp(email, password) {
     .auth()
     .createUserWithEmailAndPassword(email, password)
 
-    .then(function() {
+    /*  .then(function() {
       const user = firebase.auth().currentUser
       user.sendEmailVerification()
-    })
+    }) */
 
     .then(function() {
       const user = firebase.auth().currentUser
       user.updateProfile({
-        displayName: document.getElementById('username').value
+        displayName: document.getElementById('registrationusername').value
       })
     })
     .then(saveUser)
@@ -102,7 +102,7 @@ export function saveUser() {
       .add({
         email: document.getElementById('useremail').value,
         uid: user.uid,
-        displayName: document.getElementById('username').value
+        displayName: document.getElementById('registrationusername').value
       })
       .then(docRef => docRef)
       .catch(function(error) {

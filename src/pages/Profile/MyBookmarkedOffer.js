@@ -1,7 +1,11 @@
+// import utils
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import Moment from 'moment'
+import 'moment/locale/de'
 
+// import images
 import Trash from '../../images/trash.svg'
 
 export default function MyBookmarkedOffer({
@@ -12,13 +16,13 @@ export default function MyBookmarkedOffer({
   date
 }) {
   const [DeleteIsClicked, setDeleteIsClicked] = useState(false)
-
+  const localeDate = new Moment(date).format('L')
   return (
     <OfferTags>
       <Link to={`/detailangebot/${id}`} key={id}>
         <FlexContainer>
           <Title>{title}</Title>
-          <Date datetime={date}>{date}</Date>
+          <Date datetime={localeDate}>{localeDate}</Date>
         </FlexContainer>
         <Content>{description}</Content>
       </Link>

@@ -2,28 +2,16 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import Bookmark from '../../components/Bookmark'
 
-/* import * as admin from 'firebase-admin' */
 import 'firebase/auth'
+
 export default function OfferDetail({
   description,
   name,
   phonenumber,
   email,
   isBookmarked,
-  userid,
   toggleBookmarked
 }) {
-  /* admin
-    .auth()
-    .getUser(userid)
-    .then(function(userRecord) {
-      // See the UserRecord reference doc for the contents of userRecord.
-      console.log('Successfully fetched user data:', userRecord.toJSON())
-    })
-    .catch(function(error) {
-      console.log('Error fetching user data:', error)
-    }) */
-
   return (
     <OfferWrapper>
       <OfferSearch>ICH BIETE</OfferSearch>
@@ -32,16 +20,18 @@ export default function OfferDetail({
         toggleBookmarked={toggleBookmarked}
       />
       <OfferDescription>{description}</OfferDescription>
-
+      <Line />
       <OfferName>{name}</OfferName>
       <ContactWrapper>
-        <Image src={''} alt="profilbild" />
-
         <OfferPhone href="tel: {phonenumber}"> {phonenumber} </OfferPhone>
         <p>•</p>
         <OfferMail href="mailto:{email}">{email}</OfferMail>
       </ContactWrapper>
       <Line />
+      <Contactlist>
+        {phonenumber !== '' && <Tab href="tel: {phonenumber}">Anrufen</Tab>}
+        {email !== '' && <Tab href="mailto:{email}">Email schreiben</Tab>}
+      </Contactlist>
     </OfferWrapper>
   )
 }
@@ -81,14 +71,27 @@ const ContactWrapper = styled.section`
     margin: 0;
   }
 `
+
 const Line = styled.hr`
   border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
 `
-const Image = styled.img`
-  height: 55px;
-  width: 55px;
-  border-radius: 50%;
+
+const Tab = styled.a`
+  background: #7aaca2;
+  color: white;
+  padding: 9px;
+  border-radius: 3px;
+  text-decoration: none;
+`
+
+const Contactlist = styled.div`
+  display: grid;
+  grid-auto-flow: column;
+  width: 100%;
+  gap: 10px;
+  padding-bottom: 3px;
+  margin-top: 32px;
 `

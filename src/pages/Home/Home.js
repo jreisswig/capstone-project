@@ -8,7 +8,7 @@ import Sort from '../../images/sorticon.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-
+import Moment from 'moment'
 import styled from 'styled-components/macro'
 
 export default function Home({ offers, toggleBookmarked, logedinUser }) {
@@ -105,11 +105,15 @@ export default function Home({ offers, toggleBookmarked, logedinUser }) {
       )
     })
   }
+
   function renderOffers(filteredOffers) {
     return filteredOffers.length ? (
       filteredOffers
         .sort((a, b) =>
-          sortByAlphabet ? a.title.localeCompare(b.title) : b.date - a.date
+          sortByAlphabet
+            ? a.title.localeCompare(b.title)
+            : new Moment(b.date).format('YYYYMMDD') -
+              new Moment(a.date).format('YYYYMMDD')
         )
         .map((offer, index) => (
           <Offer
