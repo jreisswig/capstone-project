@@ -6,8 +6,6 @@ import RadioOn from '../../../images/radio-button-on-fill.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
-import dayjs from 'dayjs'
-import de from 'dayjs/locale/de'
 import Moment from 'moment'
 
 export default function Form({ handleAddPost, handleAddOffer }) {
@@ -39,11 +37,6 @@ export default function Form({ handleAddPost, handleAddOffer }) {
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
 
-  /*  function getDate1() {
-    return dayjs(new Date())
-      .locale('de-german', de)
-      .format('DD.MM.YY, dd.')
-  } */
   function getDate() {
     return new Moment().format('YYYY-MM-DD')
   }

@@ -80,7 +80,7 @@ const PostWrapper = styled.section`
   background-color: #f3f7f6;
   border-radius: 7px;
   padding: 3px 15px;
-  box-shadow: 0 5px 5px #f0efef;
+  margin-bottom: 11px;
   cursor: default;
 `
 const FlexContainer = styled.div`

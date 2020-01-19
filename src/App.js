@@ -351,20 +351,7 @@ export default function App() {
                 ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
                 : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
             })
-          console.log(doc.data().isBookmarked)
           getAllOffers()
-          /* const index = offers.findIndex(el => el.id === id)
-          const offer = offers[index]
-          setOffers([
-            ...offers.slice(0, index),
-            {
-              ...offer,
-              isBookmarked: offer.isBookmarked.includes(user && user.uid)
-                ? firebase.firestore.FieldValue.arrayRemove(user && user.uid)
-                : firebase.firestore.FieldValue.arrayUnion(user && user.uid)
-            },
-            ...offers.slice(index + 1)
-          ]) */
         })
       })
   }

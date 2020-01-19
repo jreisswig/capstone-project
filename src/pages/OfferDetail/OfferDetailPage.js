@@ -16,7 +16,8 @@ import Werkzeug from '../../images/Werkzeug2.svg'
 import calendar from '../../images/calendargrey.svg'
 import Moment from 'moment'
 import 'moment/locale/de'
-export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
+
+export default function OfferDetailPage({ offers, toggleBookmarked }) {
   const [isCategory, setIsCategory] = useState('')
   const { pathname } = useLocation()
 
@@ -24,7 +25,7 @@ export default function OfferDetailPage({ offers, date, toggleBookmarked }) {
   const index = offers.findIndex(el => el.id === id)
   const offer = offers[index]
   const localeDate = new Moment(offer.date).format('L')
-  
+
   return (
     <OfferDetailContainer>
       <CategorieHeader>

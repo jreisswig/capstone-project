@@ -14,7 +14,7 @@ import camera from '../images/camera.svg'
 export default function AddImage(handleClick) {
   const allInputs = { imgUrl: '' }
   const [imageAsFile, setImageAsFile] = useState('')
-  const [imageAsUrl, setImageAsUrl] = useState(allInputs)
+  const [setImageAsUrl] = useState(allInputs)
   const user = firebase.auth().currentUser
 
   function handleImageAsFile(event) {

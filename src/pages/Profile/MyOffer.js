@@ -28,8 +28,9 @@ export default function MyOffer({
           <Date datetime={date}>{localeDate}</Date>
         </FlexContainer>
         <Content>{description}</Content>
+
+        <Line />
       </Link>
-      <Line />
       <Flex>
         <EditWrapper>
           <Link to={`/angebotbearbeiten/${id}`} key={id}>

@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import 'firebase/auth'
 import * as firebase from 'firebase/app'
 import { logout } from '../../services/firebase'
+import Moment from 'moment'
 
 //// import components
 import MyBookmarkedOffer from './MyBookmarkedOffer'
@@ -19,7 +20,7 @@ export default function ProfileDetails({
   deletePost
 }) {
   const user = firebase.auth().currentUser
-
+  const bookmarkedOffers = renderBookmarked(offers)
   const [isClicked, setIsClicked] = useState('')
   const [changeIsClicked, setChangeIsClicked] = useState(false)
 
@@ -100,7 +101,7 @@ export default function ProfileDetails({
         <RenderContainer>
           {' '}
           <Headline3>Meine gemerkten Angebote</Headline3>
-          {renderBookmarked(offers)}
+          <MyPostsContainer>{renderBookmarked(offers)}</MyPostsContainer>
         </RenderContainer>
       ) : (
         <RenderContainer>
@@ -131,6 +132,11 @@ export default function ProfileDetails({
   function renderPersonalOffer(offers) {
     return offers
       .filter(offer => offer.userid === user.uid)
+      .sort(
+        (a, b) =>
+          new Moment(b.date).format('YYYYMMDD') -
+          new Moment(a.date).format('YYYYMMDD')
+      )
       .map((offer, index) => (
         <MyOffer
           {...offer}
@@ -145,6 +151,11 @@ export default function ProfileDetails({
   function renderPersonalPosts(posts) {
     return posts
       .filter(post => post.userid === user.uid)
+      .sort(
+        (a, b) =>
+          new Moment(b.date).format('YYYYMMDD') -
+          new Moment(a.date).format('YYYYMMDD')
+      )
       .map((post, index) => (
         <MyPost {...post} key={index} deletePost={() => deletePost(post.id)} />
       ))
