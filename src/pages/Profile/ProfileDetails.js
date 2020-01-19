@@ -20,7 +20,9 @@ export default function ProfileDetails({
   deletePost
 }) {
   const user = firebase.auth().currentUser
-  const bookmarkedOffers = renderBookmarked(offers)
+  const bookmarkedOffers = filterbookmarked(offers)
+  const filteredPersonalOffers = filterPersonalOffer(offers)
+  const filteredPersonalPosts = filterPersonalPosts(posts)
   const [isClicked, setIsClicked] = useState('')
   const [changeIsClicked, setChangeIsClicked] = useState(false)
 
@@ -100,65 +102,100 @@ export default function ProfileDetails({
       {isClicked === 'Bookmarklist' ? (
         <RenderContainer>
           {' '}
-          <Headline3>Meine gemerkten Angebote</Headline3>
-          <MyPostsContainer>{renderBookmarked(offers)}</MyPostsContainer>
+          <Headline3>Deine gemerkten Angebote</Headline3>
+          <MyPostsContainer>
+            {renderBookmarked(bookmarkedOffers)}
+          </MyPostsContainer>
         </RenderContainer>
       ) : (
         <RenderContainer>
-          <Headline3>Meine Angebote</Headline3>
-          <MyPostsContainer>{renderPersonalOffer(offers)}</MyPostsContainer>
+          <Headline3>Deine Angebote</Headline3>
+          <MyPostsContainer>
+            {renderPersonalOffer(filteredPersonalOffers)}
+          </MyPostsContainer>
           <Line />
-          <Headline3>Meine Gesuche</Headline3>
-          <MyPostsContainer>{renderPersonalPosts(posts)}</MyPostsContainer>
+          <Headline3>Deine Gesuche</Headline3>
+          <MyPostsContainer>
+            {renderPersonalPosts(filteredPersonalPosts)}
+          </MyPostsContainer>
           <Line />
         </RenderContainer>
       )}
     </ProfilDetailsContainer>
   )
-
-  function renderBookmarked(offers) {
-    return offers
-      .filter(offer => offer.isBookmarked.includes(user.uid))
-      .map((offer, index) => (
-        <MyBookmarkedOffer
-          {...offer}
-          key={index}
-          isBookmarked={offer.isBookmarked}
-          toggleBookmarked={() => toggleBookmarked(offer.id)}
-        />
-      ))
+  function filterbookmarked(offers) {
+    return offers.filter(offer => offer.isBookmarked.includes(user.uid))
   }
 
-  function renderPersonalOffer(offers) {
-    return offers
-      .filter(offer => offer.userid === user.uid)
-      .sort(
-        (a, b) =>
-          new Moment(b.date).format('YYYYMMDD') -
-          new Moment(a.date).format('YYYYMMDD')
-      )
-      .map((offer, index) => (
-        <MyOffer
-          {...offer}
-          key={index}
-          isBookmarked={offer.isBookmarked}
-          toggleBookmarked={() => toggleBookmarked(offer.id)}
-          deleteOffer={() => deleteOffer(offer.id)}
-        />
-      ))
+  function renderBookmarked(bookmarkedOffers) {
+    return bookmarkedOffers.length ? (
+      bookmarkedOffers
+        .sort(
+          (a, b) =>
+            new Moment(b.date).format('YYYYMMDD') -
+            new Moment(a.date).format('YYYYMMDD')
+        )
+        .map((offer, index) => (
+          <MyBookmarkedOffer
+            {...offer}
+            key={index}
+            isBookmarked={offer.isBookmarked}
+            toggleBookmarked={() => toggleBookmarked(offer.id)}
+          />
+        ))
+    ) : (
+      <Message>Du hast im Moment keine gemerkten Angebote.</Message>
+    )
   }
 
-  function renderPersonalPosts(posts) {
-    return posts
-      .filter(post => post.userid === user.uid)
-      .sort(
-        (a, b) =>
-          new Moment(b.date).format('YYYYMMDD') -
-          new Moment(a.date).format('YYYYMMDD')
-      )
-      .map((post, index) => (
-        <MyPost {...post} key={index} deletePost={() => deletePost(post.id)} />
-      ))
+  function filterPersonalOffer(offers) {
+    return offers.filter(offer => offer.userid === user.uid)
+  }
+
+  function renderPersonalOffer(filteredPersonalOffers) {
+    return filteredPersonalOffers.length ? (
+      filteredPersonalOffers
+        .sort(
+          (a, b) =>
+            new Moment(b.date).format('YYYYMMDD') -
+            new Moment(a.date).format('YYYYMMDD')
+        )
+        .map((offer, index) => (
+          <MyOffer
+            {...offer}
+            key={index}
+            isBookmarked={offer.isBookmarked}
+            toggleBookmarked={() => toggleBookmarked(offer.id)}
+            deleteOffer={() => deleteOffer(offer.id)}
+          />
+        ))
+    ) : (
+      <Message>Du hast im Moment keine Angebote online.</Message>
+    )
+  }
+
+  function filterPersonalPosts(posts) {
+    return posts.filter(post => post.userid === user.uid)
+  }
+
+  function renderPersonalPosts(filteredPersonalPosts) {
+    return filteredPersonalPosts.length ? (
+      filteredPersonalPosts
+        .sort(
+          (a, b) =>
+            new Moment(b.date).format('YYYYMMDD') -
+            new Moment(a.date).format('YYYYMMDD')
+        )
+        .map((post, index) => (
+          <MyPost
+            {...post}
+            key={index}
+            deletePost={() => deletePost(post.id)}
+          />
+        ))
+    ) : (
+      <Message>Du hast im Moment keine Gesuche online.</Message>
+    )
   }
 }
 
@@ -219,7 +256,7 @@ const Flex = styled.div`
   margin-top: 9px;
 `
 const Line = styled.hr`
-  border: 0;
+border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
@@ -234,11 +271,14 @@ const MyPostsContainer = styled.div`
   gap: 20px;
 `
 const Headline3 = styled.h3`
-  font-weight: unset;
+  font-weight: bold;
   font-size: 1rem;
 `
 const Image = styled.img`
   height: 55px;
   width: 55px;
   border-radius: 50%;
+`
+const Message = styled.div`
+  margin: 20px 0;
 `
