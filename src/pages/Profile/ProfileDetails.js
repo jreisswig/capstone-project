@@ -29,7 +29,7 @@ export default function ProfileDetails({
   const [changeIsClicked, setChangeIsClicked] = useState(false)
 
   return (
-    <>
+    <div>
       <Tablist>
         <Tab
           onClick={() => {
@@ -107,7 +107,7 @@ export default function ProfileDetails({
           <Line />
         </RenderContainer>
       )}
-    </>
+    </div>
   )
   function filterbookmarked(offers) {
     return offers.filter(offer => offer.isBookmarked.includes(user.uid))
