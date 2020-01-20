@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+import Moment from 'moment'
+import 'moment/locale/de'
 
 // import components
 import Pin from '../../components/Pin'
@@ -16,12 +18,12 @@ export default function Post({
   date
 }) {
   const [isHidden, setIsHidden] = useState(true)
-
+  const localeDate = new Moment(date).format('L')
   return (
     <PostWrapper onClick={toggleIsHidden}>
       <Pin></Pin>
       <PostSearch>ICH SUCHE</PostSearch>
-      <Date date={date} />
+      <Date localeDate={localeDate}>{localeDate}</Date>
       <PostTitle>{title}</PostTitle>
 
       <PostDescription>{description}</PostDescription>
@@ -107,7 +109,6 @@ const PostPhone = styled.a`
   text-decoration: none;
   color: #7d7b7b;
 `
-
 const PostMail = styled.a`
   padding-left: 7px;
   text-decoration: none;

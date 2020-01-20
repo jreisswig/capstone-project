@@ -1,15 +1,23 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import Post from './Post'
+import Moment from 'moment'
+import 'moment/locale/de'
 
 export default function Bulletinboard({ posts }) {
   return (
     <PostContainer>
       <Paragraph>Hier siehst du die Gesuche deiner Nachbarn.</Paragraph>
 
-      {posts.map((post, index) => (
-        <Post {...post} key={index} />
-      ))}
+      {posts
+        .sort(
+          (a, b) =>
+            new Moment(b.date).format('YYYYMMDD') -
+            new Moment(a.date).format('YYYYMMDD')
+        )
+        .map((post, index) => (
+          <Post {...post} key={index} date={post.date} />
+        ))}
     </PostContainer>
   )
 }
