@@ -1,8 +1,11 @@
+// import utils
 import React from 'react'
 import styled from 'styled-components/macro'
+import * as firebase from 'firebase/app'
+
+// import images
 import StarFill from '../images/star-fill.svg'
 import Star from '../images/star.svg'
-import * as firebase from 'firebase/app'
 
 export default function Bookmark({ toggleBookmarked, isBookmarked }) {
   const user = firebase.auth().currentUser

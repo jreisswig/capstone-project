@@ -2,25 +2,24 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { useLocation } from 'react-router-dom'
+import Moment from 'moment'
+import 'moment/locale/de'
 
 // import components
 import OfferDetail from './OfferDetail'
 
 // import images
 import Home from '../../images/Home.svg'
-import Boot from '../../images/Boot.svg'
+import Boot from '../../images/BootIcon.svg'
 import Family from '../../images/FamilyBig.svg'
 import Freizeit from '../../images/Freizeit icon.svg'
-import Elektro from '../../images/ElektroIcon.svg'
+import Elektro from '../../images/Elektro2Icon.svg'
 import Werkzeug from '../../images/Werkzeug2.svg'
 import calendar from '../../images/calendargrey.svg'
-import Moment from 'moment'
-import 'moment/locale/de'
 
 export default function OfferDetailPage({ offers, toggleBookmarked }) {
   const [isCategory, setIsCategory] = useState('')
   const { pathname } = useLocation()
-
   const id = pathname.substring(15)
   const index = offers.findIndex(el => el.id === id)
   const offer = offers[index]

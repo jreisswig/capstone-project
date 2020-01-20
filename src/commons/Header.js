@@ -1,33 +1,17 @@
 // import utils
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 // import images
 import ArrowBack from '../images/arrow_back_ios.svg'
-import styled from 'styled-components/macro'
-
 import HalloDorf from '../images/HalloDorf Logo.png'
 
 export default function Header() {
   let pagetitle
   let icon
-  let classname
   let style
-  let [pos, setPos] = useState(window.pageYOffset)
-  let [visible, setVisible] = useState(true)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      let temp = window.pageYOffset
-
-      setVisible(pos > temp)
-      setPos(temp)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  })
   const { pathname } = useLocation()
 
   function checkPath(currentpath) {
@@ -108,8 +92,6 @@ export default function Header() {
           }}
         ></img>
       )
-
-      classname = !visible && 'headerHidden'
       style = { marginTop: '5px' }
       break
     default:
@@ -117,7 +99,7 @@ export default function Header() {
   }
 
   return (
-    <HeaderStyled classname={classname}>
+    <HeaderStyled>
       <Left>{icon}</Left>
       <HeaderTitle style={style}>{pagetitle}</HeaderTitle>
 

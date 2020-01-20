@@ -34,7 +34,6 @@ const Form = styled.form`
   height: 40px;
   position: sticky;
   top: -17px;
-
   z-index: 2;
 `
 const Label = styled.label`
@@ -69,6 +68,5 @@ const StyledSubmit = styled.input`
   border-radius: 3px;
   color: white;
   padding: 6px 9px 9px 9px;
-
   font-size: 1rem;
 `

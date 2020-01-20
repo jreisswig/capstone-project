@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default function SignIn() {
   return (
     <NewProfileContainer>
-      <Headline2>Logge dich ein</Headline2>
+      <h2>Logge dich ein</h2>
       <StyledForm method="post" action="" id="" onSubmit={handleSubmit}>
         <Label htmlFor="email"></Label>
         <Input
@@ -56,18 +56,15 @@ const NewProfileContainer = styled.div`
   border-radius: 20px;
   margin-top: 38%;
 `
-
 const StyledForm = styled.form`
   display: grid;
   gap: 10px;
   width: 90%;
   align-items: center;
 `
-
 const Label = styled.label`
   display: none;
 `
-const Headline2 = styled.h2``
 const Input = styled.input`
   background: #f3f7f6;
   border: none;
@@ -84,7 +81,6 @@ const PasswordInput = styled.input`
   border-radius: 5px;
   color: #7d7b7b;
 `
-
 const StyledSubmit = styled.input`
   background: #7aaca2;
   border: none;
@@ -95,7 +91,6 @@ const StyledSubmit = styled.input`
   font-size: 1rem;
   height: 35px;
 `
-
 const FlexBox = styled.div`
   display: flex;
   justify-content: space-between;

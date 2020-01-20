@@ -1,12 +1,15 @@
+// import utils
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import CategorieForm from './CategorieForm'
-import RadioOff from '../../../images/radio-button-off.svg'
-import RadioOn from '../../../images/radio-button-on-fill.svg'
 import * as firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import Moment from 'moment'
+
+// import components and images
+import CategorieForm from './CategorieForm'
+import RadioOff from '../../images/radio-button-off.svg'
+import RadioOn from '../../images/radio-button-on-fill.svg'
 
 export default function Form({ handleAddPost, handleAddOffer }) {
   const user = firebase.auth().currentUser
@@ -36,10 +39,6 @@ export default function Form({ handleAddPost, handleAddOffer }) {
   })
   const [submitted, setSubmitted] = useState(false)
   const [selectedOption, setSelectedOption] = useState('')
-
-  function getDate() {
-    return new Moment().format('YYYY-MM-DD')
-  }
 
   return (
     <StyledForm
@@ -142,17 +141,6 @@ export default function Form({ handleAddPost, handleAddOffer }) {
                 name: event.target.value
               })
         }
-        /* onInput={event =>
-          selectedOption === 'post'
-            ? setAddPost({
-                ...addPost,
-                name: event.target.value
-              })
-            : setAddOffer({
-                ...addOffer,
-                name: event.target.value
-              })
-        } */
         required
         placeholder="Angezeigter Name *"
       ></Input>
@@ -174,17 +162,6 @@ export default function Form({ handleAddPost, handleAddOffer }) {
                   email: event.target.value
                 })
           }
-          /* onInput={event =>
-            selectedOption === 'post'
-              ? setAddPost({
-                  ...addPost,
-                  email: user ? user.email : event.target.value
-                })
-              : setAddOffer({
-                  ...addOffer,
-                  email: user ? user.email : event.target.value
-                })
-          } */
           placeholder="Email"
         ></ContactInput>
         <Label htmlFor="phonenumber"></Label>
@@ -219,6 +196,10 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     </StyledForm>
   )
 
+  function getDate() {
+    return new Moment().format('YYYY-MM-DD')
+  }
+
   function addCategoryAndDate(categoriename) {
     selectedOption === 'post'
       ? setAddPost({ ...addPost, category: categoriename })
@@ -241,7 +222,6 @@ export default function Form({ handleAddPost, handleAddOffer }) {
     handleAddOffer(addOffer)
     event.target[0].focus()
     event.target.reset()
-
     showMessage()
   }
 

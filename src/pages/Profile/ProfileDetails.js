@@ -20,30 +20,16 @@ export default function ProfileDetails({
   deletePost
 }) {
   const user = firebase.auth().currentUser
+  const creationDate = user.metadata.creationTime
+  const creationTime = new Moment(creationDate).format('L')
   const bookmarkedOffers = filterbookmarked(offers)
   const filteredPersonalOffers = filterPersonalOffer(offers)
   const filteredPersonalPosts = filterPersonalPosts(posts)
   const [isClicked, setIsClicked] = useState('')
   const [changeIsClicked, setChangeIsClicked] = useState(false)
 
-  const creationDate = new Date(user.metadata.creationTime)
-  const day = creationDate.getDate()
-  const month = creationDate.getMonth() + 1
-  const year = creationDate.getFullYear()
-  const creationTime = day + '.' + month + '.' + year
-
-  if (user != null) {
-    user.providerData.forEach(function(profile) {
-      console.log('Sign-in provider: ' + profile.providerId)
-      console.log('  Provider-specific UID: ' + profile.uid)
-      console.log('  Name: ' + profile.displayName)
-      console.log('  Email: ' + profile.email)
-      console.log('  Photo URL: ' + profile.photoURL)
-    })
-  }
-
   return (
-    <ProfilDetailsContainer>
+    <div>
       <Tablist>
         <Tab
           onClick={() => {
@@ -87,9 +73,9 @@ export default function ProfileDetails({
         </ProfileImage>
         <UserInfos>
           <Name>Hallo {user.displayName}</Name>
-          <Infotext>{user.email}</Infotext>
+          <div>{user.email}</div>
           <Flex>
-            <CreationDate>Registriert seit: {creationTime}</CreationDate>
+            <div>Registriert seit: {creationTime}</div>
             <Logout onClick={logout}>
               <p>Logout</p>
             </Logout>
@@ -121,7 +107,7 @@ export default function ProfileDetails({
           <Line />
         </RenderContainer>
       )}
-    </ProfilDetailsContainer>
+    </div>
   )
   function filterbookmarked(offers) {
     return offers.filter(offer => offer.isBookmarked.includes(user.uid))
@@ -199,8 +185,6 @@ export default function ProfileDetails({
   }
 }
 
-const ProfilDetailsContainer = styled.div``
-
 const Tab = styled.div`
   background: #7aaca2;
   color: white;
@@ -208,7 +192,6 @@ const Tab = styled.div`
   border-radius: 3px;
   cursor: default;
 `
-
 const Tablist = styled.div`
   position: relative;
   display: grid;
@@ -221,7 +204,11 @@ const Tablist = styled.div`
     z-index: 10;
 `
 const Logout = styled.div`
+  background: #f3f7f6;
+  padding: 1px 4px;
+  border-radius: 2px;
   cursor: default;
+  font-size: 0.9rem;
   p {
     margin: 0;
   }
@@ -229,7 +216,6 @@ const Logout = styled.div`
 const ProfileInfos = styled.div`
   display: flex;
   height: 20%;
-
   justify-content: space-between;
 `
 const ProfileImage = styled.div`
@@ -244,12 +230,10 @@ const Name = styled.div`
   font-weight: bold;
   margin-top: 12px;
 `
-const Infotext = styled.div``
 const UserInfos = styled.div`
   width: 100%;
   margin-left: 10px;
 `
-const CreationDate = styled.div``
 const Flex = styled.div`
   display: flex;
   justify-content: space-between;

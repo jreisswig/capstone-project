@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import Form from './formAddNew/Form'
+import Form from './Form'
 
 export default function NewPost({
   handleAddPost,

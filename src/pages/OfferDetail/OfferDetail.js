@@ -38,7 +38,6 @@ export default function OfferDetail({
 const OfferWrapper = styled.div`
   margin-top: 24px;
 `
-
 const OfferDescription = styled.p`
   padding: 20px 0;
 `
@@ -56,13 +55,11 @@ const OfferPhone = styled.a`
   text-decoration: none;
   color: #7d7b7b;
 `
-
 const OfferMail = styled.a`
   padding-left: 7px;
   text-decoration: none;
   color: #7d7b7b;
 `
-
 const ContactWrapper = styled.section`
   display: flex;
   margin-top: 3px;
@@ -71,14 +68,12 @@ const ContactWrapper = styled.section`
     margin: 0;
   }
 `
-
 const Line = styled.hr`
   border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
   );
 `
-
 const Tab = styled.a`
   background: #7aaca2;
   color: white;
@@ -86,7 +81,6 @@ const Tab = styled.a`
   border-radius: 3px;
   text-decoration: none;
 `
-
 const Contactlist = styled.div`
   display: grid;
   grid-auto-flow: column;

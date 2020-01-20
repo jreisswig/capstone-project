@@ -1,10 +1,11 @@
+// import utils
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Moment from 'moment'
 import 'moment/locale/de'
 
-//// import images
+// import images
 import Trash from '../../images/trash.svg'
 import Edit from '../../images/edit.svg'
 
@@ -28,18 +29,18 @@ export default function MyPost({
       </FlexContainer>
 
       <PostTitle>{title}</PostTitle>
-
       <PostDescription>{description}</PostDescription>
-
       <Line />
-
       <PostName>{name}</PostName>
+
       <ContactWrapper>
         <PostPhone href="tel: {phonenumber}"> {phonenumber} </PostPhone>
         <p>•</p>
         <PostMail href="mailto:{email}">{email}</PostMail>
       </ContactWrapper>
+
       <Line />
+
       <Flex>
         <EditWrapper>
           <Link to={`/gesuchebearbeiten/${id}`} key={id}>
@@ -54,6 +55,7 @@ export default function MyPost({
           />
         </EditWrapper>
       </Flex>
+
       {DeleteIsClicked && (
         <PopUp>
           <Text>Bist du sicher, dass du dieses Gesuch löschen möchtest?</Text>
@@ -78,7 +80,7 @@ export default function MyPost({
 
 const PostWrapper = styled.section`
   background-color: #f3f7f6;
-  border-radius: 7px;
+  border-radius: 3px;
   padding: 3px 15px;
   margin-bottom: 11px;
   cursor: default;
@@ -87,7 +89,6 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
 const Date = styled.div`
   font-size: 0.9rem;
   margin-top: 4px;
@@ -99,7 +100,6 @@ const PostTitle = styled.h4`
 const PostDescription = styled.p`
   position: relative;
 `
-
 const PostName = styled.p`
   color: #424242;
   margin-top: 3px;
@@ -110,7 +110,6 @@ const PostPhone = styled.a`
   text-decoration: none;
   color: #7d7b7b;
 `
-
 const PostMail = styled.a`
   padding-left: 7px;
   text-decoration: none;
@@ -143,7 +142,6 @@ const EditWrapper = styled.div``
 const Image = styled.img`
   margin-right: 12px;
 `
-
 const PopUp = styled.div`
   position: absolute;
   background: white;
@@ -163,13 +161,11 @@ const PopUp = styled.div`
 const Text = styled.div`
   width: 80%;
 `
-
 const FlexButton = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 `
-
 const Button = styled.button`
   background: #7aaca2;
   border: none;

@@ -27,7 +27,7 @@ export default function MyOffer({
           <Title>{title}</Title>
           <Date datetime={date}>{localeDate}</Date>
         </FlexContainer>
-        <Content>{description}</Content>
+        <div>{description}</div>
 
         <Line />
       </Link>
@@ -93,15 +93,11 @@ const FlexContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `
-
 const Date = styled.div`
   font-size: 0.9rem;
   margin-top: 4px;
 `
-const Content = styled.div``
-
-const Line = styled.hr`
-  
+const Line = styled.hr` 
 border: 0;
   height: 1px;
   background-image: linear-gradient(90deg, rgba(123,172,160,0.5088235123150823) 0%, rgba(123,172,160,1) 48%, rgba(123,172,160,0.5144257532114409) 100%);
@@ -140,13 +136,11 @@ const PopUp = styled.div`
 const Text = styled.div`
   width: 80%;
 `
-
 const FlexButton = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
 `
-
 const Button = styled.button`
   background: #7aaca2;
   border: none;
